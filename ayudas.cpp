@@ -6,3 +6,7 @@ void gotoxy(int x,int y){
   dwPos.Y= y;  
   SetConsoleCursorPosition(hcon,dwPos);  
 } // Fin de añadir GoToXY
+
+int random() {
+  //
+}
