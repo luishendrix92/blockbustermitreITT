@@ -19,7 +19,7 @@ int main() {
   dibujarMenu("clientes");
   cin >> opcion;
 
-  switch (opcion) {
+  switch(opcion) {
     //
   } // Fin de elegir opciones
 

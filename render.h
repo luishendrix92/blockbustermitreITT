@@ -27,27 +27,37 @@ void dibujarBordes() {
 
 void dibujarMenu(string menu) {
   int opcion;
-  if (strcmp(menu, "principal") == 0) {
+  if (menu.compare("principal") == 0) {
     opcion = 1;
-  } else if (strcmp(menu, "clientes") == 0) {
+  } else if (menu.compare("clientes") == 0) {
     opcion = 2;
-  } else if (strcmp(menu, "admins") == 0) {
+  } else if (menu.compare("admins") == 0) {
     // Opcion
-  } else if (strcmp(menu, "nuevoMenu") == 0) {
+  } else if (menu.compare("nuevoMenu")  == 0) {
     // Opcion
-  } else if (strcmp(menu, "nuevoMenu") == 0) {
+  } else if (menu.compare("nuevoMenu")  == 0) {
     // Opcion
-  } // Fin de dar valor a opcion
+  } else { // Default o error
+    opcion = 0;
+  }// Fin de dar valor a opcion
 
-  dibujarBordes();
-  gotoxy(18,2); cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
-  gotoxy(27,5); cout << "Que es lo que deseas hacer?";
-  gotoxy(5,9);  cout << "Menu:";
-  gotoxy(5,12); cout << "1.- Rentar peliculas";
-  gotoxy(5,14); cout << "2.- Comprar peliculas";
-  gotoxy(5,16); cout << "3.- Membresias";
-  gotoxy(5,18); cout << "4.- Salir";
-  gotoxy(5,24); cout << "Opcion: ";
+  switch(opcion) {
+    case 0:
+      system("cls");
+      cout << "Error al llamar la funcion dibujarMenu" << endl;
+      break;
+    case 1:
+      dibujarBordes();
+      gotoxy(18,2); cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
+      gotoxy(27,5); cout << "Que es lo que deseas hacer?";
+      gotoxy(5,9);  cout << "Menu:";
+      gotoxy(5,12); cout << "1.- Rentar peliculas";
+      gotoxy(5,14); cout << "2.- Comprar peliculas";
+      gotoxy(5,16); cout << "3.- Membresias";
+      gotoxy(5,18); cout << "4.- Salir";
+      gotoxy(5,24); cout << "Opcion: ";
+      break;
+  } // Fin de elegir opcion
 } // Fin de mostrar menu principal
 
 void intro() {
