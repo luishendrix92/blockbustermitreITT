@@ -32,7 +32,7 @@ void dibujarMenu(string menu) {
   } else if (menu.compare("clientes") == 0) {
     opcion = 2;
   } else if (menu.compare("admins") == 0) {
-    // Opcion
+    opcion = 3;
   } else if (menu.compare("nuevoMenu")  == 0) {
     // Opcion
   } else if (menu.compare("nuevoMenu")  == 0) {
@@ -187,7 +187,7 @@ void intro() {
   cout<<"\tBBBBBBBBBBBBBBBBB   "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 7 - Letra BU
+  // Fotograma 7 - BU
   cout<<"\n\n\n\n";
   cout<<"\tBBBBBBBBBBBBBBBBB   UUUUUUUU     UUUUUUUU"<<endl;
   cout<<"\tB::::::::::::::::B  U::::::U     U::::::U"<<endl;
@@ -207,7 +207,7 @@ void intro() {
   cout<<"\tBBBBBBBBBBBBBBBBB         UUUUUUUUU      "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 8 - Letra BUS
+  // Fotograma 8 - BUS
   cout<<"\n\n\n\n";
   cout<<"\tBBBBBBBBBBBBBBBBB   UUUUUUUU     UUUUUUUU   SSSSSSSSSSSSSSS "<<endl;
   cout<<"\tB::::::::::::::::B  U::::::U     U::::::U SS:::::::::::::::S"<<endl;
@@ -227,7 +227,7 @@ void intro() {
   cout<<"\tBBBBBBBBBBBBBBBBB         UUUUUUUUU       SSSSSSSSSSSSSSS   "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 9 - Letra T
+  // Fotograma 9 - T
   cout<<"\n\n\n\n";
   cout<<"\tTTTTTTTTTTTTTTTTTTTTTTT"<<endl;
   cout<<"\tT:::::::::::::::::::::T"<<endl;
@@ -247,7 +247,7 @@ void intro() {
   cout<<"\t      TTTTTTTTTTT      "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 10 - Letra TE
+  // Fotograma 10 - TE
   cout<<"\n\n\n\n";
   cout<<"\tTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEE"<<endl;
   cout<<"\tT:::::::::::::::::::::TE::::::::::::::::::::E"<<endl;
@@ -267,7 +267,7 @@ void intro() {
   cout<<"\t      TTTTTTTTTTT      EEEEEEEEEEEEEEEEEEEEEE"<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 11 - Letra TER
+  // Fotograma 11 - TER
   cout<<"\n\n\n\n";
   cout<<"\tTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRR   "<<endl;
   cout<<"\tT:::::::::::::::::::::TE::::::::::::::::::::ER::::::::::::::::R  "<<endl;
