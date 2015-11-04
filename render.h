@@ -1,12 +1,57 @@
-/*  Rendereado de objetos y marcos
+/*  Rendereado de texto y marcos
     para la ventana de consola.
 ================================================= */
 #ifndef dibujoRender
 #define dibujoRender
 using namespace std;
 
-void dibujarLogo() {
-  int velocidad = 400;
+void dibujarBordes() {
+  int tamHorizontal = 110, tamVertical = 28;
+
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, (tamVertical-1)); cout<<"_";
+  } // Borde inferior
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, 3); cout<<"_";
+  } // Borde de titulo superior
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, 1); cout<<"_";
+  } // Borde de titulo inferior
+  for(int y = 2; y < tamVertical; y+=1) {
+    gotoxy((tamHorizontal-1), y); cout<<"|";
+  } // Borde lateral derecho
+  for(int y = 2; y < tamVertical; y+=1) {
+    gotoxy(3, y); cout<<"|";
+  } // Borde lateral izquierdo
+} // Fin de dibujar bordes
+
+void dibujarMenu(string menu) {
+  int opcion;
+  if (strcmp(menu, "principal") == 0) {
+    opcion = 1;
+  } else if (strcmp(menu, "clientes") == 0) {
+    opcion = 2;
+  } else if (strcmp(menu, "admins") == 0) {
+    // Opcion
+  } else if (strcmp(menu, "nuevoMenu") == 0) {
+    // Opcion
+  } else if (strcmp(menu, "nuevoMenu") == 0) {
+    // Opcion
+  } // Fin de dar valor a opcion
+
+  dibujarBordes();
+  gotoxy(18,2); cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
+  gotoxy(27,5); cout << "Que es lo que deseas hacer?";
+  gotoxy(5,9);  cout << "Menu:";
+  gotoxy(5,12); cout << "1.- Rentar peliculas";
+  gotoxy(5,14); cout << "2.- Comprar peliculas";
+  gotoxy(5,16); cout << "3.- Membresias";
+  gotoxy(5,18); cout << "4.- Salir";
+  gotoxy(5,24); cout << "Opcion: ";
+} // Fin de mostrar menu principal
+
+void intro() {
+  int velocidad = 280;
 
   // Colorear pantalla azul y letra amarilla
   system("cls");
@@ -230,6 +275,6 @@ void dibujarLogo() {
   cout<<"\t      T:::::::::T      E::::::::::::::::::::ER::::::R     R:::::R"<<endl;
   cout<<"\t      T:::::::::T      E::::::::::::::::::::ER::::::R     R:::::R"<<endl;
   cout<<"\t      TTTTTTTTTTT      EEEEEEEEEEEEEEEEEEEEEERRRRRRRR     RRRRRRR"<<endl;
-  Sleep(velocidad*2); system("cls");
+  Sleep(velocidad*3); system("cls");
 } // Fin de intro con logo
 #endif

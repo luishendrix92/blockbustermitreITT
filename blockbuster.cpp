@@ -13,6 +13,15 @@
 using namespace std;
 
 int main() {
-  dibujarLogo();
+  int opcion;
+
+  intro();
+  dibujarMenu("clientes");
+  cin >> opcion;
+
+  switch (opcion) {
+    //
+  } // Fin de elegir opciones
+
   getch();
 } // Fin del programa
