@@ -4,28 +4,15 @@
 #include <string>
 #include <windows.h>
 #include <stdio.h>
-//#include "ayudas.cpp"
-#include "render.cpp"
+#include <vector>
+#include <sstream>
+#include "ayudas.h"
+#include "render.h"
+//#include "database.h"
 
 using namespace std;
 
-void gotoxy(int x,int y){  
-  HANDLE hcon;  
-  hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
-  COORD dwPos;  
-  dwPos.X = x;  
-  dwPos.Y= y;  
-  SetConsoleCursorPosition(hcon,dwPos);  
-} // Fin de añadir GoToXY
-
 int main() {
-	/*
-    1. Rentar Peliculas
-    2. Comprar Pelicula --> 
-    3. Membresias
-    4. Salir
-  */
-  
-  logo();
+  dibujarLogo();
   getch();
 } // Fin del programa
