@@ -46,7 +46,7 @@ void dibujarMenu(string menu) {
       system("cls");
       cout << "Error al llamar la funcion dibujarMenu" << endl;
       break;
-    case 1:
+    case 2:
       dibujarBordes();
       gotoxy(18,2); cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
       gotoxy(27,5); cout << "Que es lo que deseas hacer?";
