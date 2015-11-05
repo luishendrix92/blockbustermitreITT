@@ -5,6 +5,7 @@
 #include <fstream>
 #include <windows.h>
 #include <stdio.h>
+#include <sstream>
 //#include <regex>
 #include "render.cpp"
 #include "database.cpp"
