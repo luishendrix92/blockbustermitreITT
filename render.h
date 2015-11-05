@@ -67,47 +67,7 @@ void intro() {
   system("cls");
   system("color 16");
 
-  // Fotograma 1 - B
-  cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   "<<endl;
-  cout<<"\tB::::::::::::::::B  "<<endl;
-  cout<<"\tB::::::BBBBBB:::::B "<<endl;
-  cout<<"\tBB:::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::BBBBBB:::::B "<<endl;
-  cout<<"\t  B:::::::::::::BB  "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B "<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\tBB:::::BBBBBB::::::B"<<endl;
-  cout<<"\tB:::::::::::::::::B "<<endl;
-  cout<<"\tB::::::::::::::::B  "<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB   "<<endl;
-  Sleep(velocidad); system("cls");
-
-  // Fotograma 2 - BL
-  cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLL             "<<endl;
-  cout<<"\tB::::::::::::::::B  L:::::::::L             "<<endl;
-  cout<<"\tB::::::BBBBBB:::::B L:::::::::L             "<<endl;
-  cout<<"\tBB:::::B     B:::::BLL:::::::LL             "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               "<<endl;
-  cout<<"\t  B:::::::::::::BB    L:::::L               "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L         LLLLLL"<<endl;
-  cout<<"\tBB:::::BBBBBB::::::BLL:::::::LLLLLLLLL:::::L"<<endl;
-  cout<<"\tB:::::::::::::::::B L::::::::::::::::::::::L"<<endl;
-  cout<<"\tB::::::::::::::::B  L::::::::::::::::::::::L"<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLLLLLLLLLLLLLLL"<<endl;
-  Sleep(velocidad); system("cls");
-
-  // Fotograma 3 - BLO
+  // Fotograma 1 - BLO
   cout<<"\n\n\n\n";
   cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLL                  OOOOOOOOO     "<<endl;
   cout<<"\tB::::::::::::::::B  L:::::::::L                OO:::::::::OO   "<<endl;
@@ -127,87 +87,87 @@ void intro() {
   cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLLLLLLLLLLLLLLL     OOOOOOOOO     "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 4 - BLOC
+  // Fotograma 2 - LOC
   cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLL                  OOOOOOOOO             CCCCCCCCCCCCC"<<endl;
-  cout<<"\tB::::::::::::::::B  L:::::::::L                OO:::::::::OO        CCC::::::::::::C"<<endl;
-  cout<<"\tB::::::BBBBBB:::::B L:::::::::L              OO:::::::::::::OO    CC:::::::::::::::C"<<endl;
-  cout<<"\tBB:::::B     B:::::BLL:::::::LL             O:::::::OOO:::::::O  C:::::CCCCCCCC::::C"<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O::::::O   O::::::O C:::::C       CCCCCC"<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B:::::::::::::BB    L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L         LLLLLLO::::::O   O::::::O C:::::C       CCCCCC"<<endl;
-  cout<<"\tBB:::::BBBBBB::::::BLL:::::::LLLLLLLLL:::::LO:::::::OOO:::::::O  C:::::CCCCCCCC::::C"<<endl;
-  cout<<"\tB:::::::::::::::::B L::::::::::::::::::::::L OO:::::::::::::OO    CC:::::::::::::::C"<<endl;
-  cout<<"\tB::::::::::::::::B  L::::::::::::::::::::::L   OO:::::::::OO        CCC::::::::::::C"<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLLLLLLLLLLLLLLL     OOOOOOOOO             CCCCCCCCCCCCC"<<endl;
+  cout<<"\tLLLLLLLLLLL                  OOOOOOOOO             CCCCCCCCCCCCC"<<endl;
+  cout<<"\tL:::::::::L                OO:::::::::OO        CCC::::::::::::C"<<endl;
+  cout<<"\tL:::::::::L              OO:::::::::::::OO    CC:::::::::::::::C"<<endl;
+  cout<<"\tLL:::::::LL             O:::::::OOO:::::::O  C:::::CCCCCCCC::::C"<<endl;
+  cout<<"\t  L:::::L               O::::::O   O::::::O C:::::C       CCCCCC"<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L               O:::::O     O:::::OC:::::C              "<<endl;
+  cout<<"\t  L:::::L         LLLLLLO::::::O   O::::::O C:::::C       CCCCCC"<<endl;
+  cout<<"\tLL:::::::LLLLLLLLL:::::LO:::::::OOO:::::::O  C:::::CCCCCCCC::::C"<<endl;
+  cout<<"\tL::::::::::::::::::::::L OO:::::::::::::OO    CC:::::::::::::::C"<<endl;
+  cout<<"\tL::::::::::::::::::::::L   OO:::::::::OO        CCC::::::::::::C"<<endl;
+  cout<<"\tLLLLLLLLLLLLLLLLLLLLLLLL     OOOOOOOOO             CCCCCCCCCCCCC"<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 5 - BLOCK
+  // Fotograma 3 - OCK
   cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLL                  OOOOOOOOO             CCCCCCCCCCCCCKKKKKKKKK    KKKKKKK"<<endl;
-  cout<<"\tB::::::::::::::::B  L:::::::::L                OO:::::::::OO        CCC::::::::::::CK:::::::K    K:::::K"<<endl;
-  cout<<"\tB::::::BBBBBB:::::B L:::::::::L              OO:::::::::::::OO    CC:::::::::::::::CK:::::::K    K:::::K"<<endl;
-  cout<<"\tBB:::::B     B:::::BLL:::::::LL             O:::::::OOO:::::::O  C:::::CCCCCCCC::::CK:::::::K   K::::::K"<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O::::::O   O::::::O C:::::C       CCCCCCKK::::::K  K:::::KKK"<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C                K:::::K K:::::K   "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               O:::::O     O:::::OC:::::C                K::::::K:::::K    "<<endl;
-  cout<<"\t  B:::::::::::::BB    L:::::L               O:::::O     O:::::OC:::::C                K:::::::::::K     "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B   L:::::L               O:::::O     O:::::OC:::::C                K:::::::::::K     "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C                K::::::K:::::K    "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L               O:::::O     O:::::OC:::::C                K:::::K K:::::K   "<<endl;
-  cout<<"\t  B::::B     B:::::B  L:::::L         LLLLLLO::::::O   O::::::O C:::::C       CCCCCCKK::::::K  K:::::KKK"<<endl;
-  cout<<"\tBB:::::BBBBBB::::::BLL:::::::LLLLLLLLL:::::LO:::::::OOO:::::::O  C:::::CCCCCCCC::::CK:::::::K   K::::::K"<<endl;
-  cout<<"\tB:::::::::::::::::B L::::::::::::::::::::::L OO:::::::::::::OO    CC:::::::::::::::CK:::::::K    K:::::K"<<endl;
-  cout<<"\tB::::::::::::::::B  L::::::::::::::::::::::L   OO:::::::::OO        CCC::::::::::::CK:::::::K    K:::::K"<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB   LLLLLLLLLLLLLLLLLLLLLLLL     OOOOOOOOO             CCCCCCCCCCCCCKKKKKKKKK    KKKKKKK"<<endl;
+  cout<<"\t     OOOOOOOOO             CCCCCCCCCCCCCKKKKKKKKK    KKKKKKK"<<endl;
+  cout<<"\t   OO:::::::::OO        CCC::::::::::::CK:::::::K    K:::::K"<<endl;
+  cout<<"\t OO:::::::::::::OO    CC:::::::::::::::CK:::::::K    K:::::K"<<endl;
+  cout<<"\tO:::::::OOO:::::::O  C:::::CCCCCCCC::::CK:::::::K   K::::::K"<<endl;
+  cout<<"\tO::::::O   O::::::O C:::::C       CCCCCCKK::::::K  K:::::KKK"<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K:::::K K:::::K   "<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K::::::K:::::K    "<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K:::::::::::K     "<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K:::::::::::K     "<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K::::::K:::::K    "<<endl;
+  cout<<"\tO:::::O     O:::::OC:::::C                K:::::K K:::::K   "<<endl;
+  cout<<"\tO::::::O   O::::::O C:::::C       CCCCCCKK::::::K  K:::::KKK"<<endl;
+  cout<<"\tO:::::::OOO:::::::O  C:::::CCCCCCCC::::CK:::::::K   K::::::K"<<endl;
+  cout<<"\t OO:::::::::::::OO    CC:::::::::::::::CK:::::::K    K:::::K"<<endl;
+  cout<<"\t   OO:::::::::OO        CCC::::::::::::CK:::::::K    K:::::K"<<endl;
+  cout<<"\t     OOOOOOOOO             CCCCCCCCCCCCCKKKKKKKKK    KKKKKKK"<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 6 - B
+  // Fotograma 4 - CKB
   cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   "<<endl;
-  cout<<"\tB::::::::::::::::B  "<<endl;
-  cout<<"\tB::::::BBBBBB:::::B "<<endl;
-  cout<<"\tBB:::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::BBBBBB:::::B "<<endl;
-  cout<<"\t  B:::::::::::::BB  "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B "<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\t  B::::B     B:::::B"<<endl;
-  cout<<"\tBB:::::BBBBBB::::::B"<<endl;
-  cout<<"\tB:::::::::::::::::B "<<endl;
-  cout<<"\tB::::::::::::::::B  "<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB   "<<endl;
+  cout<<"\t        CCCCCCCCCCCCCKKKKKKKKK    KKKKKKKBBBBBBBBBBBBBBBBB   "<<endl;
+  cout<<"\t     CCC::::::::::::CK:::::::K    K:::::KB::::::::::::::::B  "<<endl;
+  cout<<"\t   CC:::::::::::::::CK:::::::K    K:::::KB::::::BBBBBB:::::B "<<endl;
+  cout<<"\t  C:::::CCCCCCCC::::CK:::::::K   K::::::KBB:::::B     B:::::B"<<endl;
+  cout<<"\t C:::::C       CCCCCCKK::::::K  K:::::KKK  B::::B     B:::::B"<<endl;
+  cout<<"\tC:::::C                K:::::K K:::::K     B::::B     B:::::B"<<endl;
+  cout<<"\tC:::::C                K::::::K:::::K      B::::BBBBBB:::::B "<<endl;
+  cout<<"\tC:::::C                K:::::::::::K       B:::::::::::::BB  "<<endl;
+  cout<<"\tC:::::C                K:::::::::::K       B::::BBBBBB:::::B "<<endl;
+  cout<<"\tC:::::C                K::::::K:::::K      B::::B     B:::::B"<<endl;
+  cout<<"\tC:::::C                K:::::K K:::::K     B::::B     B:::::B"<<endl;
+  cout<<"\t C:::::C       CCCCCCKK::::::K  K:::::KKK  B::::B     B:::::B"<<endl;
+  cout<<"\t  C:::::CCCCCCCC::::CK:::::::K   K::::::KBB:::::BBBBBB::::::B"<<endl;
+  cout<<"\t   CC:::::::::::::::CK:::::::K    K:::::KB:::::::::::::::::B "<<endl;
+  cout<<"\t     CCC::::::::::::CK:::::::K    K:::::KB::::::::::::::::B  "<<endl;
+  cout<<"\t        CCCCCCCCCCCCCKKKKKKKKK    KKKKKKKBBBBBBBBBBBBBBBBB   "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 7 - BU
+  // Fotograma 5 - KBU
   cout<<"\n\n\n\n";
-  cout<<"\tBBBBBBBBBBBBBBBBB   UUUUUUUU     UUUUUUUU"<<endl;
-  cout<<"\tB::::::::::::::::B  U::::::U     U::::::U"<<endl;
-  cout<<"\tB::::::BBBBBB:::::B U::::::U     U::::::U"<<endl;
-  cout<<"\tBB:::::B     B:::::BUU:::::U     U:::::UU"<<endl;
-  cout<<"\t  B::::B     B:::::B U:::::U     U:::::U "<<endl;
-  cout<<"\t  B::::B     B:::::B U:::::D     D:::::U "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B  U:::::D     D:::::U "<<endl;
-  cout<<"\t  B:::::::::::::BB   U:::::D     D:::::U "<<endl;
-  cout<<"\t  B::::BBBBBB:::::B  U:::::D     D:::::U "<<endl;
-  cout<<"\t  B::::B     B:::::B U:::::D     D:::::U "<<endl;
-  cout<<"\t  B::::B     B:::::B U:::::D     D:::::U "<<endl;
-  cout<<"\t  B::::B     B:::::B U::::::U   U::::::U "<<endl;
-  cout<<"\tBB:::::BBBBBB::::::B U:::::::UUU:::::::U "<<endl;
-  cout<<"\tB:::::::::::::::::B   UU:::::::::::::UU  "<<endl;
-  cout<<"\tB::::::::::::::::B      UU:::::::::UU    "<<endl;
-  cout<<"\tBBBBBBBBBBBBBBBBB         UUUUUUUUU      "<<endl;
+  cout<<"\tKKKKKKKKK    KKKKKKKBBBBBBBBBBBBBBBBB   UUUUUUUU     UUUUUUUU"<<endl;
+  cout<<"\tK:::::::K    K:::::KB::::::::::::::::B  U::::::U     U::::::U"<<endl;
+  cout<<"\tK:::::::K    K:::::KB::::::BBBBBB:::::B U::::::U     U::::::U"<<endl;
+  cout<<"\tK:::::::K   K::::::KBB:::::B     B:::::BUU:::::U     U:::::UU"<<endl;
+  cout<<"\tKK::::::K  K:::::KKK  B::::B     B:::::B U:::::U     U:::::U "<<endl;
+  cout<<"\t  K:::::K K:::::K     B::::B     B:::::B U:::::D     D:::::U "<<endl;
+  cout<<"\t  K::::::K:::::K      B::::BBBBBB:::::B  U:::::D     D:::::U "<<endl;
+  cout<<"\t  K:::::::::::K       B:::::::::::::BB   U:::::D     D:::::U "<<endl;
+  cout<<"\t  K:::::::::::K       B::::BBBBBB:::::B  U:::::D     D:::::U "<<endl;
+  cout<<"\t  K::::::K:::::K      B::::B     B:::::B U:::::D     D:::::U "<<endl;
+  cout<<"\t  K:::::K K:::::K     B::::B     B:::::B U:::::D     D:::::U "<<endl;
+  cout<<"\tKK::::::K  K:::::KKK  B::::B     B:::::B U::::::U   U::::::U "<<endl;
+  cout<<"\tK:::::::K   K::::::KBB:::::BBBBBB::::::B U:::::::UUU:::::::U "<<endl;
+  cout<<"\tK:::::::K    K:::::KB:::::::::::::::::B   UU:::::::::::::UU  "<<endl;
+  cout<<"\tK:::::::K    K:::::KB::::::::::::::::B      UU:::::::::UU    "<<endl;
+  cout<<"\tKKKKKKKKK    KKKKKKKBBBBBBBBBBBBBBBBB         UUUUUUUUU      "<<endl;
   Sleep(velocidad); system("cls");
-
-  // Fotograma 8 - BUS
+  
+  // Fotograma 6 - BUS
   cout<<"\n\n\n\n";
   cout<<"\tBBBBBBBBBBBBBBBBB   UUUUUUUU     UUUUUUUU   SSSSSSSSSSSSSSS "<<endl;
   cout<<"\tB::::::::::::::::B  U::::::U     U::::::U SS:::::::::::::::S"<<endl;
@@ -227,47 +187,47 @@ void intro() {
   cout<<"\tBBBBBBBBBBBBBBBBB         UUUUUUUUU       SSSSSSSSSSSSSSS   "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 9 - T
+  // Fotograma 7 - UST
   cout<<"\n\n\n\n";
-  cout<<"\tTTTTTTTTTTTTTTTTTTTTTTT"<<endl;
-  cout<<"\tT:::::::::::::::::::::T"<<endl;
-  cout<<"\tT:::::::::::::::::::::T"<<endl;
-  cout<<"\tT:::::TT:::::::TT:::::T"<<endl;
-  cout<<"\tTTTTTT  T:::::T  TTTTTT"<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t        T:::::T        "<<endl;
-  cout<<"\t      TT:::::::TT      "<<endl;
-  cout<<"\t      T:::::::::T      "<<endl;
-  cout<<"\t      T:::::::::T      "<<endl;
-  cout<<"\t      TTTTTTTTTTT      "<<endl;
+  cout<<"\tUUUUUUUU     UUUUUUUU   SSSSSSSSSSSSSSS TTTTTTTTTTTTTTTTTTTTTTT"<<endl;
+  cout<<"\tU::::::U     U::::::U SS:::::::::::::::ST:::::::::::::::::::::T"<<endl;
+  cout<<"\tU::::::U     U::::::US:::::SSSSSS::::::ST:::::::::::::::::::::T"<<endl;
+  cout<<"\tUU:::::U     U:::::UUS:::::S     SSSSSSST:::::TT:::::::TT:::::T"<<endl;
+  cout<<"\t U:::::U     U:::::U S:::::S            TTTTTT  T:::::T  TTTTTT"<<endl;
+  cout<<"\t U:::::D     D:::::U S:::::S                    T:::::T        "<<endl;
+  cout<<"\t U:::::D     D:::::U  S::::SSSS                 T:::::T        "<<endl;
+  cout<<"\t U:::::D     D:::::U   SS::::::SSSSS            T:::::T        "<<endl;
+  cout<<"\t U:::::D     D:::::U     SSS::::::::SS          T:::::T        "<<endl;
+  cout<<"\t U:::::D     D:::::U        SSSSSS::::S         T:::::T        "<<endl;
+  cout<<"\t U:::::D     D:::::U             S:::::S        T:::::T        "<<endl;
+  cout<<"\t U::::::U   U::::::U             S:::::S        T:::::T        "<<endl;
+  cout<<"\t U:::::::UUU:::::::U SSSSSSS     S:::::S      TT:::::::TT      "<<endl;
+  cout<<"\t  UU:::::::::::::UU  S::::::SSSSSS:::::S      T:::::::::T      "<<endl;
+  cout<<"\t    UU:::::::::UU    S:::::::::::::::SS       T:::::::::T      "<<endl;
+  cout<<"\t      UUUUUUUUU       SSSSSSSSSSSSSSS         TTTTTTTTTTT      "<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 10 - TE
+  // Fotograma 8 - STE
   cout<<"\n\n\n\n";
-  cout<<"\tTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEE"<<endl;
-  cout<<"\tT:::::::::::::::::::::TE::::::::::::::::::::E"<<endl;
-  cout<<"\tT:::::::::::::::::::::TE::::::::::::::::::::E"<<endl;
-  cout<<"\tT:::::TT:::::::TT:::::TEE::::::EEEEEEEEE::::E"<<endl;
-  cout<<"\tTTTTTT  T:::::T  TTTTTT  E:::::E       EEEEEE"<<endl;
-  cout<<"\t        T:::::T          E:::::E             "<<endl;
-  cout<<"\t        T:::::T          E::::::EEEEEEEEEE   "<<endl;
-  cout<<"\t        T:::::T          E:::::::::::::::E   "<<endl;
-  cout<<"\t        T:::::T          E:::::::::::::::E   "<<endl;
-  cout<<"\t        T:::::T          E::::::EEEEEEEEEE   "<<endl;
-  cout<<"\t        T:::::T          E:::::E             "<<endl;
-  cout<<"\t        T:::::T          E:::::E       EEEEEE"<<endl;
-  cout<<"\t      TT:::::::TT      EE::::::EEEEEEEE:::::E"<<endl;
-  cout<<"\t      T:::::::::T      E::::::::::::::::::::E"<<endl;
-  cout<<"\t      T:::::::::T      E::::::::::::::::::::E"<<endl;
-  cout<<"\t      TTTTTTTTTTT      EEEEEEEEEEEEEEEEEEEEEE"<<endl;
+  cout<<"\t   SSSSSSSSSSSSSSS TTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEE"<<endl;
+  cout<<"\t SS:::::::::::::::ST:::::::::::::::::::::TE::::::::::::::::::::E"<<endl;
+  cout<<"\tS:::::SSSSSS::::::ST:::::::::::::::::::::TE::::::::::::::::::::E"<<endl;
+  cout<<"\tS:::::S     SSSSSSST:::::TT:::::::TT:::::TEE::::::EEEEEEEEE::::E"<<endl;
+  cout<<"\tS:::::S            TTTTTT  T:::::T  TTTTTT  E:::::E       EEEEEE"<<endl;
+  cout<<"\tS:::::S                    T:::::T          E:::::E             "<<endl;
+  cout<<"\t S::::SSSS                 T:::::T          E::::::EEEEEEEEEE   "<<endl;
+  cout<<"\t  SS::::::SSSSS            T:::::T          E:::::::::::::::E   "<<endl;
+  cout<<"\t    SSS::::::::SS          T:::::T          E:::::::::::::::E   "<<endl;
+  cout<<"\t       SSSSSS::::S         T:::::T          E::::::EEEEEEEEEE   "<<endl;
+  cout<<"\t            S:::::S        T:::::T          E:::::E             "<<endl;
+  cout<<"\t            S:::::S        T:::::T          E:::::E       EEEEEE"<<endl;
+  cout<<"\tSSSSSSS     S:::::S      TT:::::::TT      EE::::::EEEEEEEE:::::E"<<endl;
+  cout<<"\tS::::::SSSSSS:::::S      T:::::::::T      E::::::::::::::::::::E"<<endl;
+  cout<<"\tS:::::::::::::::SS       T:::::::::T      E::::::::::::::::::::E"<<endl;
+  cout<<"\t SSSSSSSSSSSSSSS         TTTTTTTTTTT      EEEEEEEEEEEEEEEEEEEEEE"<<endl;
   Sleep(velocidad); system("cls");
 
-  // Fotograma 11 - TER
+  // Fotograma 9 - TER
   cout<<"\n\n\n\n";
   cout<<"\tTTTTTTTTTTTTTTTTTTTTTTTEEEEEEEEEEEEEEEEEEEEEERRRRRRRRRRRRRRRRR   "<<endl;
   cout<<"\tT:::::::::::::::::::::TE::::::::::::::::::::ER::::::::::::::::R  "<<endl;
