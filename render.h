@@ -6,7 +6,7 @@
 using namespace std;
 
 void dibujarBordes() {
-  int tamHorizontal = 110, tamVertical = 28;
+  int tamHorizontal = 78, tamVertical = 23;
 
   for(int x = 3; x < tamHorizontal; x+=1) {
     gotoxy(x, (tamVertical-1)); cout<<"_";
@@ -55,7 +55,7 @@ void dibujarMenu(string menu) {
       gotoxy(5,14); cout << "2.- Comprar peliculas";
       gotoxy(5,16); cout << "3.- Membresias";
       gotoxy(5,18); cout << "4.- Salir";
-      gotoxy(5,24); cout << "Opcion: ";
+      gotoxy(5,23); cout << "Opcion: ";
       break;
   } // Fin de elegir opcion
 } // Fin de mostrar menu principal
