@@ -1,17 +1,13 @@
 #include <iostream>
 #include <conio.h>
-#include <fstream>
 #include <string>
+#include <vector>
+#include <fstream>
 #include <windows.h>
 #include <stdio.h>
-#include <vector>
-#include <sstream>
-#include <regex>
-#include "ayudas.h"
-#include "render.h"
-//#include "database.h"
-
-using namespace std;
+//#include <regex>
+#include "render.cpp"
+#include "database.cpp"
 
 int main() {
   int opcion;

@@ -1,9 +1,16 @@
 /*  Rendereado de texto y marcos
     para la ventana de consola.
 ================================================= */
-#ifndef dibujoRender
-#define dibujoRender
 using namespace std;
+
+void gotoxy(int x, int y) {
+  HANDLE hcon;  
+  hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
+  COORD dwPos;  
+  dwPos.X = x;  
+  dwPos.Y= y;  
+  SetConsoleCursorPosition(hcon,dwPos);  
+} // Fin de añadir GoToXY
 
 void dibujarBordes() {
   int tamHorizontal = 78, tamVertical = 23;
@@ -25,7 +32,7 @@ void dibujarBordes() {
   } // Borde lateral izquierdo
 } // Fin de dibujar bordes
 
-void dibujarMenu(string menu) {
+void dibujarMenu(std::string menu) {
   int opcion;
   if (menu.compare("principal") == 0) {
     opcion = 1;
@@ -270,4 +277,3 @@ void despedida() {
   cout<<"    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "<<endl;
   cout<<"    @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@    "<<endl;
 } // Fin de ticket de despedida
-#endif
