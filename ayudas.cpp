@@ -1,3 +1,10 @@
+#include <iostream>
+#include <conio.h>
+#include <fstream>
+#include <string>
+
+using namespace std;
+
 void gotoxy(int x,int y){  
   HANDLE hcon;  
   hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
