@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <vector>
 #include <sstream>
+#include <regex>
 #include "ayudas.h"
 #include "render.h"
 //#include "database.h"
