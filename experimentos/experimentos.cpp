@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <windows.h>
+#include <algorithm>
 #include <stdio.h>
 #include <vector>
 #include <sstream>
@@ -36,13 +37,11 @@ int main() {
       if (tecla == 8) {
         criterio.clear();
         cout << "Backspace" << endl;
-      }
-      // Aumentar la tecla presionada al input
-      if (tecla != 8) {
+      } else {
         criterio += tecla;
         // convertir el criterio a minúsculas
         transform(criterio.begin(), criterio.end(), criterio.begin(), ::tolower);
-      };
+      }
       // Buscar las pelìculas y mostrarlas en pantala
       for (int i = 0; i < pelis.size(); i+=1) {
         // Convertir el ltítulo de la película a minúsculas
