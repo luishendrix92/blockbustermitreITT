@@ -1,12 +1,13 @@
 #include <iostream>
 #include <conio.h>
+#include <algorithm>
 #include <string>
 #include <vector>
 #include <fstream>
 #include <windows.h>
 #include <stdio.h>
 #include <sstream>
-//#include <regex>
+#include "utilerias.cpp"
 #include "render.cpp"
 #include "database.cpp"
 

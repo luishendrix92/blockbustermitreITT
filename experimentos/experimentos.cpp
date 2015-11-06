@@ -11,6 +11,19 @@
 
 using namespace std;
 
+bool encontrarTexto(string buscado, string dondeBuscar) {
+  size_t encontrado;
+
+  // Convertir las cadenas a minúsculas para evitar conflictos
+  transform(buscado.begin(), buscado.end(), buscado.begin(), ::tolower);
+  transform(dondeBuscar.begin(), dondeBuscar.end(), dondeBuscar.begin(), ::tolower);
+
+  // Buscar la cadena "buscado" en "dondeBuscar"
+  encontrado = pelis[i].find(criterio);
+
+  return (encontrado!=string::npos) ? true : false;
+} // Fin de buscar strings en otras
+
 int main() {
     vector<string> pelis;
     size_t encontrado;
@@ -27,8 +40,6 @@ int main() {
         cout << "Backspace" << endl;
       } else {
         criterio += tecla;
-        // convertir el criterio a minúsculas
-        transform(criterio.begin(), criterio.end(), criterio.begin(), ::tolower);
       }
       // Buscar las pelìculas y mostrarlas en pantala
       for (int i = 0; i < pelis.size(); i+=1) {
