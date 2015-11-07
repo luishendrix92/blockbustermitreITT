@@ -88,6 +88,4 @@ int main() {
       gotoxy(1,1); cout << criterio;
       gotoxy(criterio.length()+1, 1);
     } // Fin de ciclo infinito
-    
-    return EXIT_SUCCESS;
 } // Fin de programa
