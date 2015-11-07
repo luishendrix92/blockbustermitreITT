@@ -15,7 +15,7 @@ int main() {
   int opcion;
 
   intro();
-  dibujaMenu("clientes");
+  dibujarMenu("clientes");
   cin >> opcion;
 
   switch(opcion) {

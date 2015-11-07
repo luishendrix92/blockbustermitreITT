@@ -1,2 +1,1 @@
-gcc -o blockbuster blockbuster.cpp -lstdc++
-blockbuster
+g++ -o blockbuster blockbuster.cpp -static-libgcc -static-libstdc++

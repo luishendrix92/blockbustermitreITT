@@ -1,2 +1,1 @@
-gcc -o experimentos experimentos.cpp -lstdc++
-experimentos
+g++ -o experimentos experimentos.cpp -static-libgcc -static-libstdc++
