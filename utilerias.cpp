@@ -20,7 +20,7 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
   transform(dondeBuscar.begin(), dondeBuscar.end(), dondeBuscar.begin(), ::tolower);
 
   // Buscar la cadena "buscado" en "dondeBuscar"
-  encontrado = pelis[i].find(criterio);
+  encontrado = dondeBuscar.find(buscado);
 
   return (encontrado!=string::npos) ? true : false;
 } // Fin de buscar strings en otras

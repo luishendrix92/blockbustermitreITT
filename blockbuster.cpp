@@ -21,6 +21,4 @@ int main() {
   switch(opcion) {
     //
   } // Fin de elegir opciones
-
-  getch();
 } // Fin del programa
