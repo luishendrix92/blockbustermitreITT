@@ -9,10 +9,10 @@ void dibujarBordes() {
   } // Borde inferior
   for(int x = 3; x < tamHorizontal; x+=1) {
     gotoxy(x, 3); cout<<"_";
-  } // Borde de titulo superior
+  } // Borde de titulo inferior
   for(int x = 3; x < tamHorizontal; x+=1) {
     gotoxy(x, 1); cout<<"_";
-  } // Borde de titulo inferior
+  } // Borde de titulo superior
   for(int y = 2; y < tamVertical; y+=1) {
     gotoxy((tamHorizontal-1), y); cout<<"|";
   } // Borde lateral derecho

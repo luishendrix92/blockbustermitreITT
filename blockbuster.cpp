@@ -7,11 +7,15 @@
 #include <windows.h>
 #include <stdio.h>
 #include <sstream>
+#include "color.h"
 #include "utilerias.cpp"
 #include "render.cpp"
 #include "database.cpp"
 
 int main() {
+  // Darle título a la ventana del programa
+  SetConsoleTitle("Blockbuster: Rentas y Compras Online");
+
   int opcion;
 
   intro();

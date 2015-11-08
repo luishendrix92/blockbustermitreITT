@@ -75,4 +75,4 @@ istream& operator>>(istream& is,concol c)
 {cout.flush();setcolor(c,backcolor());return is;}
 #endif
 
-#endif /*_EKU_CONCOL*/ 
+#endif /*_EKU_CONCOL*/
