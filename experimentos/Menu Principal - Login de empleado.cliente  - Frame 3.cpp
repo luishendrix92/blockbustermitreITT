@@ -12,19 +12,17 @@ dibujarInteriores2();
 
 gotoxy(26,2);cout<<"MENU PRINCIPAL BLOCKBUSTER";
 gotoxy(5,5);cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
-gotoxy(5,6);cout<<"Si eres nuevo en este sistema, elige la opcion 'Crear cuenta', si";
+gotoxy(5,6);cout<<"Si eres nuevo en este sistema, elige la opcion \"Crear cuenta\", si";
 gotoxy(5,7);cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
-gotoxy(5,8);cout<<"deseas realizar cambios a la base de datos, elige 'Ingresar'.";
+gotoxy(5,8);cout<<"deseas realizar cambios a la base de datos, elige \"Ingresar\".";
 gotoxy(7,11);cout<<"CREAR CUENTA";
 gotoxy(7,13);cout<<"INGRESAR";
 gotoxy(5,16);cout<<"Presione <ESC>";
 gotoxy(5,17);cout<<"para volver";
 gotoxy(5,18);cout<<"atras";
-gotoxy(23,11);cout<<"Nombre de usuario: ";
+gotoxy(23,11);cout<<"Nombre de usuario:";
 gotoxy(49,11);cout<<"Contrase"<<char(164)<<"a:";
 gotoxy(42,16);cout<<"ENTRAR";
-
-
 gotoxy(5,23);cout<<"Utiliza las teclas de direccion para moverte entre campos.";
 
 

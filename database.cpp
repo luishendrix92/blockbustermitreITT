@@ -3,7 +3,7 @@
 ================================================= */
 void modificarRecord(string archivo, string id, int campo, string valorNuevo) {
   fstream tabla, memoria;
-  string linea, celda;
+  string linea;
   vector<string> record;
 
   tabla.open(archivo.c_str(), ios::in);
@@ -12,10 +12,7 @@ void modificarRecord(string archivo, string id, int campo, string valorNuevo) {
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "record"
-      istringstream copia(linea);
-      while (getline(copia, celda, ';')) {
-        record.push_back(celda);
-      } // Fin de grabar record en DB
+      convertirLineaEnRecord(linea, record, 1);
       /* Meter el nuevo valor al archivo sólo si el valor del campo
       que quieres modificar coincide en la línea leída del archivo. */
       if (record[campo].compare(id) == 0) {
