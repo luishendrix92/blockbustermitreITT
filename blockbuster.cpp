@@ -25,4 +25,5 @@ int main() {
   switch(opcion) {
     //
   } // Fin de elegir opciones
+  modificarRecord("peliculas.txt", "002", 1, "Straight outta compton");
 } // Fin del programa

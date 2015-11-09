@@ -11,18 +11,49 @@
 
 using namespace std;
 
-void gotoxy(int x, int y) {
-  HANDLE hcon;  
-  hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
-  COORD dwPos;  
-  dwPos.X = x;  
-  dwPos.Y= y;  
-  SetConsoleCursorPosition(hcon,dwPos);  
-} // Fin de añadir GoToXY
-
 int main() {
-  system("cls");
-  cout << "Repite contrase"<<char(164)<<"a:" << endl;
-  cout << "allahuakbar164" << endl;
-  cout << "__________________" << endl;
-} // Fin de programa
+  #define ENTER 13
+  #define TAB 9
+  #define ARRIBA 72
+  #define ABAJO 80
+  #define IZQ 75
+  #define DER 77
+  #define ESC 27
+
+  char tecla;
+
+  cout << "Presiona una tecla: " << endl;
+
+  while(tecla != ESC) {
+    tecla = getch();
+    if(tecla == 0) {
+      tecla = getch();
+    } else {
+      switch(tecla) {
+        case ENTER:
+          cout << "Enter" << endl;
+        break;
+        
+        case TAB:
+          cout << "Tab" << endl;
+        break;
+        
+        case ARRIBA: // También "H"
+          cout << "Arriba" << endl;
+        break;
+        
+        case ABAJO: // También "P"
+          cout << "Abajo" << endl;
+        break;
+        
+        case IZQ: // También "K"
+          cout << "Izquierda" << endl;
+        break;
+        
+        case DER: // También "M"
+          cout << "Derecha" << endl;
+        break;
+      } // Fin de SWITCH
+    } // Fin de IF
+  } // Fin de WHILE
+}// Fin del programa

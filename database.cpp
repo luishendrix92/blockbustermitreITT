@@ -16,8 +16,8 @@ void modificarRecord(string archivo, string id, int campo, string valorNuevo) {
       while (getline(copia, celda, ';')) {
         record.push_back(celda);
       } // Fin de grabar record en DB
-      // Meter el nuevo valor al archivo sólo si el valor del campo
-      // que quieres modificar coincide en la línea leída del archivo.
+      /* Meter el nuevo valor al archivo sólo si el valor del campo
+      que quieres modificar coincide en la línea leída del archivo. */
       if (record[campo].compare(id) == 0) {
         memoria << valorNuevo << endl;
       } else {
@@ -38,6 +38,15 @@ void modificarRecord(string archivo, string id, int campo, string valorNuevo) {
   } // Fin de comprobar si el archivo existe
 } // Fin de modificar una record en una tabla
 
+void borrarRecord(string archivo, string id, int campo) {
+  fstream tabla, memoria;
+} // Fin de borrar record de una tabla
+
+void copiarTabla() {
+  /* Función para copiar una tabla entera
+  de la base de datos en un vector 1D o 2D */
+} // Fin de descargar .txt en vector
+
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 
 Nota: Ninguna celda deberá llevar acentos o puntos y comas ";"
@@ -49,11 +58,11 @@ Tabla: PELÍCULAS (peliculas.txt)
 ================================================================================================================
 | ID  | TITULO |  AÑO  | GÉNERO  | STATUS  | DURACIÓN | PRECIO | STOCK |          PÁRRAFO DE SINOPSIS          |
 ======|========|=======|=========|=========|==========|========|=======|=======================================|
-| 000 | string | aaaa  | comedia | estreno | minutos  | float  | intgr | LINEA 1 | LINEA 2 | LINEA 3 | LINEA 4 |
-| 001 |        |       | horror  | remate  |          |        |       |=========|=========|=========|=========|
-|     |        |       | accion  | normal  |          |        |       | string  | string  | string  | string  |
-|     |        |       | drama   |         |          |        |       |         |         |         |         |
-|     |        |       | sci-fi  |         |          |        |       |         |         |         |         |
+| 000 | string | aaaa  | Comedia | Estreno | minutos  | float  | intgr | LINEA 1 | LINEA 2 | LINEA 3 | LINEA 4 |
+| 001 |        |       | Horror  | Remate  |          |        |       |=========|=========|=========|=========|
+|     |        |       | Accion  | Normal  |          |        |       | string  | string  | string  | string  |
+|     |        |       | Drama   |         |          |        |       |         |         |         |         |
+|     |        |       | Sci-fi  |         |          |        |       |         |         |         |         |
 ================================================================================================================
 |     |        |       |         |         |          |        |       | [8][0]  | [8][1]  | [8][2]  | [8][3]  |
 ----------------------------------------------------------------------------------------------------------------
