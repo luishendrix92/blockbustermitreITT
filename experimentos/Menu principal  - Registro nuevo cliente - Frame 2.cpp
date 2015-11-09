@@ -3,10 +3,12 @@
 #include <windows.h>
 
 void dibujarBordes();
+void dibujarInteriores();
 
 void main(){
 
 dibujarBordes();
+dibujarInteriores();
 
 gotoxy(26,2);cout<<"MENU PRINCIPAL BLOCKBUSTER";
 gotoxy(5,5);cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
@@ -80,8 +82,10 @@ for(int y=2;y<23;y++){
 gotoxy(77,y);cout<<"|";}
 for(int y=2;y<23;y++){
 gotoxy(3,y);cout<<"|";}
+}//Fin dibujar bordes
 
 //Lineas interiores del menu Frame 2
+void dibujarInteriores(){
 for(int x=5;x<70;x++){
 gotoxy(x,10);cout<<"-";}
 for(int x=20;x<70;x++){
@@ -96,15 +100,16 @@ for(int y=12;y<20;y++){
 gotoxy(20,y);cout<<"|";}
 for(int y=11;y<20;y++){
 gotoxy(69,y);cout<<"|";}
-
 for(int x=23;x<40;x++){
 gotoxy(x,13);cout<<"-";}
 for(int x=23;x<40;x++){
 gotoxy(x,18);cout<<"-";}
 for(int x=50;x<67;x++){
 gotoxy(x,13);cout<<"-";}
-
-
-
-
 }
+//Fin dibujar lineas interiores
+
+
+
+
+
