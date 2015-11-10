@@ -13,17 +13,13 @@
 #include "database.cpp"
 
 int main() {
+  int opcion;
+
   // Darle título a la ventana del programa
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
 
-  int opcion;
-
   intro();
-  dibujarMenu("clientes");
-  cin >> opcion;
+  dibujarMenu("1_principal_registro");
 
-  switch(opcion) {
-    //
-  } // Fin de elegir opciones
-  modificarRecord("peliculas.txt", "002", 1, "Straight outta compton");
+  getch();
 } // Fin del programa
