@@ -21,110 +21,144 @@ void dibujarBordes() {
   } // Borde lateral izquierdo
 } // Fin de dibujar bordes
 
-void dibujarMenu(std::string menu) {
-  int opcion;
+void dibujarMenu(string menu) {
   if (menu.compare("1_principal") == 0) {
-    opcion = 1;
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(26,2);    cout<<"MENU PRINCIPAL BLOCKBUSTER\n\n";
+    gotoxy(5, 5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
+    gotoxy(5, 6);    cout<<"Si eres nuevo en este sistema, elige una opcion 'Crear cuenta', si";
+    gotoxy(5, 7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
+    gotoxy(5, 8);    cout<<"deseas realizar cambios a la base de datos, elige 'Ingresar'.";
+    gotoxy(22,19);   cout<<"Presione <ESC> para volver atras.";
+    gotoxy(5, 23);   cout<<"Utiliza las teclas <IZQ> y <DER> para elegir una opcion y pulsa <ENTER>";
+    // Renderizado de botones
+    gotoxy(22, 13);  cout << "==================";
+    gotoxy(22, 14);  cout << "|| CREAR CUENTA ||";
+    gotoxy(22, 15);  cout << "==================";
+
+    gotoxy(41, 13);  cout << "--------------";
+    gotoxy(41, 14);  cout << "|  INGRESAR  |";
+    gotoxy(41, 15);  cout << "--------------";
+    // Mover cursor al botón default (CREAR CUENTA)
+    gotoxy(25, 14);
   } else if (menu.compare("1_principal_registro") == 0) {
-    opcion = 2;
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(26,2);    cout<<"MENU PRINCIPAL BLOCKBUSTER";
+    gotoxy(5, 5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
+    gotoxy(5, 6);    cout<<"Si eres nuevo en este sistema, elige la opcion \"Crear cuenta\", si";
+    gotoxy(5, 7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
+    gotoxy(5, 8);    cout<<"deseas realizar cambios a la base de datos, elige \"Ingresar\".";
+    gotoxy(7, 11);   cout<<"CREAR CUENTA";
+    gotoxy(7, 13);   cout<<"INGRESAR";
+    gotoxy(5, 16);   cout<<"Presione <ESC>";
+    gotoxy(5, 17);   cout<<"para volver";
+    gotoxy(5, 18);   cout<<"atras.";
+    gotoxy(23,11);   cout<<"Nombre de usuario:";
+    gotoxy(23,16);   cout<<"Contrase"<<char(164)<<"a:";
+    gotoxy(50,11);   cout<<"Repite contrase"<<char(164)<<"a:";
+    gotoxy(5, 23);   cout<<"Utiliza las teclas de direccion para moverte entre campos.";
+    // Renderizado de líneas
+    for(int x=5; x<=69;x++)   { gotoxy(x, 10); cout<<"-"; }
+    for(int x=20;x<=69;x++)   { gotoxy(x, 20); cout<<"-"; }
+    for(int x=5; x<=19;x++)   { gotoxy(x, 14); cout<<"-"; }
+    for(int x=5; x<=20;x++)   { gotoxy(x, 12); cout<<"-"; }
+    for(int y=11;y<=13;y++)   { gotoxy(5, y);  cout<<"|"; }
+    for(int y=13;y<=19;y++)   { gotoxy(20,y);  cout<<"|"; }
+    for(int y=11;y<=19;y++)   { gotoxy(69,y);  cout<<"|"; }
+    for(int x=23;x<=40;x++)   { gotoxy(x, 13); cout<<"-"; }
+    for(int x=23;x<=40;x++)   { gotoxy(x, 18); cout<<"-"; }
+    for(int x=50;x<=67;x++)   { gotoxy(x, 13); cout<<"-"; }
+    // Renderizado de botones
+    gotoxy(57, 16); cout << "-----------";
+    gotoxy(57, 17); cout << "|  LISTO  |";
+    gotoxy(57, 18); cout << "-----------";
+    // Mover cursor al input default (Nombre de usuario)
+    gotoxy(23, 12);
   } else if (menu.compare("1_principal_login") == 0) {
-    opcion = 3;
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(26,2);    cout<<"MENU PRINCIPAL BLOCKBUSTER";
+    gotoxy(5, 5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
+    gotoxy(5, 6);    cout<<"Si eres nuevo en este sistema, elige la opcion \"Crear cuenta\", si";
+    gotoxy(5, 7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
+    gotoxy(5, 8);    cout<<"deseas realizar cambios a la base de datos, elige \"Ingresar\".";
+    gotoxy(7, 11);   cout<<"CREAR CUENTA";
+    gotoxy(7, 13);   cout<<"INGRESAR";
+    gotoxy(5, 16);   cout<<"Presione <ESC>";
+    gotoxy(5, 17);   cout<<"para volver";
+    gotoxy(5, 18);   cout<<"atras";
+    gotoxy(23,11);   cout<<"Nombre de usuario:";
+    gotoxy(49,11);   cout<<"Contrase"<<char(164)<<"a:";
+    gotoxy(5, 23);   cout<<"Utiliza las teclas de direccion para moverte entre campos.";
+    // Renderizado de líneas
+    for(int x=5; x<=69;x++)   { gotoxy(x, 10); cout<<"-"; }
+    for(int x=20;x<=69;x++)   { gotoxy(x, 20); cout<<"-"; }
+    for(int x=5; x<=20;x++)   { gotoxy(x, 14); cout<<"-"; }
+    for(int x=6; x<=20;x++)   { gotoxy(x, 12); cout<<"-"; }
+    for(int y=11;y<=13;y++)   { gotoxy(5, y);  cout<<"|"; } 
+    for(int y=15;y<=19;y++)   { gotoxy(20,y);  cout<<"|"; }
+    for(int y=11;y<=19;y++)   { gotoxy(69,y);  cout<<"|"; }
+    for(int x=23;x<=40;x++)   { gotoxy(x, 13); cout<<"-"; }
+    for(int x=49;x<=66;x++)   { gotoxy(x, 13); cout<<"-"; }
+    gotoxy(20,11);cout<<"|";
+    // Renderizado de botones
+    gotoxy(39, 15); cout << "------------";
+    gotoxy(39, 16); cout << "|  ENTRAR  |";
+    gotoxy(39, 17); cout << "------------";
+    // Mover cursor al input default (Nombre de usuario)
+    gotoxy(23, 12);
   } else if (menu.compare("2_clientes")  == 0) {
-    opcion = 4;
+    dibujarBordes();
+    gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
+    gotoxy(27,5);   cout << "Que es lo que deseas hacer?";
+    gotoxy(5, 9);   cout << "Menu:";
+    gotoxy(5, 12);  cout << "1.- Rentar peliculas";
+    gotoxy(5, 14);  cout << "2.- Comprar peliculas";
+    gotoxy(5, 16);  cout << "3.- Membresias";
+    gotoxy(5, 18);  cout << "4.- Salir";
+    gotoxy(5, 23);  cout << "Opcion: ";
   } else if (menu.compare("2.1_renta_f1")  == 0) {
-    opcion = 5;
-  } else if (menu.compare("2.1_renta_f2")  == 0) {
-    opcion = 6;
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(29,2);   cout<<"RENTA DE PELICULAS";
+    gotoxy(5, 5);   cout<<"Que pelicula deseas rentar?";
+    gotoxy(5, 9);   cout<<"Cuando tengas los resultados";
+    gotoxy(5, 10);  cout<<"que buscas, presiona <ENTER>";
+    gotoxy(5, 12);  cout<<"Estas son las peliculas que";
+    gotoxy(5, 13);  cout<<"has rentado: ";
+    gotoxy(6, 15);  cout<<"1:";
+    gotoxy(6, 16);  cout<<"2:";
+    gotoxy(6, 17);  cout<<"3:";
+    gotoxy(6, 18);  cout<<"4:";
+    gotoxy(6, 19);  cout<<"5:";
+    gotoxy(36,4);   cout<<"ID";
+    gotoxy(41,4);   cout<<"Titulo";
+    gotoxy(73,4);   cout<<"A"<<char(164)<<"o";
+    gotoxy(45,12);  cout<<"Los resultados de tu";
+    gotoxy(46,13);  cout<<"busqueda van a ir";
+    gotoxy(46,14);  cout<<"apareciendo aqui!";
+    gotoxy(5, 23);  cout<<"Para volver al menu anterior, presiona <ESC>.";
+    // Renderlizado de líneas
+    for(int x=5; x<=31;x++)    { gotoxy(x, 7);  cout<<"_"; }
+    for(int x=5; x<=32;x++)    { gotoxy(x, 14); cout<<"-"; }
+    for(int x=5; x<=32;x++)    { gotoxy(x, 20); cout<<"-"; }
+    for(int x=36;x<=76;x++)    { gotoxy(x, 5);  cout<<"-"; }
+    for(int y=15;y<=19;y++)    { gotoxy(5, y);  cout<<"|"; }
+    for(int y=15;y<=19;y++)    { gotoxy(32,y);  cout<<"|"; }
+    for(int y=4; y<=22;y++)    { gotoxy(35,y);  cout<<"|"; }
+    for(int y=4; y<=22;y++)    { gotoxy(39,y);  cout<<"|"; }
+    for(int y=4; y<=22;y++)    { gotoxy(72,y);  cout<<"|"; }
+    // Mover cursor al input default (Película a buscar)
+    gotoxy(5, 6);
   } else { // Default o error
-    opcion = 0;
-  }// Fin de dar valor a opcion
-
-  switch(opcion) {
-    case 0:
-      system("cls");
-      cout << "Error al llamar la funcion dibujarMenu" << endl;
-    break;
-
-    case 1: // 1_principal
-      system("cls"); dibujarBordes();
-      // Renderizado de texto
-      gotoxy(26,2);   cout<<"MENU PRINCIPAL BLOCKBUSTER\n\n";
-      gotoxy(5,5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
-      gotoxy(5,6);    cout<<"Si eres nuevo en este sistema, elige una opcion 'Crear cuenta', si";
-      gotoxy(5,7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
-      gotoxy(5,8);    cout<<"deseas realizar cambios a la base de datos, elige 'Ingresar'.";
-      gotoxy(22,19);  cout<<"Presione <ESC> para volver atras.";
-      gotoxy(5,23);   cout<<"Utiliza las teclas <IZQ> y <DER> para elegir una opcion y pulsa <ENTER>";
-      // Renderizado de botones
-      gotoxy(22,13);  cout << "==================";
-      gotoxy(22,14);  cout << "|| CREAR CUENTA ||";
-      gotoxy(22,15);  cout << "==================";
-
-      gotoxy(41,13);  cout << "--------------";
-      gotoxy(41,14);  cout << "|  INGRESAR  |";
-      gotoxy(41,15);  cout << "--------------";
-
-      // Mover cursor al botón default (CREAR CUENTA)
-      gotoxy(25, 14);
-    break;
-
-    case 2: // 1_principal_registro
-      system("cls"); dibujarBordes();
-      // Renderizar texto
-      gotoxy(26,2);   cout<<"MENU PRINCIPAL BLOCKBUSTER";
-      gotoxy(5,5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
-      gotoxy(5,6);    cout<<"Si eres nuevo en este sistema, elige una opcion 'Crear cuenta', si";
-      gotoxy(5,7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
-      gotoxy(5,8);    cout<<"deseas realizar cambios a la base de datos, elige 'Ingresar'.";
-      gotoxy(7,11);   cout<<"CREAR CUENTA";
-      gotoxy(7,13);   cout<<"INGRESAR";
-      gotoxy(5,16);   cout<<"Presione <ESC>";
-      gotoxy(5,17);   cout<<"para volver";
-      gotoxy(5,18);   cout<<"atras.";
-      gotoxy(23,11);  cout<<"Nombre de usuario:";
-      gotoxy(23,16);  cout<<"Contrase"<<char(164)<<"a:";
-      gotoxy(50,11);  cout<<"Repite contrase"<<char(164)<<"a:";
-      gotoxy(5,23);   cout<<"Utiliza las teclas de direccion para moverte entre campos.";
-      // Renderizado de líneas
-      for(int x=5;x<70;x++){
-        gotoxy(x,10);cout<<"-";}
-      for(int x=20;x<70;x++){
-        gotoxy(x,20);cout<<"-";}
-      for(int x=5;x<20;x++){
-        gotoxy(x,14);cout<<"-";}
-      for(int x=5;x<20;x++){
-        gotoxy(x,12);cout<<"-";}
-      for(int y=11;y<14;y++){
-        gotoxy(5,y);cout<<"|";}
-      for(int y=12;y<20;y++){
-        gotoxy(20,y);cout<<"|";}
-      for(int y=11;y<20;y++){
-        gotoxy(69,y);cout<<"|";}
-      for(int x=23;x<40;x++){
-        gotoxy(x,13);cout<<"-";}
-      for(int x=23;x<40;x++){
-        gotoxy(x,18);cout<<"-";}
-      for(int x=50;x<67;x++){
-        gotoxy(x,13);cout<<"-";}
-    break;
-
-    case 4: // 2_clientes
-      dibujarBordes();
-      gotoxy(18,2); cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
-      gotoxy(27,5); cout << "Que es lo que deseas hacer?";
-      gotoxy(5,9);  cout << "Menu:";
-      gotoxy(5,12); cout << "1.- Rentar peliculas";
-      gotoxy(5,14); cout << "2.- Comprar peliculas";
-      gotoxy(5,16); cout << "3.- Membresias";
-      gotoxy(5,18); cout << "4.- Salir";
-      gotoxy(5,23); cout << "Opcion: ";
-      break;
-  } // Fin de elegir opcion
+    system("cls");
+    cout << "Error al llamar la funcion dibujarMenu" << endl;
+  } // Fin de dibujar menú indicado
 } // Fin de mostrar menu principal
 
-void intro() {
-  int velocidad = 280;
-
+void intro(int velocidad) {
   // Colorear pantalla azul y letra amarilla
   system("cls");
   system("color 16");

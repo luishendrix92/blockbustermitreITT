@@ -18,7 +18,6 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
   // Convertir las cadenas a minúsculas para evitar conflictos
   transform(buscado.begin(), buscado.end(), buscado.begin(), ::tolower);
   transform(dondeBuscar.begin(), dondeBuscar.end(), dondeBuscar.begin(), ::tolower);
-
   // Buscar la cadena "buscado" en "dondeBuscar"
   encontrado = dondeBuscar.find(buscado);
 
@@ -48,47 +47,10 @@ void convertirLineaEnRecord(string linea, vector<string> &record, int separador)
   } // Fin de elegir separador
 } // Fin de separar texto y meterlo a un vector
 
-void trazarLinea(int inicio[2], int fin[2], string relleno) {
-  int direccion;
-
-  // Determinar dirección: [0] -> X | [1] -> Y.
-  if (fin[0] - inicio[0] > 0) {
-    direccion = 2; // Derecha
-  } else if (fin[0] - inicio[0] < 0) {
-    direccion = 4; // Izquierda
-  } else if (fin[1] - inicio[1] > 0) {
-    direccion = 3; // Abajo
-  } else if (fin[1] - inicio[1] < 0) {
-    direccion = 1; // Arriba
-  } // Fin de dar dirección
-
-  // Comenzar con los ciclos for de trazado
-  switch (direccion) {
-    case 1: // Arriba
-      for(int x=inicio[0], y=inicio[1]; y >= fin[1]; y-=1) {
-        gotoxy(x, y); cout << relleno;
-      } // Fin de línea horizontal hacia arriba
-    break;
-
-    case 2: // Derecha
-      for(int x=inicio[0], y=inicio[1]; x <= fin[0]; x+=1) {
-        gotoxy(x, y); cout << relleno;
-      } // Fin de línea horizontal hacia la derecha
-    break;
-
-    case 3: // Abajo
-      for(int x=inicio[0], y=inicio[1]; y <= fin[1]; y+=1) {
-        gotoxy(x, y); cout << relleno;
-      } // Fin de línea horizontal hacia abajo
-    break;
-
-    case 4: // Izquierda
-      for(int x=inicio[0], y=inicio[1]; x >= fin[0]; x-=1) {
-        gotoxy(x, y); cout << relleno;
-      } // Fin de línea horizontal hacia la izquierda
-    break;
-
-    default:
-      system("cls"); cout << "Error con funcion trazarLinea.";
-  } // Fin de dibujar la línea
+void trazarRectangulo(int x1, int y1, int x2, int y2, string relleno) {
+  for (int renglon=y1; renglon <= y2; renglon+=1) {
+    for(int x=x1, y=renglon; x <= x2; x+=1) {
+      gotoxy(x, y); cout << relleno;
+    } // Fin de trazar renglón
+  } // Fin de trazar rectángulo
 } // Fin de trazar líneas horizontales

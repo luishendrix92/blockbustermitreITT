@@ -7,10 +7,12 @@
 #include <windows.h>
 #include <stdio.h>
 #include <sstream>
+//#include <math.h>
 #include "color.h"
 #include "utilerias.cpp"
 #include "render.cpp"
 #include "database.cpp"
+//#include "secciones.cpp"
 
 int main() {
   int opcion;
@@ -18,8 +20,9 @@ int main() {
   // Darle título a la ventana del programa
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
 
-  intro();
-  dibujarMenu("1_principal_registro");
-
+  intro(280);
+  dibujarMenu("2.1_renta_f1");
+  
   getch();
+  system("cls");
 } // Fin del programa
