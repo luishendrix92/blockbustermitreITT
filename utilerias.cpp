@@ -24,12 +24,11 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
   return (encontrado!=string::npos) ? true : false;
 } // Fin de buscar strings en otras
 
-void convertirLineaEnRecord(string linea, vector<string> &record, int separador) {
-  // Crear una cadena para cada celda
-  string celda;
-  /* Declarar un string stream para
-  extraer texto de éste */
+vector<string> separarLinea(string linea, int separador) {
+  // Declarar un string stream para extraer texto de éste 
   istringstream copia(linea);
+  vector<string> record;
+  string celda;
 
   switch (separador) {
     // Separadores: [1][";"] y [2]["/"]
@@ -45,7 +44,22 @@ void convertirLineaEnRecord(string linea, vector<string> &record, int separador)
       } // Fin de grabar record en DB
     break;
   } // Fin de elegir separador
+  
+  return record;
 } // Fin de separar texto y meterlo a un vector
+
+string unirRegistro(vector<string> registro, string separador) {
+  string linea = "";
+
+  for(int i=0; i<registro.size(); i+=1) {
+    linea += registro[i];
+    if ((i+1)<registro.size()) {
+        linea += separador;
+    } // Fin de agregar separador excepto al último item del vector
+  } // Fin de iterar el vector
+
+  return linea;
+} // Fin de unir un vector en una cadena
 
 void trazarRectangulo(int x1, int y1, int x2, int y2, string relleno) {
   for (int renglon=y1; renglon <= y2; renglon+=1) {

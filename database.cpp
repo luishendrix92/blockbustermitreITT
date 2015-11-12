@@ -1,47 +1,104 @@
 /*  Manejo de base de datos de
     lectura y escritura con .txt. 
 ================================================= */
-void modificarRecord(string archivo, string id, int campo, string valorNuevo) {
+
+/* La siguiente función emula el comportamiento de un query en SQL
+que modifica un registro en una tabla de una base de datos:
+UPDATE tabla SET campoModificado = valorNuevo WHERE campoBuscado = valorBuscado */
+
+void modificarRegistro(
+/* La tabla */          string archivo,
+                        int campoModificado,
+                        string valorNuevo,
+/* Criterios de */      int campoBuscado,
+/* filtrado.    */      string valorBuscado
+                      ) {
   fstream tabla, memoria;
-  string linea;
-  vector<string> record;
+  string linea, lineaModificada;
+  vector<string> registro;
 
   tabla.open(archivo.c_str(), ios::in);
   memoria.open("temporal.txt", ios::out);
 
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
-      // Grabar celdas en el "record"
-      convertirLineaEnRecord(linea, record, 1);
-      /* Meter el nuevo valor al archivo sólo si el valor del campo
-      que quieres modificar coincide en la línea leída del archivo. */
-      if (record[campo].compare(id) == 0) {
-        memoria << valorNuevo << endl;
+      // Grabar celdas en el "registro"
+      registro = separarLinea(linea, 1);
+      if (registro[campoBuscado].compare(valorBuscado) == 0) {
+        // Modificar el valor del record en el campo a modificar
+        registro[campoModificado] = valorNuevo;
+        lineaModificada = unirRegistro(registro, ";");
+        /* Si los valores coinciden, meter la línea modificada al
+        archivo temporal en vez de la original para modificarla */
+        memoria << lineaModificada << endl;
       } else {
         memoria << linea << endl;
       } // Fin de modificar línea
 
       // Limpiar el vector para la siguiente iteración
-      record.clear();
-    } // Fin copiar el record a la cadena "linea"
+      registro.clear();
+    } // Fin copiar el registro a la cadena "linea"
     memoria.close(); tabla.close();
 
     // Borrar el original y renombrar el temporal como el original
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
     system("cls");
-    cout << "Error de base de datos con: " << archivo;
-    getch();
+    cout << "Error de base de datos con: " << archivo; getch();
   } // Fin de comprobar si el archivo existe
-} // Fin de modificar una record en una tabla
+} // Fin de modificar un registro en una tabla
 
-void borrarRecord(string archivo, string id, int campo) {
+/* La siguiente función emula el comportamiento de un query en SQL
+que elimina registros que coinciden con el criterio de filtrado:
+DELETE FROM tabla WHERE campoBuscado = valorBuscado; */
+
+void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
   fstream tabla, memoria;
-} // Fin de borrar record de una tabla
+  string linea;
+  vector<string> registro;
 
-void copiarTabla() {
-  /* Función para copiar una tabla entera
-  de la base de datos en un vector 1D o 2D */
+  tabla.open(archivo.c_str(), ios::in);
+  memoria.open("temporal.txt", ios::out);
+
+  if (tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      // Grabar celdas en el "registro"
+      registro = separarLinea(linea, 1);
+      // Si el registro es el deseado, omitirlo para que no exista más
+      if (!(registro[campoBuscado].compare(valorBuscado) == 0)) {
+        memoria << linea << endl;
+      } // Fin de omitir línea en el temporal
+
+      // Limpiar el vector para la siguiente iteración
+      registro.clear();
+    } // Fin copiar el registro a la cadena "linea"
+    memoria.close(); tabla.close();
+
+    // Borrar el original y renombrar el temporal como el original
+    remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
+  } else {
+    system("cls");
+    cout << "Error de base de datos con: " << archivo; getch();
+  } // Fin de comprobar si el archivo existe
+} // Fin de borrar registro de una tabla
+
+vector<string> copiarTabla(string archivo) {
+  fstream tabla;
+  string linea;
+  vector<string> registros;
+
+  tabla.open(archivo.c_str(), ios::in);
+  if (tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      registros.push_back(linea);
+    } // Fin de meter líneas del .txt al vector
+    tabla.close();
+  } else {
+    system("cls");
+    cout << "Error de base de datos con: " << archivo; getch();
+  } // Fin de comprobar si el archivo existe
+
+  return registros;
 } // Fin de descargar .txt en vector
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
