@@ -7,11 +7,11 @@ que modifica un registro en una tabla de una base de datos:
 UPDATE tabla SET campoModificado = valorNuevo WHERE campoBuscado = valorBuscado */
 
 void modificarRegistro(
-/* La tabla */          string archivo,
-                        int campoModificado,
-                        string valorNuevo,
-/* Criterios de */      int campoBuscado,
-/* filtrado.    */      string valorBuscado
+/* La tabla */      string archivo,
+                    int campoModificado,
+                    string valorNuevo,
+/* Criterios de */  int campoBuscado,
+/*   búsqueda.  */  string valorBuscado
                       ) {
   fstream tabla, memoria;
   string linea, lineaModificada;
@@ -87,9 +87,9 @@ que devuelve registros que coinciden con el criterio de filtrado:
 SELECT FROM tabla WHERE campoFiltrado = valorFiltrado; */
 
 vector<string> filtrarRegistros(
-                                string archivo,
-                                int campoFiltrado,
-                                string valorFiltrado
+/* La tabla */        string archivo,
+/* Criterios de */    int campoFiltrado,
+/*   filtrado.  */    string valorFiltrado
                                ) {
   vector<string> registros;
   vector<string> registroTemporal;
@@ -116,12 +116,12 @@ vector<string> filtrarRegistros(
   } // Fin de comprobar si el archivo existe
 
   return registros;
-} // Fin de descargar .txt en vector
+} // Fin de descargar .txt por criterios en vector
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 
-Nota: Ninguna celda deberá llevar acentos o puntos y comas ";"
-ya que el ";" está reservado como separador de celda.
+Notas: Ninguna celda deberá llevar acentos o puntos y comas ";" ya que el ";" está
+reservado como separador de celda. El separador "," se usará para sub-registros/arreglos.
 
 Tabla: PELÍCULAS (peliculas.txt)
 ----------------------------------------------------------------------------------------------------------------
@@ -137,7 +137,7 @@ Tabla: PELÍCULAS (peliculas.txt)
 ================================================================================================================
 |     |        |       |         |         |          |        |       | [8][0]  | [8][1]  | [8][2]  | [8][3]  |
 ----------------------------------------------------------------------------------------------------------------
-Nota: Si en la sinopsis alguna línea no es necesaria, ponerla vacía como en: /linea1;linea2;;/
+Nota: Si en la sinopsis alguna línea no es necesaria, ponerla "null" como en: /linea1;linea2;null;null/
 en donde se puede ver que las líneas 3 y 4 están vacías, no como: /linea1;linea2;linea3;linea4/.
 
 Tabla: USUARIOS (usuarios.txt)
@@ -150,12 +150,13 @@ Tabla: USUARIOS (usuarios.txt)
 | de 6 a 20 chars | de 6 a 20 chars |  cliente   |           |
 ==============================================================
 Nota: Cuando se cree un usuario, inicializarlo con 0 (MXN).
+Los empleados tendrán un valor en el campo CREDITO de "null".
 
-Tabla: MEMBRESÍAS (membresias.txt)
+Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [6] RENTA N => N películas rentadas (5)...
 ------------------------------------------------------------------------------------------------------------
 |       [0]       |       [1]      |          [2]          |          [3]          |          [4]          |
 ============================================================================================================
-|     CLIENTE     |   EXPIRACIÓN   |         RENTA 1       |         RENTA 2       |         RENTA 2       |
+|     CLIENTE     |   EXPIRACIÓN   |         RENTA 1       |         RENTA 2       |         RENTA 3       |
 ==================|================|=======================|=======================|=======================|
 | alfanumérico    | fecha en forma | PELICULA |  ENTREGA   | PELICULA |  ENTREGA   | PELICULA |  ENTREGA   |
 | de 6 a 20 chars | dd/mm/aaaa     |==========|============|==========|============|==========|============|
@@ -164,5 +165,6 @@ Tabla: MEMBRESÍAS (membresias.txt)
 ============================================================================================================
 |                 |                |  [2][0]  |   [2][1]   |  [3][0]  |   [3][1]   |  [4][0]  |   [4][1]   |
 ------------------------------------------------------------------------------------------------------------
+Nota: Inicializar cada membresía en los campos del index [2] al [6] con el sub-arreglo "null,null".
 
 FIN DE VISUALIZACIÓN DE BASE DE DATOS */

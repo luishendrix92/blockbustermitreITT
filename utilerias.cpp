@@ -31,7 +31,7 @@ vector<string> separarLinea(string linea, int separador) {
   string celda;
 
   switch (separador) {
-    // Separadores: [1][";"] y [2]["/"]
+    // Separadores: [1][";"] y [2][","]
     case 1:
       while (getline(copia, celda, ';')) {
         record.push_back(celda);
@@ -39,7 +39,7 @@ vector<string> separarLinea(string linea, int separador) {
     break;
 
     case 2:
-      while (getline(copia, celda, '/')) {
+      while (getline(copia, celda, ',')) {
         record.push_back(celda);
       } // Fin de grabar record en DB
     break;
@@ -68,3 +68,23 @@ void trazarRectangulo(int x1, int y1, int x2, int y2, string relleno) {
     } // Fin de trazar renglón
   } // Fin de trazar rectángulo
 } // Fin de trazar líneas horizontales
+
+string enteroATexto(int numero) {
+  string numTexto = "";
+  stringstream entero;
+  
+  entero << numero;
+  numTexto += entero.str();
+  
+  return numTexto;
+} // Convertir tipo "int" a "string"
+
+string floatATexto(float numero) {
+  string numTexto = "";
+  stringstream flotante;
+  
+  flotante << numero;
+  numTexto += flotante.str();
+  
+  return numTexto;
+} // Convertir tipo "int" a "string"

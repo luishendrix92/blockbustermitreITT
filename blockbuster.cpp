@@ -21,7 +21,7 @@ int main() {
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
 
   intro(280);
-  dibujarMenu("2.1_renta_f1");
+  dibujarMenu("1_principal");
   
   getch();
   system("cls");
