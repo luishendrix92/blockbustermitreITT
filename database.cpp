@@ -82,15 +82,32 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
   } // Fin de comprobar si el archivo existe
 } // Fin de borrar registro de una tabla
 
-vector<string> copiarTabla(string archivo) {
+/* La siguiente función emula el comportamiento de un query en SQL
+que devuelve registros que coinciden con el criterio de filtrado:
+SELECT FROM tabla WHERE campoFiltrado = valorFiltrado; */
+
+vector<string> filtrarRegistros(
+                                string archivo,
+                                int campoFiltrado,
+                                string valorFiltrado
+                               ) {
+  vector<string> registros;
+  vector<string> registroTemporal;
   fstream tabla;
   string linea;
-  vector<string> registros;
 
   tabla.open(archivo.c_str(), ios::in);
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
-      registros.push_back(linea);
+      // Grabar celdas en el "registro temporal"
+      registroTemporal = separarLinea(linea, 1);
+      // Si el registro cumple los criterios, meterlo al vector
+      if (registroTemporal[campoFiltrado].compare(valorFiltrado) == 0) {
+        registros.push_back(linea);
+      } // Fin de omitir línea en el temporal
+
+      // Limpiar registro temporal
+      registroTemporal.clear();
     } // Fin de meter líneas del .txt al vector
     tabla.close();
   } else {
@@ -124,14 +141,15 @@ Nota: Si en la sinopsis alguna línea no es necesaria, ponerla vacía como en: /
 en donde se puede ver que las líneas 3 y 4 están vacías, no como: /linea1;linea2;linea3;linea4/.
 
 Tabla: USUARIOS (usuarios.txt)
---------------------------------------------------
-|       [0]       |        [1]      |     [2]    |
-==================================================
-|     USUARIO     |    CONTRASEÑA   |  PERMISOS  |
-|=================|=================|============|
-| alfanumérico    | alfanumérico    |  empleado  |
-| de 6 a 20 chars | de 6 a 20 chars |  cliente   |
-==================================================
+--------------------------------------------------------------
+|       [0]       |        [1]      |     [2]    |    [3]    |
+==============================================================
+|     USUARIO     |    CONTRASEÑA   |  PERMISOS  |  CREDITO  |
+|=================|=================|============|============
+| alfanumérico    | alfanumérico    |  empleado  |  integer  |
+| de 6 a 20 chars | de 6 a 20 chars |  cliente   |           |
+==============================================================
+Nota: Cuando se cree un usuario, inicializarlo con 0 (MXN).
 
 Tabla: MEMBRESÍAS (membresias.txt)
 ------------------------------------------------------------------------------------------------------------
