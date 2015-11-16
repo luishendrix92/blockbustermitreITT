@@ -110,7 +110,7 @@ void dibujarMenu(string menu) {
     // Mover cursor al input default (Nombre de usuario)
     gotoxy(23, 12);
   } else if (menu.compare("2_clientes")  == 0) {
-    dibujarBordes();
+    system("cls"); dibujarBordes();
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
     gotoxy(27,5);   cout << "Que es lo que deseas hacer?";
     gotoxy(5, 9);   cout << "Menu:";
@@ -152,6 +152,101 @@ void dibujarMenu(string menu) {
     for(int y=4; y<=22;y++)    { gotoxy(72,y);  cout<<"|"; }
     // Mover cursor al input default (Película a buscar)
     gotoxy(5, 6);
+  } else if(menu.compare("2.3_membresias_nuevo")  == 0) {
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(33,2);   cout<<"MEMBRES"<<char(161)<<"AS";
+    gotoxy(5, 5);   cout<<"Bienvenidos al programa de membres"<<char(161);
+    gotoxy(39,5);   cout<<"as de Blockbuster. Parece que a"<<char(163)<<"n no";
+    gotoxy(5, 6);   cout<<"est"<<char(160)<<"s afiliado al programa. Los beneficios son: ";
+    gotoxy(5, 9);   cout<<"1: Tienes derecho a 5 pel"<<char(161)<<"culas";
+    gotoxy(5, 10);  cout<<"rentadas como m"<<char(160)<<"ximo.";
+    gotoxy(5, 12);  cout<<"2: Recibir"<<char(160)<<"s un descuento";
+    gotoxy(5, 13);  cout<<"del 10% en tus compras.";
+    gotoxy(5, 15);  cout<<"3: Tickets a estrenos en el";
+    gotoxy(5, 16);  cout<<"cine durante festividades.";
+    gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    // Renderizado de botones
+    gotoxy(5, 18);  cout<<"===============";
+    gotoxy(5, 19);  cout<<"|| AFILIARME ||";
+    gotoxy(5, 20);  cout<<"===============";
+
+    gotoxy(22,18);  cout<<"------------";
+    gotoxy(22,19);  cout<<"|  REGLAS  |";
+    gotoxy(22,20);  cout<<"------------";
+    // Mover cursor al botón default (CREAR CUENTA)
+    gotoxy(8, 19);
+  } else if(menu.compare("2.4_catalogo_f1")  == 0) {
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(28,2);   cout<<"CATALOGO DE PELICULAS";
+    gotoxy(5, 5);   cout<<"En este men"<<char(163)<<" podr"<<char(160)<<"s consultar";
+    gotoxy(35,5);   cout<<"todas las peliculas que tenemos y podr"<<char(160)<<"s";
+    gotoxy(5, 6);   cout<<"comprar o rentarlas desde aqu"<<char(161);
+    gotoxy(35,6);   cout<<". Desplaz"<<char(160)<<"te utilizando las teclas de";
+    gotoxy(5, 7);   cout<<"direcci"<<char(162)<<"n y presiona <ENTER>";
+    gotoxy(34,7);   cout<<"cuando quieras consultar esa categor"<<char(161)<<"a.";
+    gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    // Renderizado de botones
+    gotoxy(5, 10);  cout<<"============";
+    gotoxy(5, 11);  cout<<"|| HORROR ||";
+    gotoxy(5, 12);  cout<<"============";
+    gotoxy(19,10);  cout<<"------------";
+    gotoxy(19,11);  cout<<"|  SCI-FI  |";
+    gotoxy(19,12);  cout<<"------------";
+    gotoxy(33,10);  cout<<"-----------";
+    gotoxy(33,11);  cout<<"|  DRAMA  |";
+    gotoxy(33,12);  cout<<"-----------";
+    gotoxy(46,10);  cout<<"--------------";
+    gotoxy(46,11);  cout<<"|  AVENTURA  |";
+    gotoxy(46,12);  cout<<"--------------";
+    gotoxy(62,10);  cout<<"------------";
+    gotoxy(62,11);  cout<<"|  ACCION  |";
+    gotoxy(62,12);  cout<<"------------";
+    gotoxy(9, 14);  cout<<"--------------";
+    gotoxy(9, 15);  cout<<"|  BIOGRAFIA |";
+    gotoxy(9, 16);  cout<<"--------------";
+    gotoxy(25,14);  cout<<"-------------";
+    gotoxy(25,15);  cout<<"|  COMEDIA  |";
+    gotoxy(25,16);  cout<<"-------------";
+    gotoxy(40,14);  cout<<"-------------";
+    gotoxy(40,15);  cout<<"|  ROMANCE  |";
+    gotoxy(40,16);  cout<<"-------------";
+    gotoxy(55,14);  cout<<"---------------";
+    gotoxy(55,15);  cout<<"|  DOCUMENTAL |";
+    gotoxy(55,16);  cout<<"---------------";
+    gotoxy(25,18);  cout<<"--------------";
+    gotoxy(25,19);  cout<<"|  ESTRENOS  |";
+    gotoxy(25,20);  cout<<"--------------";
+    gotoxy(41,18);  cout<<"---------------";
+    gotoxy(41,19);  cout<<"|  EN REMATE  |";
+    gotoxy(41,20);  cout<<"---------------";
+    // Mover cursor al botón default (CREAR CUENTA)
+    gotoxy(8, 11);
+    } else if (menu.compare("2.4_catalogo_f2")  == 0) {
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(31,2);   cout<<"CATALOGO:";
+    gotoxy(4, 4);   cout<<">";
+    gotoxy(57,4);   cout<<"Precio:";
+    gotoxy(57,6);   cout<<"Duraci"<<char(162)<<"n:";
+    gotoxy(57,8);   cout<<"G"<<char(130)<<"nero:";
+    gotoxy(57,10);  cout<<"Disponibilidad:";
+    gotoxy(57,12);  cout<<"A"<<char(164)<<"o:";
+    gotoxy(69,12);  cout<<"ID:";
+    gotoxy(4, 16);  cout<<"|||||  Utilice las teclas <ARRIBA> y <ABAJO>   |||||";
+    gotoxy(63,16);  cout<<"Sinopsis";
+    gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    // Renderlizado de líneas
+    for(int x=4; x<=55;x++)    { gotoxy(x, 15);  cout<<"_"; }
+    for(int x=4; x<=59;x++)    { gotoxy(x, 17);  cout<<"_"; }
+    for(int x=60;x<=74;x++)    { gotoxy(x, 15);  cout<<"_"; }
+    for(int x=75;x<=76;x++)    { gotoxy(x, 17);  cout<<"_"; }
+    for(int y=4; y<=17;y++)    { gotoxy(56,y);   cout<<"|"; }
+    for(int y=16;y<=17;y++)    { gotoxy(60,y);   cout<<"|"; }
+    for(int y=16;y<=17;y++)    { gotoxy(74,y);   cout<<"|"; }
+    // Mover cursor al input default (Película a buscar)
+    gotoxy(4, 4);
   } else { // Default o error
     system("cls");
     cout << "Error al llamar la funcion dibujarMenu" << endl;
