@@ -253,8 +253,26 @@ void dibujarMenu(string menu) {
   } // Fin de dibujar menú indicado
 } // Fin de mostrar menu principal
 
-void seleccionarBoton(int btn) {
-  //
+void seleccionarBoton(string menu, int btn) {
+  if (menu.compare("1_principal")  == 0) {
+    if (btn == 1) {
+      gotoxy(22, 13);  cout << "==================";
+      gotoxy(22, 14);  cout << "|| CREAR CUENTA ||";
+      gotoxy(22, 15);  cout << "==================";
+
+      gotoxy(41, 13);  cout << "--------------";
+      gotoxy(41, 14);  cout << "|  INGRESAR  |";
+      gotoxy(41, 15);  cout << "--------------";
+    } else if (btn == 2) {
+      gotoxy(22, 13);  cout << "------------------";
+      gotoxy(22, 14);  cout << "|  CREAR CUENTA  |";
+      gotoxy(22, 15);  cout << "------------------";
+
+      gotoxy(41, 13);  cout << "==============";
+      gotoxy(41, 14);  cout << "|| INGRESAR ||";
+      gotoxy(41, 15);  cout << "==============";
+    }
+  }
 } // Fin de seleccionar botones
 
 void focusInput() {
@@ -263,8 +281,7 @@ void focusInput() {
 
 void intro(int velocidad) {
   // Colorear pantalla azul y letra amarilla
-  system("cls");
-  system("color 16");
+  system("cls"); system("color 16");
 
   // Fotograma 1 - BLO
   cout<<"\n\n\n\n";
@@ -449,6 +466,7 @@ void intro(int velocidad) {
 
 void despedida() {
   // Crédito: http://www.asciiworld.com/
+  system("cls"); system("color 0F");
   cout <<".     .       .  .   . .   .   . .    +  ."<< endl;
   cout <<"  .     .  :     .    .. :. .___---------___."<< endl;
   cout <<"       .  .   .    .  :.:. _\".^ .^ ^.  '.. :\"-_. ."<< endl;
@@ -474,4 +492,5 @@ void despedida() {
   cout <<"     .         +   .  .  ...:: ..|  --.:|"<< endl;
   cout <<".      . . .   .  .  . ... :..:..\"(  ..)\""<< endl;
   cout <<" .   .       .      :  .   .: ::/  .  .::\\"<< endl;
+  Sleep(2000);
 } // Fin de ticket de despedida

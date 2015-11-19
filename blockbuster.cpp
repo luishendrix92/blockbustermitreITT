@@ -7,7 +7,7 @@
 #include <windows.h>
 #include <stdio.h>
 #include <sstream>
-#include "color.h"
+//#include "color.h"
 #include "utilerias.cpp"
 #include "render.cpp"
 #include "database.cpp"
@@ -28,31 +28,32 @@ int main() {
       switch(tecla) {
         case 77: // Derecha
           if (boton == 1) {
-            seleccionarBoton(2);
+            seleccionarBoton("1_principal", 2); boton = 2;
           } else if (boton == 2) {
-            seleccionarBoton(1);
+            seleccionarBoton("1_principal", 1); boton = 1;
           } // Fin de hacer toggle >
         break;
 
         case 75: // Izquierda
           if (boton == 2) {
-            seleccionarBoton(1); boton = 1;
+            seleccionarBoton("1_principal", 1); boton = 1;
           } else if (boton == 1) {
-            seleccionarBoton(2); boton = 2;
+            seleccionarBoton("1_principal", 2); boton = 2;
           } // Fin de hacer toggle <
         break;
 
         case 13: // 'ENTER'
           switch(boton) {
-            case 1: menu::login();
+            case 1: menu::registro(); boton = 1;
             break;
-            case 2: menu::registro();
+            case 2: menu::login(); boton = 1;
             break;
           } // Fin de abrir menús
         break;
       } // Fin de detección de tecla
     } // Fin de selección de tecla
   } // Fin de ciclo principal
-  
+
+  despedida();
   system("cls");
 } // Fin del programa

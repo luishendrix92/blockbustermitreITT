@@ -21,10 +21,16 @@ namespace menu {
 
   void registro() {
     // pide usuario, clave 2 veces, valida y guarda
+    dibujarMenu("1_principal_registro");
+    getch();
+    dibujarMenu("1_principal");
   }
 
   void login() {
     // pide usuario y clave
+    dibujarMenu("1_principal_login");
+    getch();
+    dibujarMenu("1_principal");
   }
 
   void menuClientes() {
