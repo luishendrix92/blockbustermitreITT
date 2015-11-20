@@ -27,10 +27,31 @@ namespace menu {
   }
 
   void login() {
-    // pide usuario y clave
     dibujarMenu("1_principal_login");
-    getch();
-    dibujarMenu("1_principal");
+    // Variables para los valores del input
+    string usuario, password;
+    vector<string> usuarioEncontrado;
+    // input 1 = Nombre de usuario | input 2 = Contraseña
+    int input = 1; char tecla;
+
+    while(tecla != 27) { // Tecla NO es 'ESC'
+      tecla = getch();
+      if(tecla == 0) { tecla = getch(); } else {
+        switch(tecla) {
+          case 77: // Derecha
+            if (input == 1) {
+              focusInput("1_principal_login", 2); input = 2;
+            }
+          break;
+
+          case 75: // Izquierda
+            //
+          break;
+        }
+      }
+    }
+
+    getch(); dibujarMenu("1_principal");
   }
 
   void menuClientes() {

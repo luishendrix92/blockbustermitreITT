@@ -275,7 +275,7 @@ void seleccionarBoton(string menu, int btn) {
   }
 } // Fin de seleccionar botones
 
-void focusInput() {
+void focusInput(string menu, int input) {
   //
 } // Fin de hacer focus en input de texto
 
