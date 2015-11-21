@@ -12,7 +12,7 @@
 #include "utilerias.cpp"
 #include "render.cpp"
 #include "database.cpp"
-//#include "secciones.cpp"
+#include "menus.cpp"
 
 int main() {
   int opcion;
