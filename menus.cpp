@@ -43,19 +43,16 @@ void catalogo() {
 }
 //elegir categoria
 
-void empleados() {
-  //
-}
-//modificar pelicula
-//agregar pelicula
+namespace menu {
+  void empleados() {
+    // modificar y agregar peliculas
+  }
 
-void comprar() {
-  //
-}
-//quitar pelicula
-//si peliculas igual a cero
+  void comprar() {
+    // quitar pelicula si 'stock = 0'
+  }
 
-void credito() {
-  //
+  void credito() {
+    // modificar o agregar dinero a la cuenta
+  }
 }
-// modificar o agregar dinero a la cuenta
