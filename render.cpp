@@ -253,9 +253,9 @@ void dibujarMenu(string menu) {
   } // Fin de dibujar menú indicado
 } // Fin de mostrar menu principal
 
-void seleccionarBoton(string menu, int btn) {
+void enfocarElemento(string menu, int elemento) {
   if (menu.compare("1_principal")  == 0) {
-    if (btn == 1) {
+    if (elemento == 1) {
       gotoxy(22, 13);  cout << "==================";
       gotoxy(22, 14);  cout << "|| CREAR CUENTA ||";
       gotoxy(22, 15);  cout << "==================";
@@ -263,7 +263,7 @@ void seleccionarBoton(string menu, int btn) {
       gotoxy(41, 13);  cout << "--------------";
       gotoxy(41, 14);  cout << "|  INGRESAR  |";
       gotoxy(41, 15);  cout << "--------------";
-    } else if (btn == 2) {
+    } else if (elemento == 2) {
       gotoxy(22, 13);  cout << "------------------";
       gotoxy(22, 14);  cout << "|  CREAR CUENTA  |";
       gotoxy(22, 15);  cout << "------------------";
@@ -272,12 +272,15 @@ void seleccionarBoton(string menu, int btn) {
       gotoxy(41, 14);  cout << "|| INGRESAR ||";
       gotoxy(41, 15);  cout << "==============";
     }
-  }
-} // Fin de seleccionar botones
-
-void focusInput(string menu, int input) {
-  //
-} // Fin de hacer focus en input de texto
+  } else if (menu.compare("1_principal_login") == 0) {
+    switch(elemento) {
+      case 1:
+        gotoxy(23,12); break;
+      case 2:
+        gotoxy(49,12); break;
+    }
+  } // Fin de manejar elementos de cada menú
+} // Fin de hacer focus en elemento de entrada
 
 void intro(int velocidad) {
   // Colorear pantalla azul y letra amarilla

@@ -39,13 +39,25 @@ namespace menu {
       if(tecla == 0) { tecla = getch(); } else {
         switch(tecla) {
           case 77: // Derecha
-            if (input == 1) {
-              focusInput("1_principal_login", 2); input = 2;
+            switch(input) {
+              case 1:
+                enfocarElemento("1_principal_login", 2);
+                input = 2; break;
+              case 2:
+                enfocarElemento("1_principal_login", 1);
+                input = 1; break;
             }
           break;
 
           case 75: // Izquierda
-            //
+            switch(input) {
+              case 1:
+                enfocarElemento("1_principal_login", 2);
+                input = 2; break;
+              case 2:
+                enfocarElemento("1_principal_login", 1);
+                input = 1; break;
+            }
           break;
         }
       }

@@ -28,17 +28,17 @@ int main() {
       switch(tecla) {
         case 77: // Derecha
           if (boton == 1) {
-            seleccionarBoton("1_principal", 2); boton = 2;
+            enfocarElemento("1_principal", 2); boton = 2;
           } else if (boton == 2) {
-            seleccionarBoton("1_principal", 1); boton = 1;
+            enfocarElemento("1_principal", 1); boton = 1;
           } // Fin de hacer toggle >
         break;
 
         case 75: // Izquierda
           if (boton == 2) {
-            seleccionarBoton("1_principal", 1); boton = 1;
+            enfocarElemento("1_principal", 1); boton = 1;
           } else if (boton == 1) {
-            seleccionarBoton("1_principal", 2); boton = 2;
+            enfocarElemento("1_principal", 2); boton = 2;
           } // Fin de hacer toggle <
         break;
 
