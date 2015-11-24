@@ -278,9 +278,15 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(23,12); break;
       case 2:
         gotoxy(49,12); break;
+      case 3:
+        gotoxy(42,16); break;
     }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
+
+/* ======================================================
+||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||
+========================================================*/
 
 void intro(int velocidad) {
   // Colorear pantalla azul y letra amarilla

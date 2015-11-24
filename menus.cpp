@@ -37,34 +37,25 @@ namespace menu {
     while(tecla != 27) { // Tecla NO es 'ESC'
       tecla = getch();
       if(tecla == 0) { tecla = getch(); } else {
-        switch(tecla) {
-          case 77: // Derecha
-            switch(input) {
-              case 1:
-                enfocarElemento("1_principal_login", 2);
-                input = 2; break;
-              case 2:
-                enfocarElemento("1_principal_login", 1);
-                input = 1; break;
-            }
-          break;
-
-          case 75: // Izquierda
-            switch(input) {
-              case 1:
-                enfocarElemento("1_principal_login", 2);
-                input = 2; break;
-              case 2:
-                enfocarElemento("1_principal_login", 1);
-                input = 1; break;
-            }
-          break;
-        }
-      }
-    }
-
-    getch(); dibujarMenu("1_principal");
-  }
+        if (tecla == 77 || tecla == 75) { // Derecha
+          switch(input) {
+            case 1:
+              enfocarElemento("1_principal_login", 2);
+              input = 2; break;
+            case 2:
+              enfocarElemento("1_principal_login", 3);
+              input = 3; break;
+            case 3:
+              enfocarElemento("1_principal_login", 1);
+              input = 1; break;
+          } // Fin de enfocar inputs
+        } else if (esAlfaNum(tecla) && input != 3) {
+          cout << char(tecla);
+        } // Fin de reaccionar a teclas
+      } // Fin de detectar tecla válida
+    } // Fin de ciclar hasta presionar 'ESC'
+    dibujarMenu("1_principal");
+  } // Fin de autenticar usuario
 
   void menuClientes() {
     // elegir opciones de cliente

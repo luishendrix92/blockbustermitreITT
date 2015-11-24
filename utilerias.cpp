@@ -88,3 +88,12 @@ string floatATexto(float numero) {
   
   return numTexto;
 } // Convertir tipo "int" a "string"
+
+bool esAlfaNum(char tecla) {
+  return  ( // [A-Z] y [a-z] y [0-9] y [.-_]
+    (tecla >= 65 && tecla <= 90) ||
+    (tecla >= 48 && tecla <= 57) ||
+    (tecla >= 97 && tecla <= 122) ||
+    (tecla == 45 || tecla == 46 || tecla == 95)
+  ); // Revisa rangos de caracteres ASCII
+} // Fin de ver si una tecla es alfanumérica
