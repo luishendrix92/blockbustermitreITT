@@ -29,28 +29,42 @@ namespace menu {
   void login() {
     dibujarMenu("1_principal_login");
     // Variables para los valores del input
-    string usuario, password;
+    string usuario, password; char tecla;
     vector<string> usuarioEncontrado;
-    // input 1 = Nombre de usuario | input 2 = Contraseña
-    int input = 1; char tecla;
+    /* input 0 => Usuario
+       input 1 => Contraseña
+       input 2 => Botón Log-In
+       orden => [0: der - 1: izq] */
+    int input = 0, orden[2][3] = {{1,2,0},{2,0,1}};
+    int direccion; // 0: der - 1: izq
 
     while(tecla != 27) { // Tecla NO es 'ESC'
       tecla = getch();
-      if(tecla == 0) { tecla = getch(); } else {
-        if (tecla == 77 || tecla == 75) { // Derecha
+      if (tecla == 0) { tecla = getch(); } else {
+        if (tecla == 77 || tecla == 75) { // Izq-Der
+          direccion = obtenerDireccion(tecla);
+          // Enfocar y resetear inputs
+          enfocarElemento("1_principal_login", 
+          orden[direccion][input]);
+          if (input==0){ usuario.clear(); }
+          else if (input==1){ password.clear(); }
+          input = orden[direccion][input];
+        } else if (esAlfaNum(tecla)
+          && input != 2 // No el botón
+          && usuario.length() < 18
+          && password.length() < 18) {
           switch(input) {
-            case 1:
-              enfocarElemento("1_principal_login", 2);
-              input = 2; break;
-            case 2:
-              enfocarElemento("1_principal_login", 3);
-              input = 3; break;
-            case 3:
-              enfocarElemento("1_principal_login", 1);
-              input = 1; break;
-          } // Fin de enfocar inputs
-        } else if (esAlfaNum(tecla) && input != 3) {
-          cout << char(tecla);
+            case 0: // Usuario
+              gotoxy(23,12); usuario += tecla;
+              cout << usuario;
+              gotoxy(23+usuario.length(),12); break;
+            case 1: // Contraseña
+              gotoxy(49,12); password += tecla;
+              cout << password;
+              gotoxy(49+password.length(),12); break;
+          } // Fin de capturar datos
+        } else if (tecla == 13) { // 'ENTER'
+          // Grabar datos
         } // Fin de reaccionar a teclas
       } // Fin de detectar tecla válida
     } // Fin de ciclar hasta presionar 'ESC'

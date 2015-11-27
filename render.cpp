@@ -274,11 +274,13 @@ void enfocarElemento(string menu, int elemento) {
     }
   } else if (menu.compare("1_principal_login") == 0) {
     switch(elemento) {
-      case 1:
+      case 0:
+        gotoxy(23,12); cout<<"                  ";
         gotoxy(23,12); break;
-      case 2:
+      case 1:
+        gotoxy(49,12); cout<<"                  ";
         gotoxy(49,12); break;
-      case 3:
+      case 2:
         gotoxy(42,16); break;
     }
   } // Fin de manejar elementos de cada menú

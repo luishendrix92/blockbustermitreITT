@@ -97,3 +97,20 @@ bool esAlfaNum(char tecla) {
     (tecla == 45 || tecla == 46 || tecla == 95)
   ); // Revisa rangos de caracteres ASCII
 } // Fin de ver si una tecla es alfanumérica
+
+int obtenerDireccion(char tecla) {
+  /* ROL DE DIRECCIONES
+  =========================
+  0: Derecha - 1: Izquierda
+  2: Arriba - 3: Abajo   */
+  int direccion;
+  switch(tecla) {
+    case 77: direccion = 0; break;
+    case 75: direccion = 1; break;
+    case 72: direccion = 2; break;
+    case 80: direccion = 3; break;
+    default: // No se dio tecla correcta
+      system("cls"); cout << "Error de utileria";
+  } // Fin de establecer dirección
+  return direccion;
+} // Fin de obtener una dirección
