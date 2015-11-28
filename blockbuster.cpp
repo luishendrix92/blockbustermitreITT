@@ -6,6 +6,7 @@
 #include <fstream>
 #include <windows.h>
 #include <stdio.h>
+#include <cstdlib>
 #include <sstream>
 //#include "color.h"
 #include "utilerias.cpp"

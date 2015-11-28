@@ -98,6 +98,14 @@ bool esAlfaNum(char tecla) {
   ); // Revisa rangos de caracteres ASCII
 } // Fin de ver si una tecla es alfanumérica
 
+bool esDireccional(char tecla) {
+  return  ( // Tab, Izq, Der, Arr, Abj
+    tecla == 77 || tecla == 75 ||
+    tecla == 72 || tecla == 80 ||
+    tecla == 9 /* Tab */
+  ); // Fin de comprobar tecla
+} // Fin de ver si una tecla es TAB o flecha
+
 int obtenerDireccion(char tecla) {
   /* ROL DE DIRECCIONES
   =========================

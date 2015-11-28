@@ -113,11 +113,13 @@ void dibujarMenu(string menu) {
     system("cls"); dibujarBordes();
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
     gotoxy(27,5);   cout << "Que es lo que deseas hacer?";
-    gotoxy(5, 9);   cout << "Menu:";
-    gotoxy(5, 12);  cout << "1.- Rentar peliculas";
-    gotoxy(5, 14);  cout << "2.- Comprar peliculas";
-    gotoxy(5, 16);  cout << "3.- Membresias";
-    gotoxy(5, 18);  cout << "4.- Salir";
+    gotoxy(5, 7);   cout << "Menu:";
+    gotoxy(5, 9);   cout << "1.- Rentar peliculas";
+    gotoxy(5, 11);  cout << "2.- Comprar peliculas";
+    gotoxy(5, 13);  cout << "3.- Membresias";
+    gotoxy(5, 15);  cout << "4.- Catalogo";
+    gotoxy(5, 17);  cout << "5.- Credito";
+    gotoxy(5, 19);  cout << "6.- Salir";
     gotoxy(5, 23);  cout << "Opcion: ";
   } else if (menu.compare("2.1_renta_f1")  == 0) {
     system("cls"); dibujarBordes();
@@ -247,6 +249,9 @@ void dibujarMenu(string menu) {
     for(int y=16;y<=17;y++)    { gotoxy(74,y);   cout<<"|"; }
     // Mover cursor al input default (Película a buscar)
     gotoxy(4, 4);
+  } else if (menu.compare("3_empleados")  == 0) {
+    system("cls");
+    cout << "Menu de empleados!" << endl;
   } else { // Default o error
     system("cls");
     cout << "Error al llamar la funcion dibujarMenu" << endl;
@@ -274,17 +279,45 @@ void enfocarElemento(string menu, int elemento) {
     }
   } else if (menu.compare("1_principal_login") == 0) {
     switch(elemento) {
-      case 0:
+      case 0: // Nombre de usuario
         gotoxy(23,12); cout<<"                  ";
         gotoxy(23,12); break;
-      case 1:
+      case 1: // Contraseña
         gotoxy(49,12); cout<<"                  ";
         gotoxy(49,12); break;
-      case 2:
+      case 2: // Botón 'Entrar'
         gotoxy(42,16); break;
+    }
+  } else if (menu.compare("1_principal_registro") == 0) {
+    switch(elemento) {
+      case 0: // Nombre de usuario
+        gotoxy(23,12); cout<<"                  ";
+        gotoxy(23,12); break;
+      case 1: // Contraseña
+        gotoxy(23,17); cout<<"                  ";
+        gotoxy(23,17); break;
+      case 2: // Repetir contraseña
+        gotoxy(50,12); cout<<"                  ";
+        gotoxy(50,12); break;
+      case 3: // Botón 'Listo'
+        gotoxy(60,17); break;
+    }
+  } else if (menu.compare("2_clientes") == 0) {
+    switch(elemento) {
+      case 0:
+        gotoxy(13,23);
+        cout << "                                     ";
+        gotoxy(13,23); break;
     }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
+
+void mostrarError(string tipoError) {
+  if (tipoError.compare("clientes_opcion_equivocada") == 0) {
+    gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
+    Sleep(2500); enfocarElemento("2_clientes", 0);
+  }
+} // Fin de mostrar errores en pantalla
 
 /* ======================================================
 ||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||

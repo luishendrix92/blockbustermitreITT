@@ -50,7 +50,7 @@ void modificarRegistro(
 
 /* La siguiente función emula el comportamiento de un query en SQL
 que elimina registros que coinciden con el criterio de filtrado:
-DELETE FROM tabla WHERE campoBuscado = valorBuscado; */
+DELETE FROM tabla WHERE campoBuscado = valorBuscado;            */
 
 void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
   fstream tabla, memoria;
@@ -84,7 +84,7 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
 
 /* La siguiente función emula el comportamiento de un query en SQL
 que devuelve registros que coinciden con el criterio de filtrado:
-SELECT FROM tabla WHERE campoFiltrado = valorFiltrado; */
+SELECT FROM tabla WHERE campoFiltrado = valorFiltrado;          */
 
 vector<string> filtrarRegistros(
 /* La tabla */        string archivo,
@@ -117,13 +117,23 @@ vector<string> filtrarRegistros(
   return registros;
 } // Fin de descargar .txt por criterios en vector
 
+/* La siguiente función emula el comportamiento de un query en SQL
+que inserta un nuevo registro en una base de datos:
+INSERT INTO tabla VALUES (nuevoRegistro)                        */
+
+void insertarRegistro(string archivo, string nuevoRegistro) {
+  fstream tabla;
+  tabla.open(archivo.c_str(), ios::out | ios::app);
+  /* Insertar */  tabla << nuevoRegistro << endl;
+  tabla.close();
+} // Fin de añadir datos a tabla
+
 bool autenticar(string nombre, string clave) {
   // Arreglo 'usuario' -> [0] Nombre - [1] Clave
   fstream tablaUsuarios; string linea;
   vector<string> registro; bool coinciden = false;
 
   tablaUsuarios.open("usuarios.txt", ios::in);
-
   if (tablaUsuarios.is_open()) {
     while(getline(tablaUsuarios, linea)) {
       registro = separarLinea(linea, 1);
@@ -141,6 +151,27 @@ bool autenticar(string nombre, string clave) {
 
   return coinciden;
 } // Fin de autenticar usuarios
+
+bool nombreDisponible(string nombre) {
+  fstream tablaUsuarios; string linea;
+  vector<string> registro; bool disponible = true;
+
+  tablaUsuarios.open("usuarios.txt", ios::in);
+  if (tablaUsuarios.is_open()) {
+    while(getline(tablaUsuarios, linea)) {
+      registro = separarLinea(linea, 1);
+      if (nombre.compare(registro[0]) == 0) {
+        disponible = false; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaUsuarios.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return disponible;
+} // Fin de si un nombre de usuario está libre para usar
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 
