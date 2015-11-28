@@ -44,7 +44,7 @@ void modificarRegistro(
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
     system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 } // Fin de modificar un registro en una tabla
 
@@ -78,7 +78,7 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
     system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 } // Fin de borrar registro de una tabla
 
@@ -111,12 +111,36 @@ vector<string> filtrarRegistros(
     } // Fin de meter líneas del .txt al vector
     tabla.close();
   } else {
-    system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    system("cls"); cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 
   return registros;
 } // Fin de descargar .txt por criterios en vector
+
+bool autenticar(string nombre, string clave) {
+  // Arreglo 'usuario' -> [0] Nombre - [1] Clave
+  fstream tablaUsuarios; string linea;
+  vector<string> registro; bool coinciden = false;
+
+  tablaUsuarios.open("usuarios.txt", ios::in);
+
+  if (tablaUsuarios.is_open()) {
+    while(getline(tablaUsuarios, linea)) {
+      registro = separarLinea(linea, 1);
+      if (nombre.compare(registro[0]) == 0 &&
+          clave.compare(registro[1]) == 0
+         ) { // Si coinciden nombre y clave
+        coinciden = true; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaUsuarios.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return coinciden;
+} // Fin de autenticar usuarios
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 
@@ -147,7 +171,7 @@ Tabla: USUARIOS (usuarios.txt)
 |     USUARIO     |    CONTRASEÑA   |  PERMISOS  |  CREDITO  |
 |=================|=================|============|============
 | alfanumérico    | alfanumérico    |  empleado  |  integer  |
-| de 6 a 20 chars | de 6 a 20 chars |  cliente   |           |
+| de 6 a 18 chars | de 6 a 18 chars |  cliente   |           |
 ==============================================================
 Nota: Cuando se cree un usuario, inicializarlo con 0 (MXN).
 Los empleados tendrán un valor en el campo CREDITO de "null".

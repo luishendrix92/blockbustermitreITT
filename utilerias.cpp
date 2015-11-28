@@ -106,6 +106,7 @@ int obtenerDireccion(char tecla) {
   int direccion;
   switch(tecla) {
     case 77: direccion = 0; break;
+    case 9:  direccion = 0; break;
     case 75: direccion = 1; break;
     case 72: direccion = 2; break;
     case 80: direccion = 3; break;

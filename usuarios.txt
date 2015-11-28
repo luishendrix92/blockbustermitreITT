@@ -1,5 +1,5 @@
 itzeltapia;deportiva123;empleado;null
 Diego9211;johncenaaa;empleado;null
 JesterRelik;l0loflegends;empleado;null
-luishendrix92;metalslug;empleado;null
 clientedeprueba;123456;cliente;0
+luishendrix92;metalslug;empleado;null

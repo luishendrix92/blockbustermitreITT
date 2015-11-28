@@ -30,7 +30,7 @@ void dibujarMenu(string menu) {
     gotoxy(5, 6);    cout<<"Si eres nuevo en este sistema, elige una opcion 'Crear cuenta', si";
     gotoxy(5, 7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
     gotoxy(5, 8);    cout<<"deseas realizar cambios a la base de datos, elige 'Ingresar'.";
-    gotoxy(22,19);   cout<<"Presione <ESC> para volver atras.";
+    gotoxy(26,19);   cout<<"Presione <ESC> para salir.";
     gotoxy(5, 23);   cout<<"Utiliza las teclas <IZQ> y <DER> para elegir una opcion y pulsa <ENTER>";
     // Renderizado de botones
     gotoxy(22, 13);  cout << "==================";
