@@ -1,25 +1,61 @@
 namespace menu {
+void rentas() {
+  dibujarMenu("2.1_renta_f1");
+  getch();
+  dibujarMenu("2_clientes");
+} // Fin de rentar películas
+
 void comprar() {
   // quitar pelicula si 'stock = 0'
 }
+
+void membresias() {
+  dibujarMenu("2.3_membresias_nuevo");
+  getch();
+  dibujarMenu("2_clientes");
+} // Fin de suscribirse a membresía
 
 void miCredito() {
   // modificar o agregar dinero a la cuenta
 }
 
-void catalogo() {
+void catalogoFrame2(string usuario, int genero) {
+  dibujarMenu("2.4_catalogo_f2");
+  cout << "Usuario: "<<usuario<<"  -  Genero: "<<genero;
+  getch(); dibujarMenu("2.4_catalogo_f1");
+} // Parte del menú 'catalogo' [Frame 2]
+
+void catalogo(string usuario) {
   dibujarMenu("2.4_catalogo_f1");
-  getch();
+  // Variables para los valores del input
+  char tecla; int dir, boton = 0;
+  /*-------------------------------------------------*\
+  |  0 => Horror    3  => Aventura    6 => Comedia    |
+  |  1 => Sci-Fi    4  => Acción      7 => Romance    |
+  |  2 => Drama     5  => Biografía   8 => Documental |
+  |  9 => Estrenos  10 => En remate                   |
+  |---------------------------------------------------|
+  |  0: Der   -   1: Izq   -   2: Arr   -   3: Abj    |
+  \*-------------------------------------------------*/
+  int orden[4][11] = {{1,2,3,4,5,6,7,8,9,10,0},
+  {10,0,1,2,3,4,5,6,7,8,9},{5,9,9,10,8,0,1,3,4,6,7},
+  {5,6,7,7,8,9,9,10,10,1,3}};
+
+  while(tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) { // Der-Izq-Tab
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento("2.4_catalogo_f1", orden[dir][boton]);
+        boton = orden[dir][boton];
+      } else if (tecla == 13) { // 'ENTER'
+        menu::catalogoFrame2(usuario, boton); boton = 0;
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
-}
-
-void rentas() {
-  // rentar películas
-}
-
-void membresias() {
-  // capturar datos de usuario
-}
+} // Fin de catálogo de pelis
 
 void clientes(string usuario, string credito) {
   dibujarMenu("2_clientes");
@@ -31,16 +67,11 @@ void clientes(string usuario, string credito) {
     cin >> opcion;
     if (opcion >= 1 && opcion <= 5) {
       switch(opcion) {
-        case 1:
-          menu::rentas();     break;
-        case 2:
-          menu::comprar();    break;
-        case 3:
-          menu::membresias(); break;
-        case 4:
-          menu::catalogo();   break;
-        case 5:
-          menu::miCredito();  break;
+        case 1: menu::rentas();            break;
+        case 2: menu::comprar();           break;
+        case 3: menu::membresias();        break;
+        case 4: menu::catalogo(usuario);   break;
+        case 5: menu::miCredito();         break;
       } // Fin de lanzar menú correspondiente
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito
@@ -65,16 +96,16 @@ void login() {
      input 2 => Botón 'Entrar'
      orden => [0: der - 1: izq] */
   int input = 0, orden[2][3] = {{1,2,0},{2,0,1}};
-  int direccion; /*0:der-1:izq*/ bool tienePermiso;
+  int dir; /*0:der-1:izq*/ bool tienePermiso;
 
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (esDireccional(tecla)) { // Der-Izq-Tab
-        direccion = obtenerDireccion(tecla);
+        dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
-        enfocarElemento("1_principal_login", orden[direccion][input]);
-        input = orden[direccion][input];
+        enfocarElemento("1_principal_login", orden[dir][input]);
+        input = orden[dir][input];
         if (input == 0){ usuario.clear(); }
         else if (input == 1){ password.clear(); }
       } else if (esAlfaNum(tecla) // Tecla es alfanumérica
@@ -129,16 +160,16 @@ void registro() {
      input 2 => Repetir clave       input 3 => Btn 'Listo'
      orden => [0: der - 1: izq - 2: arr - 3: abj]       */
   int orden[4][4] = {{1,2,3,0},{3,0,1,2},{1,0,3,2},{1,0,3,2}};
-  int direccion, input = 0; bool registroValido;
+  int dir, input = 0; bool registroValido;
 
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (esDireccional(tecla)) {
-        direccion = obtenerDireccion(tecla);
+        dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
-        enfocarElemento("1_principal_registro", orden[direccion][input]);
-        input = orden[direccion][input];
+        enfocarElemento("1_principal_registro", orden[dir][input]);
+        input = orden[dir][input];
         switch(input) {
           case 0: usuario.clear(); break;
           case 1: clave.clear(); break;

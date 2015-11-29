@@ -304,10 +304,102 @@ void enfocarElemento(string menu, int elemento) {
     }
   } else if (menu.compare("2_clientes") == 0) {
     switch(elemento) {
-      case 0:
-        gotoxy(13,23);
+      case 0: gotoxy(13,23);
         cout << "                                     ";
         gotoxy(13,23); break;
+    }
+  } else if (menu.compare("2.4_catalogo_f1") == 0) {
+    // Volver a renderizar los botones (sin enfoque)
+    gotoxy(5, 10);  cout<<"------------";
+    gotoxy(5, 11);  cout<<"|  HORROR  |";
+    gotoxy(5, 12);  cout<<"------------";
+    gotoxy(19,10);  cout<<"------------";
+    gotoxy(19,11);  cout<<"|  SCI-FI  |";
+    gotoxy(19,12);  cout<<"------------";
+    gotoxy(33,10);  cout<<"-----------";
+    gotoxy(33,11);  cout<<"|  DRAMA  |";
+    gotoxy(33,12);  cout<<"-----------";
+    gotoxy(46,10);  cout<<"--------------";
+    gotoxy(46,11);  cout<<"|  AVENTURA  |";
+    gotoxy(46,12);  cout<<"--------------";
+    gotoxy(62,10);  cout<<"------------";
+    gotoxy(62,11);  cout<<"|  ACCION  |";
+    gotoxy(62,12);  cout<<"------------";
+    gotoxy(9, 14);  cout<<"--------------";
+    gotoxy(9, 15);  cout<<"|  BIOGRAFIA |";
+    gotoxy(9, 16);  cout<<"--------------";
+    gotoxy(25,14);  cout<<"-------------";
+    gotoxy(25,15);  cout<<"|  COMEDIA  |";
+    gotoxy(25,16);  cout<<"-------------";
+    gotoxy(40,14);  cout<<"-------------";
+    gotoxy(40,15);  cout<<"|  ROMANCE  |";
+    gotoxy(40,16);  cout<<"-------------";
+    gotoxy(55,14);  cout<<"---------------";
+    gotoxy(55,15);  cout<<"|  DOCUMENTAL |";
+    gotoxy(55,16);  cout<<"---------------";
+    gotoxy(25,18);  cout<<"--------------";
+    gotoxy(25,19);  cout<<"|  ESTRENOS  |";
+    gotoxy(25,20);  cout<<"--------------";
+    gotoxy(41,18);  cout<<"---------------";
+    gotoxy(41,19);  cout<<"|  EN REMATE  |";
+    gotoxy(41,20);  cout<<"---------------";
+    // Enfocar el elemento adecuado
+    switch(elemento) {
+      case 0:
+        gotoxy(5, 10);  cout<<"============";
+        gotoxy(5, 11);  cout<<"|| HORROR ||";
+        gotoxy(5, 12);  cout<<"============";
+        gotoxy(8, 11);  break;
+      case 1:
+        gotoxy(19,10);  cout<<"============";
+        gotoxy(19,11);  cout<<"|| SCI-FI ||";
+        gotoxy(19,12);  cout<<"============";
+        gotoxy(22,11);  break;
+      case 2: 
+        gotoxy(33,10);  cout<<"===========";
+        gotoxy(33,11);  cout<<"|| DRAMA ||";
+        gotoxy(33,12);  cout<<"===========";
+        gotoxy(36,11);  break;
+      case 3:
+        gotoxy(46,10);  cout<<"==============";
+        gotoxy(46,11);  cout<<"|| AVENTURA ||";
+        gotoxy(46,12);  cout<<"==============";
+        gotoxy(49,11);  break;
+      case 4:
+        gotoxy(62,10);  cout<<"============";
+        gotoxy(62,11);  cout<<"|| ACCION ||";
+        gotoxy(62,12);  cout<<"============";
+        gotoxy(65,11);  break;
+      case 5:
+        gotoxy(9, 14);  cout<<"==============";
+        gotoxy(9, 15);  cout<<"|| BIOGRAFIA||";
+        gotoxy(9, 16);  cout<<"==============";
+        gotoxy(12,15);  break;
+      case 6:
+        gotoxy(25,14);  cout<<"=============";
+        gotoxy(25,15);  cout<<"|| COMEDIA ||";
+        gotoxy(25,16);  cout<<"=============";
+        gotoxy(28,15);  break;
+      case 7:
+        gotoxy(40,14);  cout<<"=============";
+        gotoxy(40,15);  cout<<"|| ROMANCE ||";
+        gotoxy(40,16);  cout<<"=============";
+        gotoxy(43,15);  break;
+      case 8:
+        gotoxy(55,14);  cout<<"===============";
+        gotoxy(55,15);  cout<<"|| DOCUMENTAL||";
+        gotoxy(55,16);  cout<<"===============";
+        gotoxy(58,15);  break;
+      case 9:
+        gotoxy(25,18);  cout<<"==============";
+        gotoxy(25,19);  cout<<"|| ESTRENOS ||";
+        gotoxy(25,20);  cout<<"==============";
+        gotoxy(28,19);  break;
+      case 10:
+        gotoxy(41,18);  cout<<"===============";
+        gotoxy(41,19);  cout<<"|| EN REMATE ||";
+        gotoxy(41,20);  cout<<"===============";
+        gotoxy(44,19);  break;
     }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
