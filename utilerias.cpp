@@ -123,3 +123,46 @@ int obtenerDireccion(char tecla) {
   } // Fin de establecer dirección
   return direccion;
 } // Fin de obtener una dirección
+
+string obtenerGenero(int id) {
+  vector<string> generos;
+
+  generos.push_back("Horror");     generos.push_back("Sci-Fi");
+  generos.push_back("Drama");      generos.push_back("Aventura");
+  generos.push_back("Accion");     generos.push_back("Biografia");
+  generos.push_back("Comedia");    generos.push_back("Romance");
+  generos.push_back("Documental"); generos.push_back("Estrenos");
+  generos.push_back("En remate");
+
+  return generos[id];
+} // Fin de devolver la lista de generos
+
+int elementoFecha(string elemento) {
+  time_t ahora = time(0); tm *fecha = localtime(&ahora);
+  int year = 1900 + fecha->tm_year;
+} // Fin de devolver componentes de fecha actual
+
+vector<vector<int> > paginacion(int cantElem, int maxElem) {
+  vector<vector<int> > rolPaginas; int nPaginas;
+  vector<int> pagina;
+
+  if(cantElem % maxElem == 0) {
+    // Cada página estará llena por igual
+    nPaginas = cantElem / maxElem;
+  } else {
+    // Habrá una página extra
+    nPaginas = (cantElem / maxElem) + 1;
+  } // Fin de establecer número de páginas
+
+  for (int i = 0; i < nPaginas; i+=1) {
+    pagina.push_back(i*maxElem);
+    if (i+1 == nPaginas) { // Única o última página
+      pagina.push_back((i*maxElem) + (cantElem-(i*maxElem+1)));
+    } else { // Las páginas anteriores
+      pagina.push_back((i*maxElem) + (maxElem-1));
+    } // Fin de verificar la última página
+    rolPaginas.push_back(pagina); pagina.clear();
+  } // Fin de crear nuevas páginas
+
+  return rolPaginas;
+} // Fin de manejar paginación vertical

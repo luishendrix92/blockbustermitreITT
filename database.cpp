@@ -53,8 +53,7 @@ que elimina registros que coinciden con el criterio de filtrado:
 DELETE FROM tabla WHERE campoBuscado = valorBuscado;            */
 
 void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
-  fstream tabla, memoria;
-  string linea;
+  fstream tabla, memoria; string linea;
   vector<string> registro;
 
   tabla.open(archivo.c_str(), ios::in);
@@ -93,8 +92,7 @@ vector<string> filtrarRegistros(
                                ) {
   vector<string> registros;
   vector<string> registroTemporal;
-  fstream tabla;
-  string linea;
+  fstream tabla; string linea;
 
   tabla.open(archivo.c_str(), ios::in);
   if (tabla.is_open()) {
@@ -114,6 +112,7 @@ vector<string> filtrarRegistros(
     system("cls"); cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 
+  //if(registros.size() == 0) { registros.push_back("null"); }
   return registros;
 } // Fin de descargar .txt por criterios en vector
 
@@ -123,10 +122,27 @@ INSERT INTO tabla VALUES (nuevoRegistro)                        */
 
 void insertarRegistro(string archivo, string nuevoRegistro) {
   fstream tabla;
+
   tabla.open(archivo.c_str(), ios::out | ios::app);
   /* Insertar */  tabla << nuevoRegistro << endl;
   tabla.close();
 } // Fin de añadir datos a tabla
+
+vector<string> descargarTabla(string archivo) {
+  fstream tabla; string linea;
+  vector<string> registros;
+
+  tabla.open(archivo.c_str(), ios::in);
+  if(tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      if (linea.length() > 0) {
+        registros.push_back(linea);
+      } // Fin de ver si no es una línea vacía
+    } // Fin de meter líneas del .txt al vector
+  } else {
+    system("cls"); cout << "Error de base de datos.";
+  } // Fin de comprobar si el archivo existe
+} // Fin de crear un arreglo con todos los registros
 
 bool autenticar(string nombre, string clave) {
   // Arreglo 'usuario' -> [0] Nombre - [1] Clave

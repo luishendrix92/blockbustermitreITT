@@ -8,6 +8,7 @@
 #include <stdio.h>
 #include <cstdlib>
 #include <sstream>
+#include <ctime>
 //#include "color.h"
 #include "utilerias.cpp"
 #include "render.cpp"

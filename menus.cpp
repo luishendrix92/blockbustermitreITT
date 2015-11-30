@@ -19,10 +19,38 @@ void miCredito() {
   // modificar o agregar dinero a la cuenta
 }
 
-void catalogoFrame2(string usuario, int genero) {
+void catalogoFrame2(string usuario, int gnrId) {
   dibujarMenu("2.4_catalogo_f2");
-  cout << "Usuario: "<<usuario<<"  -  Genero: "<<genero;
-  getch(); dibujarMenu("2.4_catalogo_f1");
+  /*-------------------------------------------------*\
+  |  0 => Horror    3  => Aventura    6 => Comedia    |
+  |  1 => Sci-Fi    4  => Acción      7 => Romance    |
+  |  2 => Drama     5  => Biografía   8 => Documental |
+  |  9 => Estrenos  10 => En remate                   |
+  \*-------------------------------------------------*/
+  vector<string> peliculas, /* Tabla filtrada */ pelicula;
+  string genero = obtenerGenero(gnrId); int pag = 0;
+  peliculas = filtrarRegistros("peliculas.txt", 3, genero);
+  vector<vector<int> > paginas; int puntero = 0;
+  /*------------ FIN DE VARIABLES NECESARIAS ------------*/
+
+  // Poner género en el título
+  gotoxy(41,2); cout << genero; gotoxy(4,4);
+
+  // Mostrar las películas en pantalla
+  if (peliculas.size() > 0) {
+    paginas = paginacion(peliculas.size(), 11);
+    // Mostrar películas de la primera página
+    for (int i=paginas[pag][0],y=4;i<=paginas[pag][1];i+=1) {
+      pelicula = separarLinea(peliculas[i], 1); gotoxy(5, y);
+      // Mostrar película y el año entre paréntesis
+      cout << pelicula[1]<<" ("<<pelicula[2]<<")";
+      pelicula.clear(); y += 1; // Siguiente línea
+    } // Fin de búsqueda de películas
+  } else { // No hay películas
+    gotoxy(5,4); cout << "No se encontro ninguna pelicula";
+  } // Fin de ver si hay películas
+
+  gotoxy(4,4); getch(); dibujarMenu("2.4_catalogo_f1");
 } // Parte del menú 'catalogo' [Frame 2]
 
 void catalogo(string usuario) {
@@ -55,7 +83,7 @@ void catalogo(string usuario) {
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
-} // Fin de catálogo de pelis
+} // Fin de catálogo de películas
 
 void clientes(string usuario, string credito) {
   dibujarMenu("2_clientes");
