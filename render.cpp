@@ -282,25 +282,43 @@ void enfocarElemento(string menu, int elemento) {
     switch(elemento) {
       case 0: // Nombre de usuario
         gotoxy(23,12); cout<<"                  ";
+        gotoxy(39,15); cout << "------------";
+        gotoxy(39,16); cout << "|  ENTRAR  |";
+        gotoxy(39,17); cout << "------------";
         gotoxy(23,12); break;
       case 1: // Contraseña
         gotoxy(49,12); cout<<"                  ";
+        gotoxy(39,15); cout << "------------";
+        gotoxy(39,16); cout << "|  ENTRAR  |";
+        gotoxy(39,17); cout << "------------";
         gotoxy(49,12); break;
       case 2: // Botón 'Entrar'
+        gotoxy(39,15); cout << "============";
+        gotoxy(39,16); cout << "|| ENTRAR ||";
+        gotoxy(39,17); cout << "============";
         gotoxy(42,16); break;
     }
   } else if (menu.compare("1_principal_registro") == 0) {
     switch(elemento) {
       case 0: // Nombre de usuario
         gotoxy(23,12); cout<<"                  ";
+        gotoxy(57,16); cout << "-----------";
+        gotoxy(57,17); cout << "|  LISTO  |";
+        gotoxy(57,18); cout << "-----------";
         gotoxy(23,12); break;
       case 1: // Contraseña
         gotoxy(23,17); cout<<"                  ";
+        gotoxy(57,16); cout << "-----------";
+        gotoxy(57,17); cout << "|  LISTO  |";
+        gotoxy(57,18); cout << "-----------";
         gotoxy(23,17); break;
       case 2: // Repetir contraseña
         gotoxy(50,12); cout<<"                  ";
         gotoxy(50,12); break;
       case 3: // Botón 'Listo'
+        gotoxy(57,16); cout << "===========";
+        gotoxy(57,17); cout << "|| LISTO ||";
+        gotoxy(57,18); cout << "===========";
         gotoxy(60,17); break;
     }
   } else if (menu.compare("2_clientes") == 0) {
@@ -452,7 +470,7 @@ void mostrarError(string tipoError) {
   }
 } // Fin de mostrar errores en pantalla
 
-/* ======================================================
+/* =======================================================
 |||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||
 ========================================================*/
 
@@ -664,7 +682,7 @@ void intro(int velocidad) {
   cout<<"\t      T:::::::::T      E::::::::::::::::::::ER::::::R     R:::::R"<<endl;
   cout<<"\t      T:::::::::T      E::::::::::::::::::::ER::::::R     R:::::R"<<endl;
   cout<<"\t      TTTTTTTTTTT      EEEEEEEEEEEEEEEEEEEEEERRRRRRRR     RRRRRRR"<<endl;
-  Sleep(velocidad*3); system("cls");
+  Sleep(velocidad*3); system("cls"); system("color 1F");
 } // Fin de intro con logo
 
 void despedida() {

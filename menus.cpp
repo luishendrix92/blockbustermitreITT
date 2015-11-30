@@ -47,13 +47,36 @@ void catalogoFrame2(string usuario, int gnrId) {
       if (tecla == 0) { tecla = getch(); } else {
         if (esDireccional(tecla)) {
           direccion = obtenerDireccion(tecla);
-          short int inicio, final;
-          inicio = pags[pags.size() - 1][0];
+          short int inicio = 0, final;
           final  = pags[pags.size() - 1][1];
           switch(direccion) {
             case 0: // Derecha
             case 3: // Abajo
-              //
+              if (puntero == final) {
+                // Limpiar la zona de muestreo
+                limpiarZona("2.4_catalogo_f2", 0);
+                /* Última película en la lista, ir
+                hacia abajo te lleva a la primera
+                página y película del listado   */
+                puntero = inicio; pagActual = 0;
+                mostrarPagina(peliculas, pagActual);
+              } else if (puntero == pags[pagActual][1]) {
+                // Limpiar la zona de muestreo
+                limpiarZona("2.4_catalogo_f2", 0);
+                /* Última película en la página, al
+                presionar abajo te lleva a la primer
+                peli del menú siguiente           */
+                puntero = pags[pagActual + 1][0];
+                pagActual += 1;
+                mostrarPagina(peliculas, pagActual);
+              } else {
+                /* La película no es ni la primera
+                ni la última en la lista        */
+                limpiarZona("2.4_catalogo_f2", 1);
+                puntero += 1;
+              } // Fin de actuar conforme al puntero
+            break;
+
             case 1: // Izquierda
             case 2: // Arriba
               if (puntero == 0) {
@@ -61,17 +84,17 @@ void catalogoFrame2(string usuario, int gnrId) {
                 limpiarZona("2.4_catalogo_f2", 0);
                 /* Primer película en la lista, ir
                 hacia arriba te lleva a la última
-                película y a la última página */
+                película y a la última página   */
                 puntero = final; pagActual = pags.size()-1;
                 mostrarPagina(peliculas, pagActual);
-              } else if (puntero % 11 == 0) {
+              } else if (puntero == pags[pagActual][0]) {
                 // Limpiar la zona de muestreo
                 limpiarZona("2.4_catalogo_f2", 0);
                 /* Primer película en la página, al
                 presionar arriba te lleva a la última
                 peli del menú anterior             */
                 puntero = pags[pagActual - 1][1];
-                pagActual = pagActual - 1;
+                pagActual -= 1;
                 mostrarPagina(peliculas, pagActual);
               } else {
                 /* La película no es ni la primera
@@ -79,13 +102,14 @@ void catalogoFrame2(string usuario, int gnrId) {
                 limpiarZona("2.4_catalogo_f2", 1);
                 puntero -= 1;
               } // Fin de actuar conforme al puntero
+            break;
           } // Fin de controlar flechas
           // Localizar y enfocar  el puntero '>'
           limpiarZona("2.4_catalogo_f2", 2);
           gotoxy(4,4+puntero-(11*pagActual)); cout << ">";
           gotoxy(4,4+puntero-(11*pagActual));
         } else if (tecla == 13) { // 'ENTER'
-          //
+          // Dar opción de comprar o rentar
         } // Fin de reaccionar a teclas
       } // Fin de detectar tecla válida
     } // Fin de ciclar hasta presionar 'ESC'
@@ -170,17 +194,22 @@ void login() {
      input 1 => Contraseña
      input 2 => Botón 'Entrar'
      orden => [0: der - 1: izq] */
-  int input = 0, orden[2][3] = {{1,2,0},{2,0,1}};
-  int dir; /*0:der-1:izq*/ bool tienePermiso;
+  int input = 0, // Selector de botón o caja de texto
+      orden[4][3] = {{1,2,0},{2,0,1},{2,0,1},{1,2,0}},
+      dir /* Dirección */; bool tienePermiso;
 
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if (esDireccional(tecla)) { // Der-Izq-Tab
+      if ( /* Direccional o ENTER sin estar en el botón */
+        esDireccional(tecla) ||
+        (tecla == 13 && input != 2)
+      ) {  /* Direccional o ENTER sin estar en el botón */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento("1_principal_login", orden[dir][input]);
         input = orden[dir][input];
+        // Limpiar cadenas de texto
         if (input == 0){ usuario.clear(); }
         else if (input == 1){ password.clear(); }
       } else if (esAlfaNum(tecla) // Tecla es alfanumérica
@@ -229,25 +258,27 @@ void login() {
 void registro() {
   dibujarMenu("1_principal_registro");
   // Variables para los valores del input
-  string usuario, clave, claveRepetida; char tecla;
-  string nuevoUsuario; 
+  string usuario, clave, claveRepetida, nuevoUsuario;
   /* input 0 => Usuario             input 1 => Contraseña
      input 2 => Repetir clave       input 3 => Btn 'Listo'
-     orden => [0: der - 1: izq - 2: arr - 3: abj]       */
-  int orden[4][4] = {{1,2,3,0},{3,0,1,2},{1,0,3,2},{1,0,3,2}};
-  int dir, input = 0; bool registroValido;
+     orden   => [0: der - 1: izq - 2: arr - 3: abj]     */
+  int orden[4][4] = {{1,2,3,0},{3,0,1,2},{1,0,3,2},{1,0,3,2}},
+      dir, input = 0; bool registroValido; char tecla;
 
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if (esDireccional(tecla)) {
+      if ( /* Direccional o ENTER sin estar en el botón */
+        esDireccional(tecla) ||
+        (tecla == 13 && input != 3)
+      ) {  /* Direccional o ENTER sin estar en el botón */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento("1_principal_registro", orden[dir][input]);
         input = orden[dir][input];
         switch(input) {
-          case 0: usuario.clear(); break;
-          case 1: clave.clear(); break;
+          case 0: usuario.clear();       break;
+          case 1: clave.clear();         break;
           case 2: claveRepetida.clear(); break;
         } // Fin de limpiar cadenas
       } else if (esAlfaNum(tecla) // Tecla es alfanumérica
@@ -257,10 +288,10 @@ void registro() {
         switch(input) {
           case 0: // Usuario
             gotoxy(23,12); usuario += tecla; cout << usuario;
-            gotoxy(23+usuario.length(),12); break;
+            gotoxy(23+usuario.length(),12);       break;
           case 1: // Contraseña
             gotoxy(23,17); clave += tecla; cout << clave;
-            gotoxy(23+clave.length(),17); break;
+            gotoxy(23+clave.length(),17);         break;
           case 2: // Repetir contraseña
             gotoxy(50,12); claveRepetida += tecla; cout <<claveRepetida;
             gotoxy(50+claveRepetida.length(),12); break;
@@ -269,10 +300,10 @@ void registro() {
         switch(input) {
           case 0: // Usuario
             enfocarElemento("1_principal_registro", 0);
-            usuario.clear(); break;
+            usuario.clear();       break;
           case 1: // Contraseña
             enfocarElemento("1_principal_registro", 1);
-            clave.clear(); break;
+            clave.clear();         break;
           case 2: // Contraseña
             enfocarElemento("1_principal_registro", 2);
             claveRepetida.clear(); break;

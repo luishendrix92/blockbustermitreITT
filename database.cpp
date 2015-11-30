@@ -1,4 +1,5 @@
-/*  Manejo de base de datos de
+/*=================================================
+    Manejo de base de datos de
     lectura y escritura con .txt. 
 ================================================= */
 
