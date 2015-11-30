@@ -112,8 +112,27 @@ void dibujarMenu(string menu) {
     gotoxy(23, 12);
   } else if (menu.compare("2_clientes")  == 0) {
     system("cls"); dibujarBordes();
+    // ASCII Art 'Millenial Falcon' -> http://www.chris.com/ascii/
+    gotoxy(28,5);  cout<<"                c==o"                         <<endl;
+    gotoxy(28,6);  cout<<"              _/____\\_"                      <<endl;
+    gotoxy(28,7);  cout<<"       _.,--'\" ||^ || \"`z._"                <<endl;
+    gotoxy(28,8);  cout<<"      /_/^ ___\\||  || _/o\\ \"`-._"          <<endl;
+    gotoxy(28,9);  cout<<"    _/  ]. L_| || .||  \\_/_  . _`--._"       <<endl;
+    gotoxy(28,10); cout<<"   /_~7  _ . \" ||. || /] \\ ]. (_)  . \"`--."<<endl;
+    gotoxy(28,11); cout<<"  |__7~.(_)_ []|+--+|/____T_____________L|"   <<endl;
+    gotoxy(28,12); cout<<"  |__|  _^(_) /^   __\\____ _   _|"           <<endl;
+    gotoxy(28,13); cout<<"  |__| (_){_) J ]K{__ L___ _   _]"            <<endl;
+    gotoxy(28,14); cout<<"  |__| . _(_) \v     /__________|________"    <<endl;
+    gotoxy(28,15); cout<<"  l__l_ (_). []|+-+-<\\^   L  . _   - ---L|"  <<endl;
+    gotoxy(28,16); cout<<"   \\__\\    __. ||^l  \\Y] /_]  (_) .  _,--'"<<endl;
+    gotoxy(28,17); cout<<"     \\~_]  L_| || .\\ .\\/~.    _,--'\""     <<endl;
+    gotoxy(28,18); cout<<"      \\_\\ . __/||  |\\  \\`-+-<'\""         <<endl;
+    gotoxy(28,19); cout<<"        \"`---._|J__L|X o~~|[\\"              <<endl;
+    gotoxy(28,20); cout<<"               \\____/ \\___|[//"             <<endl;
+    gotoxy(28,21); cout<<"                `--'   `--+-'";
+    // Renderizado de texto
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
-    gotoxy(27,5);   cout << "Que es lo que deseas hacer?";
+    gotoxy(5, 5);   cout << "Que es lo que deseas hacer?";
     gotoxy(5, 7);   cout << "Menu:";
     gotoxy(5, 9);   cout << "1.- Rentar peliculas";
     gotoxy(5, 11);  cout << "2.- Comprar peliculas";
@@ -169,6 +188,21 @@ void dibujarMenu(string menu) {
     gotoxy(5, 15);  cout<<"3: Tickets a estrenos en el";
     gotoxy(5, 16);  cout<<"cine durante festividades.";
     gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    // Dibujo de ASCII Art 'Totoro' -> http://www.asciiworld.com/-Mangas,48-.html
+    gotoxy(40,8);   cout<<"           !         !          "       <<endl;
+    gotoxy(40,9);   cout<<"          ! !       ! !          "      <<endl;
+    gotoxy(40,10);  cout<<"         ! . !     ! . !          "     <<endl;
+    gotoxy(40,11);  cout<<"            ^^^^^^^^^ ^            "    <<endl;
+    gotoxy(40,12);  cout<<"          ^             ^          "    <<endl;
+    gotoxy(40,13);  cout<<"        ^  (0)       (0)  ^       "     <<endl;
+    gotoxy(40,14);  cout<<"       ^        ""         ^       "    <<endl;
+    gotoxy(40,15);  cout<<"      ^   ***************    ^     "    <<endl;
+    gotoxy(40,16);  cout<<"    ^   *                 *   ^    "    <<endl;
+    gotoxy(40,17);  cout<<"   ^   *   /\\   /\\   /\\    *    ^   "<<endl;
+    gotoxy(40,18);  cout<<"  ^   *                     *    ^"     <<endl;
+    gotoxy(40,19);  cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^"<<endl;
+    gotoxy(40,20);  cout<<"^   *                         *    ^"   <<endl;
+    gotoxy(40,21);  cout<<"^  *                           *   ^";
     // Renderizado de botones
     gotoxy(5, 18);  cout<<"===============";
     gotoxy(5, 19);  cout<<"|| AFILIARME ||";
