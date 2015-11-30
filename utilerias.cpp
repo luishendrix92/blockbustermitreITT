@@ -1,4 +1,5 @@
-/*  Pequeñas funciones que permiten
+/*=================================================
+    Pequeñas funciones que permiten
     realizar tareas útiles y repetitivas
 ================================================= */
 using namespace std;
@@ -61,14 +62,6 @@ string unirRegistro(vector<string> registro, string separador) {
   return linea;
 } // Fin de unir un vector en una cadena
 
-void trazarRectangulo(int x1, int y1, int x2, int y2, string relleno) {
-  for (int renglon=y1; renglon <= y2; renglon+=1) {
-    for(int x=x1, y=renglon; x <= x2; x+=1) {
-      gotoxy(x, y); cout << relleno;
-    } // Fin de trazar renglón
-  } // Fin de trazar rectángulo
-} // Fin de trazar líneas horizontales
-
 string enteroATexto(int numero) {
   string numTexto = "";
   stringstream entero;
@@ -124,23 +117,28 @@ int obtenerDireccion(char tecla) {
   return direccion;
 } // Fin de obtener una dirección
 
-string obtenerGenero(int id) {
-  vector<string> generos;
-
-  generos.push_back("Horror");     generos.push_back("Sci-Fi");
-  generos.push_back("Drama");      generos.push_back("Aventura");
-  generos.push_back("Accion");     generos.push_back("Biografia");
-  generos.push_back("Comedia");    generos.push_back("Romance");
-  generos.push_back("Documental"); generos.push_back("Estrenos");
-  generos.push_back("En remate");
-
-  return generos[id];
-} // Fin de devolver la lista de generos
-
 int elementoFecha(string elemento) {
-  time_t ahora = time(0); tm *fecha = localtime(&ahora);
-  int year = 1900 + fecha->tm_year;
+  time_t ahora  = time(0);
+  tm    *fecha  = localtime(&ahora);
+  int    year   = 1900 + fecha->tm_year,
+         mes    = fecha->tm_mon + 1,
+         diaMes = fecha->tm_mday;
+
+  if (elemento.compare("year") == 0) {
+    // Año desde 1900 (+1900)
+    return year;
+  } else if (elemento.compare("mes") == 0) {
+    // Número de meses desde Enero [0-11] (+1)
+    return mes;
+  } else if (elemento.compare("dia") == 0) {
+    // Día del mes [1-31]
+    return diaMes;
+  } // Fin de revisar elemento
 } // Fin de devolver componentes de fecha actual
+
+/* ======================================================
+|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||
+========================================================*/
 
 vector<vector<int> > paginacion(int cantElem, int maxElem) {
   vector<vector<int> > rolPaginas; int nPaginas;
@@ -166,3 +164,16 @@ vector<vector<int> > paginacion(int cantElem, int maxElem) {
 
   return rolPaginas;
 } // Fin de manejar paginación vertical
+
+string obtenerGenero(int id) {
+  vector<string> generos;
+
+  generos.push_back("Horror");     generos.push_back("Sci-Fi");
+  generos.push_back("Drama");      generos.push_back("Aventura");
+  generos.push_back("Accion");     generos.push_back("Biografia");
+  generos.push_back("Comedia");    generos.push_back("Romance");
+  generos.push_back("Documental"); generos.push_back("Estrenos");
+  generos.push_back("En remate");
+
+  return generos[id];
+} // Fin de devolver la lista de generos

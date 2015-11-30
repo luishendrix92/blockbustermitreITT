@@ -27,30 +27,77 @@ void catalogoFrame2(string usuario, int gnrId) {
   |  2 => Drama     5  => Biografía   8 => Documental |
   |  9 => Estrenos  10 => En remate                   |
   \*-------------------------------------------------*/
-  vector<string> peliculas, /* Tabla filtrada */ pelicula;
-  string genero = obtenerGenero(gnrId); int pag = 0;
+  vector<string> peliculas; /* Tabla filtrada */
+  string genero = obtenerGenero(gnrId); int pagActual = 0;
   peliculas = filtrarRegistros("peliculas.txt", 3, genero);
-  vector<vector<int> > paginas; int puntero = 0;
-  /*------------ FIN DE VARIABLES NECESARIAS ------------*/
+  int puntero = 0, direccion; char tecla;
+  /*------------- FIN DE VARIABLES NECESARIAS ------------*/
 
   // Poner género en el título
   gotoxy(41,2); cout << genero; gotoxy(4,4);
 
   // Mostrar las películas en pantalla
   if (peliculas.size() > 0) {
-    paginas = paginacion(peliculas.size(), 11);
-    // Mostrar películas de la primera página
-    for (int i=paginas[pag][0],y=4;i<=paginas[pag][1];i+=1) {
-      pelicula = separarLinea(peliculas[i], 1); gotoxy(5, y);
-      // Mostrar película y el año entre paréntesis
-      cout << pelicula[1]<<" ("<<pelicula[2]<<")";
-      pelicula.clear(); y += 1; // Siguiente línea
-    } // Fin de búsqueda de películas
+    // Desplegar la primera página
+    mostrarPagina(peliculas, pagActual);
+    vector<vector<int> > pags=paginacion(peliculas.size(),11);
+    // Manejo de teclas 'ESC', Arriba', 'Abajo' y 'ENTER'
+    while(tecla != 27) { // Tecla NO es 'ESC'
+      tecla = getch(); int direccion;
+      if (tecla == 0) { tecla = getch(); } else {
+        if (esDireccional(tecla)) {
+          direccion = obtenerDireccion(tecla);
+          short int inicio, final;
+          inicio = pags[pags.size() - 1][0];
+          final  = pags[pags.size() - 1][1];
+          switch(direccion) {
+            case 0: // Derecha
+            case 3: // Abajo
+              //
+            case 1: // Izquierda
+            case 2: // Arriba
+              if (puntero == 0) {
+                // Limpiar la zona de muestreo
+                limpiarZona("2.4_catalogo_f2", 0);
+                /* Primer película en la lista, ir
+                hacia arriba te lleva a la última
+                película y a la última página */
+                puntero = final; pagActual = pags.size()-1;
+                mostrarPagina(peliculas, pagActual);
+              } else if (puntero % 11 == 0) {
+                // Limpiar la zona de muestreo
+                limpiarZona("2.4_catalogo_f2", 0);
+                /* Primer película en la página, al
+                presionar arriba te lleva a la última
+                peli del menú anterior             */
+                puntero = pags[pagActual - 1][1];
+                pagActual = pagActual - 1;
+                mostrarPagina(peliculas, pagActual);
+              } else {
+                /* La película no es ni la primera
+                ni la última en la lista        */
+                limpiarZona("2.4_catalogo_f2", 1);
+                puntero -= 1;
+              } // Fin de actuar conforme al puntero
+          } // Fin de controlar flechas
+          // Localizar y enfocar  el puntero '>'
+          limpiarZona("2.4_catalogo_f2", 2);
+          gotoxy(4,4+puntero-(11*pagActual)); cout << ">";
+          gotoxy(4,4+puntero-(11*pagActual));
+        } else if (tecla == 13) { // 'ENTER'
+          //
+        } // Fin de reaccionar a teclas
+      } // Fin de detectar tecla válida
+    } // Fin de ciclar hasta presionar 'ESC'
   } else { // No hay películas
-    gotoxy(5,4); cout << "No se encontro ninguna pelicula";
+    gotoxy(5,4);
+    cout << "No se encontro ninguna pelicula.";
+    gotoxy(5,5);
+    cout << "Presione cualquier tecla para volver al catalogo";
+    getch();
   } // Fin de ver si hay películas
 
-  gotoxy(4,4); getch(); dibujarMenu("2.4_catalogo_f1");
+  dibujarMenu("2.4_catalogo_f1");
 } // Parte del menú 'catalogo' [Frame 2]
 
 void catalogo(string usuario) {

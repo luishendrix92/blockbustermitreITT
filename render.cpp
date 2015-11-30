@@ -1,4 +1,5 @@
-/*  Rendereado de texto y marcos
+/*=================================================
+    Rendereado de texto y marcos
     para la ventana de consola.
 ================================================= */
 void dibujarBordes() {
@@ -230,7 +231,7 @@ void dibujarMenu(string menu) {
     // Renderizado de texto
     gotoxy(31,2);   cout<<"CATALOGO:";
     gotoxy(4, 4);   cout<<">";
-    gotoxy(57,4);   cout<<"Precio:";
+    gotoxy(57,4);   cout<<"Precio: $";
     gotoxy(57,6);   cout<<"Duraci"<<char(162)<<"n:";
     gotoxy(57,8);   cout<<"G"<<char(130)<<"nero:";
     gotoxy(57,10);  cout<<"Disponibilidad:";
@@ -401,8 +402,48 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(41,20);  cout<<"===============";
         gotoxy(44,19);  break;
     }
+  } else if (menu.compare("2.4_catalogo_f2") == 0) {
+    /*switch(elemento) {
+      case 0: // Puntero '>'
+
+      break;
+    }*/
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
+
+void limpiarZona(string menu, int zona) {
+  if (menu.compare("2.4_catalogo_f2") == 0) {
+    switch(zona) {
+      case 0: // Lista de películas
+        for(int x=4, y=4; y<=14; y+=1) {
+          gotoxy(x,y);
+          cout << "                                                    ";
+        } // Fin de llenar con espacio blanco
+      break;
+
+      case 1: // Área de punteros '>'
+        for(int x=4, y=4; y<=14; y+=1) {
+          gotoxy(x,y); cout << " ";
+        } // Fin de llenar con espacio blanco
+      break;
+
+      case 2: // Detalles y sinopsis de película
+        gotoxy(66, 4); cout << "      ";       // Precio
+        gotoxy(67, 6); cout << "       ";       // Duración
+        gotoxy(65, 8); cout << "            ";  // Género
+        gotoxy(73,10); cout << "   ";           // Stock
+        gotoxy(62,12); cout << "    ";          // Año
+        gotoxy(73,12); cout << "   ";           // MovieID
+        // Borrar sinopsis
+        for(int x=4, y=18; y<=21; y+=1) {
+          gotoxy(x,y);
+          cout << "                                     "
+          <<      "                                    ";
+        } // Fin de llenar con espacio blanco
+      break;
+    } // Fin de detectar zona a limpiar
+  } // Fin de revisar en qué menú trabajar
+} // Fin de borrar zonas de contenido
 
 void mostrarError(string tipoError) {
   if (tipoError.compare("clientes_opcion_equivocada") == 0) {
@@ -410,6 +451,32 @@ void mostrarError(string tipoError) {
     Sleep(2500); enfocarElemento("2_clientes", 0);
   }
 } // Fin de mostrar errores en pantalla
+
+/* ======================================================
+|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||
+========================================================*/
+
+void mostrarPagina(vector<string> pelis, int pag) {
+  vector<vector<int> > paginas;
+  vector<string> peli;
+
+  /* ROL DE PÁGINAS:
+  =============================================
+  paginas[i] -> Número de página
+  paginas[i][j] -> 0: Inicio - 1: Final 
+  pag -> Página actual pasada como parámetro */
+
+  paginas = paginacion(pelis.size(), 11);
+  // Mostrar películas de la primera página
+  for (int i=paginas[pag][0],y=4;i<=paginas[pag][1];i+=1) {
+    peli = separarLinea(pelis[i], 1); gotoxy(5, y);
+    // Mostrar película y el año entre paréntesis
+    cout << peli[1]<<" ("<<peli[2]<<")";
+    peli.clear(); y += 1; // Siguiente línea
+  } // Fin de búsqueda de películas
+
+  gotoxy(4,4);
+} // Fin de desplegar items de una página
 
 /* ======================================================
 ||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||
