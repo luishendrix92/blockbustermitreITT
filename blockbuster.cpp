@@ -49,5 +49,5 @@ int main() {
     } // Fin de selección de tecla
   } // Fin de ciclo principal
 
-  /*despedida();*/ system("cls");
+  /*despedida();*/ system("cls"); return 0;
 } // Fin del programa

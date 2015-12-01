@@ -11,8 +11,39 @@ void comprar() {
 
 void membresiasAfiliacion(string usuario) {
   dibujarMenu("2.3_membresias_afil");
-  getch();
-}
+  // Variables necesarias
+  char tecla;
+
+  // Paso 1: Mostrar fecha de expiración
+  while(tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (tecla == 13) { // 'ENTER'
+        mostrarError("db_error", "membresias.txt");
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+
+  // Paso 2: Mostrar información de afiliación
+  while(tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (tecla == 13) { // 'ENTER'
+        mostrarError("db_error", "");
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+
+  // Paso 3: Mostrar contrato y esperar confirmación
+  while(tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (tecla == 13) { // 'ENTER'
+        mostrarError("db_error", "");
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+} // Fin de complemento menu::membresias
 
 void membresias(string usuario) {
   dibujarMenu("2.3_membresias_nuevo");
@@ -214,7 +245,7 @@ void clientes(string usuario, string credito) {
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito
     } else { // Opción inválida
-      mostrarError("clientes_opcion_equivocada");
+      mostrarError("clientes_opcion_equivocada", "");
     } // Fin de comprobar error de capa 8
   } // Fin de ciclo infinito
 } // Fin de menú de clientes

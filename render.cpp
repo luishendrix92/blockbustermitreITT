@@ -581,10 +581,33 @@ void limpiarZona(string menu, int zona) {
   } // Fin de revisar en qué menú trabajar
 } // Fin de borrar zonas de contenido
 
-void mostrarError(string tipoError) {
+void mostrarError(string tipoError, string datoExtra) {
   if (tipoError.compare("clientes_opcion_equivocada") == 0) {
     gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
     Sleep(2500); enfocarElemento("2_clientes", 0);
+  } else if (tipoError.compare("db_error") == 0) {
+    system("cls"); system("color 4F"); // Pantalla roja
+    dibujarBordes();
+    // Libro ASCII: www.chris.com/ascii/index.php?art=objects/books
+    gotoxy(10,13); cout<<"              .__=\\__                  .__==__,"              <<endl;
+    gotoxy(10,14); cout<<"            jf'      ~~=\\,         _=/~'      `\\,"           <<endl;
+    gotoxy(10,15); cout<<"        ._jZ'            `\\q,   /=~             `\\__"        <<endl;
+    gotoxy(10,16); cout<<"       j5(/                 `\\./                  V\\\\,"     <<endl;
+    gotoxy(10,17); cout<<"     .Z))' _____              |             .____, \\)/\\"     <<endl;
+    gotoxy(10,18); cout<<"    j5(K=~~     ~~~~\\=_,      |      _/=~~~~'    `~~+K\\\\,"  <<endl;
+    gotoxy(10,19); cout<<"  .Z)\\/                `~=L   |  _=/~                 t\\ZL"  <<endl;
+    gotoxy(10,20); cout<<" j5(_/.__/===========\\__   ~q |j/   .__============___/\\J(N,"<<endl;
+    gotoxy(10,21); cout<<"4L#XXXL_________________XGm, \\P  .mXL_________________JXXXW8L";
+    // Renderizado de Texto
+    gotoxy(30,2);  cout << "MENSAJE DE ERROR";
+    gotoxy(10,5);  cout<<"Hubo un error al intentar abrir un archivo de texto para la";
+    gotoxy(10,6);  cout<<"extraccion o insercion de informacion. Asegurese que en la";
+    gotoxy(10,7);  cout<<"carpeta donde instalo este programa exista un archivo con el";
+    gotoxy(10,8);  cout<<"nombre correcto: [              ]";
+    gotoxy(10,10); cout<<"Presione cualquier tecla para salir del programa";
+    // Imprimir el nombre del archivo problemático
+    gotoxy(28,8); cout << datoExtra; gotoxy(58,10);
+    getch();
   }
 } // Fin de mostrar errores en pantalla
 
