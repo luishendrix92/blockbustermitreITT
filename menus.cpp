@@ -9,9 +9,40 @@ void comprar() {
   // quitar pelicula si 'stock = 0'
 }
 
-void membresias() {
+void membresias(string usuario) {
   dibujarMenu("2.3_membresias_nuevo");
-  getch();
+  // Variables para los valores del input
+  char tecla; int dir, btn = 0;
+  /* 0: Botón 'Afiliarme' - 1: Botón 'Reglas'*/
+  int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
+
+
+  while(tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) { // Der-Izq-Tab
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento("2.3_membresias_nuevo", orden[dir][btn]);
+        btn = orden[dir][btn];
+      } else if (tecla == 13) { // 'ENTER'
+        switch(btn) {
+          case 0: // Afiliarme
+          break;
+          case 1: // Reglas
+            dibujarMenu("2.3_membresias_reglas");
+            tecla = 0; // Para entrar en el ciclo
+            while(tecla != 13) {
+              tecla = getch();
+              if (tecla == 13) {
+                dibujarMenu("2.3_membresias_nuevo");
+                btn = 0;
+              } // Fin de aceptar
+            } break; // Fin de esperar tecla ENTER
+        } // Fin de saltar sub-menú
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
 } // Fin de suscribirse a membresía
 
@@ -166,11 +197,11 @@ void clientes(string usuario, string credito) {
     cin >> opcion;
     if (opcion >= 1 && opcion <= 5) {
       switch(opcion) {
-        case 1: menu::rentas();            break;
-        case 2: menu::comprar();           break;
-        case 3: menu::membresias();        break;
-        case 4: menu::catalogo(usuario);   break;
-        case 5: menu::miCredito();         break;
+        case 1: menu::rentas();             break;
+        case 2: menu::comprar();            break;
+        case 3: menu::membresias(usuario);  break;
+        case 4: menu::catalogo(usuario);    break;
+        case 5: menu::miCredito();          break;
       } // Fin de lanzar menú correspondiente
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito

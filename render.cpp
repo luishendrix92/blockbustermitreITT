@@ -177,7 +177,7 @@ void dibujarMenu(string menu) {
   } else if(menu.compare("2.3_membresias_nuevo")  == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto
-    gotoxy(33,2);   cout<<"MEMBRES"<<char(161)<<"AS";
+    gotoxy(35,2);   cout<<"MEMBRES"<<char(161)<<"AS";
     gotoxy(5, 5);   cout<<"Bienvenidos al programa de membres"<<char(161);
     gotoxy(39,5);   cout<<"as de Blockbuster. Parece que a"<<char(163)<<"n no";
     gotoxy(5, 6);   cout<<"est"<<char(160)<<"s afiliado al programa. Los beneficios son: ";
@@ -195,7 +195,7 @@ void dibujarMenu(string menu) {
     gotoxy(40,11);  cout<<"            ^^^^^^^^^ ^            "    <<endl;
     gotoxy(40,12);  cout<<"          ^             ^          "    <<endl;
     gotoxy(40,13);  cout<<"        ^  (0)       (0)  ^       "     <<endl;
-    gotoxy(40,14);  cout<<"       ^        ""         ^       "    <<endl;
+    gotoxy(40,14);  cout<<"       ^        \"\"         ^       "    <<endl;
     gotoxy(40,15);  cout<<"      ^   ***************    ^     "    <<endl;
     gotoxy(40,16);  cout<<"    ^   *                 *   ^    "    <<endl;
     gotoxy(40,17);  cout<<"   ^   *   /\\   /\\   /\\    *    ^   "<<endl;
@@ -211,8 +211,46 @@ void dibujarMenu(string menu) {
     gotoxy(22,18);  cout<<"------------";
     gotoxy(22,19);  cout<<"|  REGLAS  |";
     gotoxy(22,20);  cout<<"------------";
-    // Mover cursor al botón default (CREAR CUENTA)
+    // Mover cursor al botón default (AFILIARME)
     gotoxy(8, 19);
+  } else if(menu.compare("2.3_membresias_reglas")  == 0) {
+    system("cls"); dibujarBordes();
+    // Totoro por segunda vez, pero más arriba
+    gotoxy(40,4);  cout<<"           !         !          "       <<endl;
+    gotoxy(40,5);  cout<<"          ! !       ! !          "      <<endl;
+    gotoxy(40,6);  cout<<"         ! . !     ! . !          "     <<endl;
+    gotoxy(40,7);  cout<<"            ^^^^^^^^^ ^            "    <<endl;
+    gotoxy(40,8);  cout<<"          ^             ^          "    <<endl;
+    gotoxy(40,9);  cout<<"        ^  (0)       (0)  ^       "     <<endl;
+    gotoxy(40,10); cout<<"       ^        \"\"         ^       "  <<endl;
+    gotoxy(40,11); cout<<"      ^   ***************    ^     "    <<endl;
+    gotoxy(40,12); cout<<"    ^   *                 *   ^    "    <<endl;
+    gotoxy(40,13); cout<<"   ^   *   /\\   /\\   /\\    *    ^   "<<endl;
+    gotoxy(40,14); cout<<"  ^   *                     *    ^"     <<endl;
+    gotoxy(40,15); cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^"<<endl;
+    gotoxy(40,16); cout<<"^   *                         *    ^"   <<endl;
+    gotoxy(40,17); cout<<"^  *                           *   ^"   <<endl;
+    gotoxy(40,18); cout<<"^  *                           *   ^"   <<endl;
+    gotoxy(40,19); cout<<" ^ *                           *  ^  "  <<endl;
+    gotoxy(40,20); cout<<"  ^*                           * ^ "    <<endl;
+    gotoxy(40,21); cout<<"   ^ *                        * ^";
+    // Renderizado de texto
+    gotoxy(31,2);   cout<<"MEMBRESIAS: REGLAS";
+    gotoxy(5, 5);   cout<<"1-Devolver las peliculas rentadas";
+    gotoxy(7, 6);   cout<<"en tiempo y forma.";
+    gotoxy(5, 8);   cout<<"2-Por cada dia de retraso se";
+    gotoxy(7, 9);   cout<<"te descontara de tu credito.";
+    gotoxy(5,11);   cout<<"3-Una vez que tu membresia expire";
+    gotoxy(7,12);   cout<<"tendras que renovarla.";
+    gotoxy(5,14);   cout<<"4-Si tienes adeudos o tienes 3";
+    gotoxy(7,15);   cout<<"peliculas (limite de renta)";
+    gotoxy(7,16);   cout<<"rentadas no podras rentar.";
+    // Renderizado de botones
+    gotoxy(13,18);  cout<<"===============";
+    gotoxy(13,19);  cout<<"|| ENTENDIDO ||";
+    gotoxy(13,20);  cout<<"===============";
+    // Mover cursor al botón default (AFILIARME)
+    gotoxy(16,19);
   } else if(menu.compare("2.4_catalogo_f1")  == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto
@@ -460,6 +498,25 @@ void enfocarElemento(string menu, int elemento) {
 
       break;
     }*/
+  } else if (menu.compare("2.3_membresias_nuevo") == 0) {
+    switch(elemento) {
+      case 0: // Afiliarme
+        gotoxy(5, 18);  cout<<"===============";
+        gotoxy(5, 19);  cout<<"|| AFILIARME ||";
+        gotoxy(5, 20);  cout<<"===============";
+        gotoxy(22,18);  cout<<"------------";
+        gotoxy(22,19);  cout<<"|  REGLAS  |";
+        gotoxy(22,20);  cout<<"------------";
+        gotoxy(8,19);   break;
+      case 1: // Reglas
+        gotoxy(5, 18);  cout<<"---------------";
+        gotoxy(5, 19);  cout<<"|  AFILIARME  |";
+        gotoxy(5, 20);  cout<<"---------------";
+        gotoxy(22,18);  cout<<"============";
+        gotoxy(22,19);  cout<<"|| REGLAS ||";
+        gotoxy(22,20);  cout<<"============";
+        gotoxy(25,19);  break;
+    }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
 

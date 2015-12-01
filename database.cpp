@@ -224,7 +224,7 @@ Tabla: USUARIOS (usuarios.txt)
 Nota: Cuando se cree un usuario, inicializarlo con 0 (MXN).
 Los empleados tendrán un valor en el campo CREDITO de "null".
 
-Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [6] RENTA N => N películas rentadas (5)...
+Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [4] RENTA N => N películas rentadas (3)...
 ------------------------------------------------------------------------------------------------------------
 |       [0]       |       [1]      |          [2]          |          [3]          |          [4]          |
 ============================================================================================================
@@ -237,6 +237,6 @@ Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [6] RENTA N =
 ============================================================================================================
 |                 |                |  [2][0]  |   [2][1]   |  [3][0]  |   [3][1]   |  [4][0]  |   [4][1]   |
 ------------------------------------------------------------------------------------------------------------
-Nota: Inicializar cada membresía en los campos del index [2] al [6] con el sub-arreglo "null,null".
+Nota: Inicializar cada membresía en los campos del index [2] al [4] con el sub-arreglo "null,null".
 
 FIN DE VISUALIZACIÓN DE BASE DE DATOS */
