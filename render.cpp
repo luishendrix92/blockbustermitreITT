@@ -251,6 +251,33 @@ void dibujarMenu(string menu) {
     gotoxy(13,20);  cout<<"===============";
     // Mover cursor al botón default (AFILIARME)
     gotoxy(16,19);
+  } else if(menu.compare("2.3_membresias_afil")  == 0) {
+    system("cls"); dibujarBordes();
+    // Renderizado de líneas
+    gotoxy(6, 9);   cout << ".==============.";
+    gotoxy(4,11);   cout << "__"; gotoxy(6,10);   cout << "||";
+    gotoxy(6,11);   cout << "||"; gotoxy(20,10);  cout << "||";
+    gotoxy(20,11);  cout << "||"; gotoxy(36,10);  cout << "|";
+    gotoxy(48,10);  cout << "|";
+    for(int x=22; x<=48; x++) {   gotoxy(x, 9);   cout<<"_"; }
+    for(int x=22; x<=76; x++) {   gotoxy(x, 11);  cout<<"_"; }
+    gotoxy(36,11);  cout << "|";  gotoxy(48,11);  cout << "|";
+    // Renderizado de texto
+    gotoxy(5, 5);   cout<<"La membresia Blockbuster tiene un costo de 250 pesos.";
+    gotoxy(5, 6);   cout<<"Si no tienes suficiente dinero no podras afiliarte, sugerimos que";
+    gotoxy(5, 7);   cout<<"vayas al menu 'credito' para agregar mas fondos a tu cuenta.";
+    gotoxy(31,2);   cout<<"MEMBRESIAS: AFILIARSE";
+    gotoxy(9, 10);  cout<<"EXPIRACION";
+    gotoxy(23,10);  cout<<"INFORMACION";
+    gotoxy(38,10);  cout<<"CONTRATO";
+    gotoxy(19,14);  cout<<"Tu membresia durara seis meses y expirara el:";
+    gotoxy(27,16);  cout<<"[  ] de [          ] del [    ]";
+    // Renderizado de botones
+    gotoxy(34,18);  cout<<"===============";
+    gotoxy(34,19);  cout<<"|| ENTENDIDO ||";
+    gotoxy(34,20);  cout<<"===============";
+    // Mover cursor al botón default (AFILIARME)
+    gotoxy(37,19);
   } else if(menu.compare("2.4_catalogo_f1")  == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto

@@ -9,13 +9,17 @@ void comprar() {
   // quitar pelicula si 'stock = 0'
 }
 
+void membresiasAfiliacion(string usuario) {
+  dibujarMenu("2.3_membresias_afil");
+  getch();
+}
+
 void membresias(string usuario) {
   dibujarMenu("2.3_membresias_nuevo");
   // Variables para los valores del input
   char tecla; int dir, btn = 0;
   /* 0: Botón 'Afiliarme' - 1: Botón 'Reglas'*/
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
-
 
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
@@ -28,7 +32,10 @@ void membresias(string usuario) {
       } else if (tecla == 13) { // 'ENTER'
         switch(btn) {
           case 0: // Afiliarme
+            menu::membresiasAfiliacion(usuario);
+            tecla = 27; // Volver al menú anterior
           break;
+
           case 1: // Reglas
             dibujarMenu("2.3_membresias_reglas");
             tecla = 0; // Para entrar en el ciclo
@@ -36,10 +43,11 @@ void membresias(string usuario) {
               tecla = getch();
               if (tecla == 13) {
                 dibujarMenu("2.3_membresias_nuevo");
-                btn = 0;
+                btn = 0; // Resetear elección
               } // Fin de aceptar
-            } break; // Fin de esperar tecla ENTER
-        } // Fin de saltar sub-menú
+            } // Fin de esperar tecla ENTER
+          break;
+        } // Fin de lanzar sub-menú
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
