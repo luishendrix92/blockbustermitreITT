@@ -652,6 +652,51 @@ void enfocarElemento(string menu, int elemento) {
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
 
+void mostrarAviso(string aviso, string datoExtra) {
+  if (aviso.compare("suscripcion_exitosa") == 0) {
+    system("cls"); system("color 3F");
+    dibujarBordes();
+    // Renderizado de cena de cumpleaños http://www.chris.com/ascii/index.php?art=events/birthday
+    gotoxy(4, 2); cout<<"                              : . /%O!!::::::::\\\\_\\. \\";
+    gotoxy(4, 3); cout<<"                             [\"\"]/%%O!!:::::::::  : . \\";
+    gotoxy(4, 4); cout<<"                             |  |%%OO!!::::::::::: : . |";
+    gotoxy(4, 5); cout<<"                             |  |%%OO!!:::::::::::::  :|";
+    gotoxy(4, 6); cout<<"                             |  |%%OO!!!::::::::::::: :|";
+    gotoxy(4, 7); cout<<"                    :       .'--`.%%OO!!!:::::::::::: :|";
+    gotoxy(4, 8); cout<<"                  : .:     /`.__.'\\%%OO!!!::::::::::::/";
+    gotoxy(4, 9); cout<<"                 :    .   /        \\%OO!!!!::::::::::/";
+    gotoxy(4,10); cout<<"                ,-'``'-. ;          ;%%OO!!!!!!:::::'";
+    gotoxy(4,11); cout<<"                |`-..-'| |   ,--.   |`%%%OO!!!!!!:'";
+    gotoxy(4,12); cout<<"                | .   :| |_.','`.`._|  `%%%OO!%%'";
+    gotoxy(4,13); cout<<"                | . :  | |--'    `--|    `%%%%'";
+    gotoxy(4,14); cout<<"                |`-..-'| ||   | | | |     /__\\`-.";
+    gotoxy(4,15); cout<<"                \\::::::/ ||)|/|)|)|\\|           /";
+    gotoxy(4,16); cout<<"-----------------`::::'--|._ ~**~ _.|----------( -----------------------";
+    gotoxy(4,17); cout<<"                   )(    |  `-..-'  |           \\    ______";
+    gotoxy(4,18); cout<<"                   )(    |          |,--.       ____/ /  /\\\\ ,-._.-'";
+    gotoxy(4,19); cout<<"                ,-')('-. |          |\\`;/   .-()___  :  |`.!,-'`'/`-._";
+    gotoxy(4,20); cout<<"               (  '  `  )`-._    _.-'|;,|    `-,    \\_\\__\\`,-'>-.,-._";
+    gotoxy(4,21); cout<<"                `-....-'     ````    `--'      `-._       (`- `-._`-.   ";
+    // Renderizado de texto
+    gotoxy(5,23); cout << "La suscripcion a la membresia Blockbuster fue un exito!";
+    gotoxy(6, 3); cout << "FELICIDADES!";
+    gotoxy(6, 4); cout << datoExtra;
+    gotoxy(6, 9); cout << "Presiona";
+    gotoxy(6,10); cout << "cualquier";
+    gotoxy(6,11); cout << "tecla para";
+    gotoxy(6,12); cout << "continuar"; getch(); system("color 1F");
+  } else if (aviso.compare("expiracion_membresia") == 0) {
+    vector<string> fechaExpiracion;
+
+    fechaExpiracion = separarLinea(datoExtra, '/');
+
+    gotoxy(28,16); cout << fechaExpiracion[0];           // Dia
+    gotoxy(36,16); cout << mesTexto(fechaExpiracion[1]); // Mes
+    gotoxy(53,16); cout << fechaExpiracion[2];           // Año
+    gotoxy(37,19); // Re-Enfocar Botón "Entendido"
+  }
+} // Fin de mostrar confirmaciones, pantallas y avisos
+
 void mostrarError(string tipoError, string datoExtra) {
   if (tipoError.compare("clientes_opcion_equivocada") == 0) {
     gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
@@ -711,22 +756,6 @@ void mostrarPagina(vector<string> pelis, int pag) {
 void detallesDeLaPelicula(vector<string> pelicula) {
   //
 } // Fin de listar los detalles de la película
-
-/* =======================================================
-|||||||||||  COMPLEMENTOS DE MENÚ MEMBRESIAS   |||||||||||
-========================================================*/
-
-void mostrarExpiracion(short int duracion) {
-  string fecha; vector<string> fechaExpiracion;
-
-  fecha = sumarMeses(fechaDeHoy(), duracion);
-  fechaExpiracion = separarLinea(fecha, '/');
-
-  gotoxy(28,16); cout << fechaExpiracion[0];           // Dia
-  gotoxy(36,16); cout << mesTexto(fechaExpiracion[1]); // Mes
-  gotoxy(53,16); cout << fechaExpiracion[2];           // Año
-  gotoxy(37,19); // Re-Enfocar Botón "Entendido"
-} // Fin de fecha de expiración de membresía nueva
 
 /* ======================================================
 ||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||

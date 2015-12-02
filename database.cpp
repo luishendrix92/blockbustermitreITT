@@ -145,6 +145,10 @@ vector<string> descargarTabla(string archivo) {
   } // Fin de comprobar si el archivo existe
 } // Fin de crear un arreglo con todos los registros
 
+/* ======================================================
+|||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
+=======================================================*/
+
 bool autenticar(string nombre, string clave) {
   // Arreglo 'usuario' -> [0] Nombre - [1] Clave
   fstream tablaUsuarios;   string linea;
@@ -169,6 +173,10 @@ bool autenticar(string nombre, string clave) {
   return coinciden;
 } // Fin de autenticar usuarios
 
+/* ======================================================
+|||||||||||   COMPLEMENTOS DE MENÚ REGISTRO   |||||||||||
+=======================================================*/
+
 bool nombreDisponible(string nombre) {
   fstream tablaUsuarios;   string linea;
   vector<string> registro; bool disponible = true;
@@ -189,6 +197,18 @@ bool nombreDisponible(string nombre) {
 
   return disponible;
 } // Fin de si un nombre de usuario está libre para usar
+
+/* ======================================================
+|||||||||||  COMPLEMENTOS DE MENÚ MEMBRESÍAS  |||||||||||
+=======================================================*/
+
+bool realizarGasto(string usuario, int monto) {
+  return true;
+}
+
+void nuevaMembresia(string usuario, string expiracion) {
+  //
+}
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 

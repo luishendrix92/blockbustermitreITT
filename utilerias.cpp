@@ -212,9 +212,17 @@ string mesTexto(string mes) {
   }
 } // Fin de convertir mes numérico a textual
 
+string cuandoExpira(short int duracion) {
+  string fechaExpiracion;
+
+  fechaExpiracion = sumarMeses(fechaDeHoy(), duracion);
+
+  return fechaExpiracion;
+} // Fin de fecha de expiración de membresía nueva
+
 /* ======================================================
-|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||
-========================================================*/
+|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO   |||||||||||
+=======================================================*/
 
 vector<vector<int> > paginacion(int cantElem, int maxElem) {
   vector<vector<int> > rolPaginas; int nPaginas;

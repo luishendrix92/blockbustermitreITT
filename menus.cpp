@@ -16,8 +16,9 @@ void membresiasAfiliacion(string usuario) {
   int boton = 3; // 3: Afiliarme - 4: Cancelar
   int orden[4][2] = {{3,4},{3,4},{3,4},{3,4}};
 
-  // Paso 1: Mostrar la expiración en pantalla
-  mostrarExpiracion(duracionMemb);
+  // Paso 1: Mostrar la expiración y almacenarla
+  string expiracion = cuandoExpira(duracionMemb);
+  mostrarAviso("expiracion_membresia", expiracion);
 
   // Paso 2: ENTER -> Información
   while(tecla != 27) { // Tecla NO es 'ESC'
@@ -48,10 +49,17 @@ void membresiasAfiliacion(string usuario) {
       if (tecla == 13) { // 'ENTER'
         switch(boton) {
           case 3: // Afiliarme
-            cout << "sdfad";
+            if (realizarGasto(usuario, 250)) {
+              // Si se pudo cobrar $250.00, afiliar y mensaje
+              nuevaMembresia(usuario, expiracion);
+              mostrarAviso("suscripcion_exitosa", usuario);
+              tecla = 27; // Volver al menú clientes
+            } else {
+              // Mostrar error, saldo, costo y diferencia
+            } // Fin de comprobar gasto exitoso
           break;
           case 4: // Cancelar
-            tecla = 27; // Sale de la función
+            tecla = 27; // Volver al menú clientes
           break;
         } // Fin de presionar botón
       } else if (esDireccional(tecla)) {
