@@ -589,12 +589,6 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(41,20);  cout<<"===============";
         gotoxy(44,19);  break;
     }
-  } else if (menu.compare("2.4_catalogo_f2") == 0) {
-    /*switch(elemento) {
-      case 0: // Puntero '>'
-
-      break;
-    }*/
   } else if (menu.compare("2.3_membresias_nuevo") == 0) {
     switch(elemento) {
       case 0: // Afiliarme
@@ -705,7 +699,7 @@ void mostrarPagina(vector<string> pelis, int pag) {
   paginas = paginacion(pelis.size(), 11);
   // Mostrar películas de la primera página
   for (int i=paginas[pag][0],y=4;i<=paginas[pag][1];i+=1) {
-    peli = separarLinea(pelis[i], 1); gotoxy(5, y);
+    peli = separarLinea(pelis[i], ';'); gotoxy(5, y);
     // Mostrar película y el año entre paréntesis
     cout << peli[1]<<" ("<<peli[2]<<")";
     peli.clear(); y += 1; // Siguiente línea
@@ -713,6 +707,26 @@ void mostrarPagina(vector<string> pelis, int pag) {
 
   gotoxy(4,4);
 } // Fin de desplegar items de una página
+
+void detallesDeLaPelicula(vector<string> pelicula) {
+  //
+} // Fin de listar los detalles de la película
+
+/* =======================================================
+|||||||||||  COMPLEMENTOS DE MENÚ MEMBRESIAS   |||||||||||
+========================================================*/
+
+void mostrarExpiracion(short int duracion) {
+  string fecha; vector<string> fechaExpiracion;
+
+  fecha = sumarMeses(fechaDeHoy(), duracion);
+  fechaExpiracion = separarLinea(fecha, '/');
+
+  gotoxy(28,16); cout << fechaExpiracion[0];           // Dia
+  gotoxy(36,16); cout << mesTexto(fechaExpiracion[1]); // Mes
+  gotoxy(53,16); cout << fechaExpiracion[2];           // Año
+  gotoxy(37,19); // Re-Enfocar Botón "Entendido"
+} // Fin de fecha de expiración de membresía nueva
 
 /* ======================================================
 ||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||

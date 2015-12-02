@@ -24,7 +24,7 @@ void modificarRegistro(
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro"
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       if (registro[campoBuscado].compare(valorBuscado) == 0) {
         // Modificar el valor del record en el campo a modificar
         registro[campoModificado] = valorNuevo;
@@ -63,7 +63,7 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro"
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       // Si el registro es el deseado, omitirlo para que no exista más
       if (!(registro[campoBuscado].compare(valorBuscado) == 0)) {
         memoria << linea << endl;
@@ -99,7 +99,7 @@ vector<string> filtrarRegistros(
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro temporal"
-      registroTemporal = separarLinea(linea, 1);
+      registroTemporal = separarLinea(linea, ';');
       // Si el registro cumple los criterios, meterlo al vector
       if (registroTemporal[campoFiltrado].compare(valorFiltrado) == 0) {
         registros.push_back(linea);
@@ -153,7 +153,7 @@ bool autenticar(string nombre, string clave) {
   tablaUsuarios.open("usuarios.txt", ios::in);
   if (tablaUsuarios.is_open()) {
     while(getline(tablaUsuarios, linea)) {
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       if (nombre.compare(registro[0]) == 0 &&
           clave.compare(registro[1]) == 0
          ) { // Si coinciden nombre y clave
@@ -176,7 +176,7 @@ bool nombreDisponible(string nombre) {
   tablaUsuarios.open("usuarios.txt", ios::in);
   if (tablaUsuarios.is_open()) {
     while(getline(tablaUsuarios, linea)) {
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       if (nombre.compare(registro[0]) == 0) {
         disponible = false; break;
       } // Fin de comparar registros

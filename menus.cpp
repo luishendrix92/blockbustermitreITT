@@ -12,9 +12,12 @@ void comprar() {
 void membresiasAfiliacion(string usuario) {
   dibujarMenu("2.3_membresias_afil");
   // Variables necesarias
-  char tecla; int dir;
+  char tecla; int dir; short int duracionMemb = 6;
   int boton = 3; // 3: Afiliarme - 4: Cancelar
   int orden[4][2] = {{3,4},{3,4},{3,4},{3,4}};
+
+  // Paso 1: Mostrar la expiración en pantalla
+  mostrarExpiracion(duracionMemb);
 
   // Paso 2: ENTER -> Información
   while(tecla != 27) { // Tecla NO es 'ESC'
@@ -45,7 +48,7 @@ void membresiasAfiliacion(string usuario) {
       if (tecla == 13) { // 'ENTER'
         switch(boton) {
           case 3: // Afiliarme
-            cout << "Afiliado correctamente";
+            cout << "sdfad";
           break;
           case 4: // Cancelar
             tecla = 27; // Sale de la función
@@ -325,7 +328,7 @@ void login() {
         if(tienePermiso) {
           vector<string> usuariosTemporales;
           usuariosTemporales = filtrarRegistros("usuarios.txt", 0, usuario);
-          credenciales = separarLinea(usuariosTemporales[0], 1);
+          credenciales = separarLinea(usuariosTemporales[0], ';');
 
           if(credenciales[2].compare("empleado") == 0) {
             menu::empleados(); break;

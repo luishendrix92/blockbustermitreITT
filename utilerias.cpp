@@ -25,28 +25,17 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
   return (encontrado!=string::npos) ? true : false;
 } // Fin de buscar strings en otras
 
-vector<string> separarLinea(string linea, int separador) {
+vector<string> separarLinea(string linea, char separador) {
   // Declarar un string stream para extraer texto de éste 
   istringstream copia(linea);
-  vector<string> record;
+  vector<string> registro;
   string celda;
 
-  switch (separador) {
-    // Separadores: [1][";"] y [2][","]
-    case 1:
-      while (getline(copia, celda, ';')) {
-        record.push_back(celda);
-      } // Fin de grabar record en DB
-    break;
+  while (getline(copia, celda, separador)) {
+    registro.push_back(celda);
+  } // Fin meter cada cadena entre el separador al vector
 
-    case 2:
-      while (getline(copia, celda, ',')) {
-        record.push_back(celda);
-      } // Fin de grabar record en DB
-    break;
-  } // Fin de elegir separador
-  
-  return record;
+  return registro;
 } // Fin de separar texto y meterlo a un vector
 
 string unirRegistro(vector<string> registro, string separador) {
@@ -147,6 +136,81 @@ string asteriscos(string texto) {
 
   return asteriscos;
 } // Fin de convertir texto en asteriscos
+
+string fechaDeHoy() {
+  string fecha;
+
+  fecha += enteroATexto(elementoFecha("dia") ) + "/";
+  fecha += enteroATexto(elementoFecha("mes") ) + "/";
+  fecha += enteroATexto(elementoFecha("year"));
+
+  return fecha;
+} // Fin de devolver fecha en formato DD/MM/AAAA
+
+int diferenciaFechas(string f1, string f2) {
+  int diferencia;
+  vector<string> fecha1 = separarLinea(f1, '/'),
+                 fecha2 = separarLinea(f2, '/');
+
+  diferencia = ( (atoi(fecha2[2].c_str())*365)  // Año 2
+                +(atoi(fecha2[1].c_str())*31 )  // Mes 2
+                +(atoi(fecha2[0].c_str()))   )- // Día 2
+               ( (atoi(fecha1[2].c_str())*365)  // Año 1
+                +(atoi(fecha1[1].c_str())*31 )  // Mes 1
+                +(atoi(fecha1[0].c_str()))   ); // Día 1
+
+  return diferencia;
+} // Fin de calcular la diferencia en días
+
+string sumarMeses(string fecha, short int meses) {
+  string nuevaFecha;
+  vector<string> fechaInicial = separarLinea(fecha, '/');
+  int dia  = atoi(fechaInicial[0].c_str()),
+      mes  = atoi(fechaInicial[1].c_str()),
+      year = atoi(fechaInicial[2].c_str());
+
+  if (mes + meses > 12) { // Hay aumento de año
+    short int difYears = (meses - (12-mes)) / 12;
+    if (meses % 12 != 0) {
+      year += (difYears + 1);
+      mes = (meses - (12 * difYears)) - (12 - mes);
+    } else {
+      year += meses / 12;
+    } // Fin de comprobar aumento de 12 meses, 24, 36... etc  
+  } else {
+    mes += meses; // Sumar los meses
+  } // Fin de sumar meses sin pasarse de diciembre
+
+  if (dia > 28 && mes == 2) { // Si es Febrero 28, 29... etc
+    dia = 28;
+  } // Fin de controlar año bisiesto
+
+  nuevaFecha += enteroATexto(dia) + "/";
+  nuevaFecha += enteroATexto(mes) + "/";
+  nuevaFecha += enteroATexto(year);
+
+  return nuevaFecha;
+} // Fin de devolver nueva fecha mas 'n' meses
+
+string mesTexto(string mes) {
+  int mesNum = atoi(mes.c_str());
+
+  switch(mesNum) {
+    case 1:  return "Enero";      break;
+    case 2:  return "Febrero";    break;
+    case 3:  return "Marzo";      break;
+    case 4:  return "Abril";      break;
+    case 5:  return "Mayo";       break;
+    case 6:  return "Junio";      break;
+    case 7:  return "Julio";      break;
+    case 8:  return "Agosto";     break;
+    case 9:  return "Septiembre"; break;
+    case 10: return "Octubre";    break;
+    case 11: return "Noviembre";  break;
+    case 12: return "Diciembre";  break;
+    default: return "null";
+  }
+} // Fin de convertir mes numérico a textual
 
 /* ======================================================
 |||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||

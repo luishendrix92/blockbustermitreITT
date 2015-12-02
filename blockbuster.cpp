@@ -22,7 +22,7 @@ int main() {
   // Darle título a la ventana del programa
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
   // Renderizar intro y menú principal
-  intro(280); dibujarMenu("1_principal");
+  /*intro(280);*/ dibujarMenu("1_principal");
 
   while (tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
@@ -49,5 +49,5 @@ int main() {
     } // Fin de selección de tecla
   } // Fin de ciclo principal
 
-  despedida(); system("cls"); return 0;
+  /*despedida();*/ system("cls"); return 0;
 } // Fin del programa
