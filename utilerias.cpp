@@ -6,10 +6,10 @@ using namespace std;
 
 void gotoxy(int x, int y) {
   HANDLE hcon;  
-  hcon = GetStdHandle(STD_OUTPUT_HANDLE);  
-  COORD dwPos;  
+  hcon    = GetStdHandle(STD_OUTPUT_HANDLE);  
+  COORD  dwPos;  
   dwPos.X = x;  
-  dwPos.Y= y;  
+  dwPos.Y = y;  
   SetConsoleCursorPosition(hcon,dwPos);  
 } // Fin de añadir GoToXY
 
@@ -136,6 +136,17 @@ int elementoFecha(string elemento) {
     return diaMes;
   } // Fin de revisar elemento
 } // Fin de devolver componentes de fecha actual
+
+string asteriscos(string texto) {
+  short int numAsteriscos = texto.length();
+  string asteriscos;
+
+  for (int i = 0; i < numAsteriscos; i+=1) {
+    asteriscos += "*";
+  } // Fin de agregar n asteriscos
+
+  return asteriscos;
+} // Fin de convertir texto en asteriscos
 
 /* ======================================================
 |||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO    |||||||||||

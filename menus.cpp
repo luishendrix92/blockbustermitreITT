@@ -12,34 +12,49 @@ void comprar() {
 void membresiasAfiliacion(string usuario) {
   dibujarMenu("2.3_membresias_afil");
   // Variables necesarias
-  char tecla;
+  char tecla; int dir;
+  int boton = 3; // 3: Afiliarme - 4: Cancelar
+  int orden[4][2] = {{3,4},{3,4},{3,4},{3,4}};
 
-  // Paso 1: Mostrar fecha de expiración
+  // Paso 2: ENTER -> Información
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (tecla == 13) { // 'ENTER'
-        mostrarError("db_error", "membresias.txt");
-      } // Fin de reaccionar a teclas
+        enfocarElemento("2.3_membresias_afil", 1);
+        break;
+      } // Fin de esperar 'ENTER'
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
 
-  // Paso 2: Mostrar información de afiliación
+  // Paso 3: ENTER -> Contrato
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (tecla == 13) { // 'ENTER'
-        mostrarError("db_error", "");
-      } // Fin de reaccionar a teclas
+        enfocarElemento("2.3_membresias_afil", 2);
+        break;
+      } // Fin de esperar 'ENTER'
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
 
-  // Paso 3: Mostrar contrato y esperar confirmación
+  // Paso 4: ENTER -> Afiliarse!
   while(tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (tecla == 13) { // 'ENTER'
-        mostrarError("db_error", "");
+        switch(boton) {
+          case 3: // Afiliarme
+            cout << "Afiliado correctamente";
+          break;
+          case 4: // Cancelar
+            tecla = 27; // Sale de la función
+          break;
+        } // Fin de presionar botón
+      } else if (esDireccional(tecla)) {
+        dir = obtenerDireccion(tecla);
+        enfocarElemento("2.3_membresias_afil", orden[dir][boton]);
+        boton = orden[dir][boton];
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
@@ -86,8 +101,10 @@ void membresias(string usuario) {
 } // Fin de suscribirse a membresía
 
 void miCredito() {
-  // modificar o agregar dinero a la cuenta
-}
+  dibujarMenu("2.5_credito");
+  getch();
+  dibujarMenu("2_clientes");
+} // Fin de manejar dinero en la cuenta
 
 void catalogoFrame2(string usuario, int gnrId) {
   dibujarMenu("2.4_catalogo_f2");
@@ -290,7 +307,7 @@ void login() {
             gotoxy(23,12); usuario += tecla; cout << usuario;
             gotoxy(23+usuario.length(),12); break;
           case 1: // Contraseña
-            gotoxy(49,12); password += tecla; cout << password;
+            gotoxy(49,12); password += tecla; cout << asteriscos(password);
             gotoxy(49+password.length(),12); break;
         } // Fin de capturar datos
       } else if (tecla == 8 || tecla == 224) { // 'BCKSP'-'DEL'
@@ -360,10 +377,11 @@ void registro() {
             gotoxy(23,12); usuario += tecla; cout << usuario;
             gotoxy(23+usuario.length(),12);       break;
           case 1: // Contraseña
-            gotoxy(23,17); clave += tecla; cout << clave;
+            gotoxy(23,17); clave += tecla; cout << asteriscos(clave);
             gotoxy(23+clave.length(),17);         break;
           case 2: // Repetir contraseña
-            gotoxy(50,12); claveRepetida += tecla; cout <<claveRepetida;
+            gotoxy(50,12); claveRepetida += tecla;
+            cout << asteriscos(claveRepetida);
             gotoxy(50+claveRepetida.length(),12); break;
         } // Fin de capturar datos
       } else if (tecla == 8 || tecla == 224) { // 'BCKSP'-'DEL'

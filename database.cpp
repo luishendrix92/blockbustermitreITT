@@ -147,7 +147,7 @@ vector<string> descargarTabla(string archivo) {
 
 bool autenticar(string nombre, string clave) {
   // Arreglo 'usuario' -> [0] Nombre - [1] Clave
-  fstream tablaUsuarios; string linea;
+  fstream tablaUsuarios;   string linea;
   vector<string> registro; bool coinciden = false;
 
   tablaUsuarios.open("usuarios.txt", ios::in);
@@ -170,7 +170,7 @@ bool autenticar(string nombre, string clave) {
 } // Fin de autenticar usuarios
 
 bool nombreDisponible(string nombre) {
-  fstream tablaUsuarios; string linea;
+  fstream tablaUsuarios;   string linea;
   vector<string> registro; bool disponible = true;
 
   tablaUsuarios.open("usuarios.txt", ios::in);

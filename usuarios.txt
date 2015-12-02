@@ -5,3 +5,4 @@ luishendrix92;metalslug;empleado;null
 clientedeprueba;123456;cliente;525
 cliente;123456;cliente;0
 padrote;electoral;cliente;0
+pendejo;allahu;cliente;0
