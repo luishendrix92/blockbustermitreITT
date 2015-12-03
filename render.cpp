@@ -658,7 +658,7 @@ void mostrarAviso(string aviso, string datoExtra) {
     dibujarBordes();
     // Renderizado de cena de cumpleaños http://www.chris.com/ascii/index.php?art=events/birthday
     gotoxy(4, 2); cout<<"                              : . /%O!!::::::::\\\\_\\. \\";
-    gotoxy(4, 3); cout<<"                             [\"\"]/%%O!!:::::::::  : . \\";
+    gotoxy(4, 3); cout<<"                             [\"\"]/%%O!!:::::::::  : . \\                  ";
     gotoxy(4, 4); cout<<"                             |  |%%OO!!::::::::::: : . |";
     gotoxy(4, 5); cout<<"                             |  |%%OO!!:::::::::::::  :|";
     gotoxy(4, 6); cout<<"                             |  |%%OO!!!::::::::::::: :|";

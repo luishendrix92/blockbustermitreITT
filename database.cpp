@@ -145,6 +145,37 @@ vector<string> descargarTabla(string archivo) {
   } // Fin de comprobar si el archivo existe
 } // Fin de crear un arreglo con todos los registros
 
+string consultaRapida(
+/* La tabla     */string archivo,
+/* Criterios de */int campoBuscado,
+/*   filtrado.  */string valorBuscado,
+/* Consulta     */int campoConsultado
+                     ) {
+  vector<string> registroTemporal;
+  fstream tabla; string linea, resultado = "null";
+
+  tabla.open(archivo.c_str(), ios::in);
+  if (tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      // Grabar celdas en el "registro temporal"
+      registroTemporal = separarLinea(linea, ';');
+      /* Si el registro en el campo buscado
+      coincide con nuestra búsqueda, devolver
+      lo que haya en el campo consultado   */
+      if (registroTemporal[campoBuscado].compare(valorBuscado) == 0) {
+        resultado = registroTemporal[campoConsultado];
+        break; // Finaliza la lectura del archivo
+      } // Fin de omitir línea en el temporal
+
+      // Limpiar registro temporal
+      registroTemporal.clear();
+    } // Fin de meter líneas del .txt al vector
+    tabla.close(); return resultado;
+  } else {
+    system("cls"); cout << "Error de base de datos con: " << archivo;
+  } // Fin de comprobar si el archivo existe
+} // Fin de consultar un campo a través de una búsqueda
+
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
 =======================================================*/
@@ -203,11 +234,32 @@ bool nombreDisponible(string nombre) {
 =======================================================*/
 
 bool realizarGasto(string usuario, int monto) {
-  return true;
-}
+  string dinero; int credito;
+
+  // Consultar el crédito del usuario y almacenarlo
+  dinero = consultaRapida("usuarios.txt", 0, usuario, 3);
+  credito = atoi(dinero.c_str());
+
+  // Comprobar si se puede realizar la compra
+  if (monto <= credito) {
+    credito -= monto;
+    // Actualizar la base de datos ya realizado el gasto
+    modificarRegistro("usuarios.txt", 3,
+      enteroATexto(credito), 0, usuario);
+    return true;
+  } else { // No le alcanza
+    return false;
+  } // Fin de comprobar si tiene dinero
+} // Fin de sustraer un gasto al crédito de un usuario
 
 void nuevaMembresia(string usuario, string expiracion) {
-  //
+  string nuevoMiembro;
+
+  nuevoMiembro =  usuario    + ";" +
+                  expiracion + ";" +
+                  "null;null;null"; // Usuario afiliado
+
+  insertarRegistro("membresias.txt", nuevoMiembro);
 }
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:

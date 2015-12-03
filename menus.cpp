@@ -50,7 +50,7 @@ void membresiasAfiliacion(string usuario) {
         switch(boton) {
           case 3: // Afiliarme
             if (realizarGasto(usuario, 250)) {
-              // Si se pudo cobrar $250.00, afiliar y mensaje
+              // Si se pudo cobrar $250.00, afiliar y mensaje de éxito
               nuevaMembresia(usuario, expiracion);
               mostrarAviso("suscripcion_exitosa", usuario);
               tecla = 27; // Volver al menú clientes
