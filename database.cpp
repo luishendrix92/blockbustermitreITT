@@ -176,6 +176,8 @@ string consultaRapida(
   } // Fin de comprobar si el archivo existe
 } // Fin de consultar un campo a través de una búsqueda
 
+
+
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
 =======================================================*/
@@ -260,6 +262,27 @@ void nuevaMembresia(string usuario, string expiracion) {
                   "null;null;null"; // Usuario afiliado
 
   insertarRegistro("membresias.txt", nuevoMiembro);
+} // Fin de afiliar usuario a Blockbuster
+
+bool tieneMembresia(string usuario) {
+  fstream tablaMiembros;   string linea;
+  vector<string> registro; bool afiliado = false;
+
+  tablaMiembros.open("membresias.txt", ios::in);
+  if (tablaMiembros.is_open()) {
+    while(getline(tablaMiembros, linea)) {
+      registro = separarLinea(linea, ';');
+      if (usuario.compare(registro[0]) == 0) {
+        afiliado = true; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaMiembros.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return afiliado;
 }
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:

@@ -1,1 +1,1 @@
-miembrodeprueba;2016/06/01;001,2015/12/25;002,2015/12/25;null;null;
+el_cliente;3/6/2016;null;null;null
