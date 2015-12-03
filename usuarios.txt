@@ -2,4 +2,8 @@ itzeltapia;deportiva123;empleado;null
 Diego9211;johncenaaa;empleado;null
 JesterRelik;l0loflegends;empleado;null
 luishendrix92;metalslug;empleado;null
-el_cliente;123456;cliente;250
+el_cliente;123456;cliente;0
+banana;minions;cliente;0
+minions;banana;cliente;0
+alassad;bokoharam;cliente;0
+padrote;electoral;cliente;0

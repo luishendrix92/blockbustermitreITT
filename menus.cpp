@@ -10,8 +10,10 @@ void comprar() {
 }
 
 void membresiasControl(string usuario) {
-  system("cls"); gotoxy(1,1);
-  cout << "Ya es miembro"; getch();
+  dibujarMenu("2.3_membresias_ctrl");
+  getch();
+  dibujarMenu("2.3_membresias_devol");
+  getch();
 } // Fin de panel de control de membresía
 
 void membresiasAfiliacion(string usuario) {
@@ -124,7 +126,8 @@ void membresias(string usuario) {
 
 void miCredito(string usuario) {
   dibujarMenu("2.5_credito");
-  getch();
+  mostrarCredito(usuario);
+  gotoxy(39,10); getch();
   dibujarMenu("2.5_credito_f2");
   getch();
   dibujarMenu("2_clientes");
@@ -427,16 +430,17 @@ void registro() {
             clave.compare(claveRepetida) == 0 &&
             usuario.length() >= 6 &&
             clave.length() >= 6 );
-
         // Si el formulario es válido, registrar usuario
         if (registroValido) {
           // Ensamblar el nuevo registro
-          nuevoUsuario = usuario + ";" + clave + ";cliente;0";
+          nuevoUsuario = usuario + ";"+clave+";cliente;0";
           // Insertarlo en la base de datos
           insertarRegistro("usuarios.txt", nuevoUsuario);
-          system("cls"); cout << "Registro completado";
+          mostrarAviso("registro_exitoso", usuario);
+          break; // Salir de este menú
         } else {
           system("cls"); cout << "Registro invalido";
+          getch(); break; // Salir de este menú
         } // Fin de verificar el envío de datos
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
