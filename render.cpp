@@ -363,6 +363,15 @@ void dibujarMenu(string menu) {
     gotoxy(5,14);   cout<<"Balance: ";
     gotoxy(5,20);   cout<<"L"<<char(161)<<"mite: $9999.00";
     gotoxy(5,23);   cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    // ASCII Art Dados http://www.chris.com/ascii/index.php?art=objects/dice
+    gotoxy(32,14);  cout<<"   _______             _______          ";
+    gotoxy(32,15);  cout<<"  /\\ o o o\\           /\\ o o o\\         ";
+    gotoxy(32,16);  cout<<" /o \\ o o o\\_______  /o \\ o o o\\_______ ";
+    gotoxy(32,17);  cout<<"<    >------>   o /|<    >------>   o /|";
+    gotoxy(32,18);  cout<<" \\ o/  o   /_____/o| \\ o/  o   /_____/o|";
+    gotoxy(32,19);  cout<<"  \\/______/     |oo|  \\/______/     |oo|";
+    gotoxy(32,20);  cout<<"        |   o   |o/         |   o   |o/ ";
+    gotoxy(32,21);  cout<<"        |_______|/          |_______|/  ";
     // Renderizado de botones y recuadros
     gotoxy(5,10);   cout<<"*------------------*";
     gotoxy(5,11);   cout<<"|                  |";
@@ -370,11 +379,45 @@ void dibujarMenu(string menu) {
     gotoxy(5,15);   cout<<"*-----------*";
     gotoxy(5,16);   cout<<"|           |";
     gotoxy(5,17);   cout<<"*-----------*";
-    gotoxy(36,13);  cout<<"============  -----------------";
-    gotoxy(36,14);  cout<<"|| ABONAR ||  |  VOLVER ATRAS |";
-    gotoxy(36,15);  cout<<"============  -----------------";
+    gotoxy(36,9);   cout<<"============  -----------------";
+    gotoxy(36,10);  cout<<"|| ABONAR ||  |  VOLVER ATRAS |";
+    gotoxy(36,11);  cout<<"============  -----------------";
     // Mover cursor al input default (Abonar)
-    gotoxy(39,14);
+    gotoxy(39,10);
+  } else if (menu.compare("2.5_credito_f2")  == 0) {
+     system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(35,2);  cout<<"$ CR"<<char(144)<<"DITO $ ";
+    gotoxy(5, 5);  cout<<"Desde aqu"<<char(161)<<" podr"<<char(160)<<
+    "s consultar el cr"<<char(130)<<"dito con el que dispones. ";
+    gotoxy(5, 6);  cout<<"Si te acabas de registrar, tendr"<<char(160)<<
+    "s $0 y necesitar"<<char(160)<<"s agregar dinero ";
+    gotoxy(5, 7);  cout<<"a tu cuenta. Sin cr"<<char(130)<<"dito no podr"<<
+    char(160)<<"s comprar pel"<<char(161)<<"culas. ";
+    gotoxy(5, 9);  cout<<"Usuario: ";
+    gotoxy(5,14);  cout<<"Balance: ";
+    gotoxy(5,20);  cout<<"L"<<char(161)<<"mite: $9999.0";
+    gotoxy(36,9);  cout<<"Monto abonado:";
+    gotoxy(36,10); cout<<"$";
+    gotoxy(5,23);  cout<<"Para volver al men"<<char(163)<<
+    " anterior, presiona <ESC>.";
+    // Renderizado de recuadros
+    gotoxy(5,15);  cout<<"*-----------*";
+    gotoxy(5,16);  cout<<"|           |";
+    gotoxy(5,17);  cout<<"*-----------*";
+    gotoxy(5,10);  cout<<"*------------------*";
+    gotoxy(5,11);  cout<<"|                  | ";
+    gotoxy(5,12);  cout<<"*------------------*";
+    gotoxy(36,11); cout<<"--------------";
+    gotoxy(36,13); cout<<"---";
+    gotoxy(36,14); cout<<"| | Abonar a otra persona";
+    gotoxy(36,15); cout<<"---";
+    // Renderizado de botones
+    gotoxy(36,17); cout<<"============  --------------";
+    gotoxy(36,18); cout<<"|| ABONAR ||  |  CANCELAR  |";
+    gotoxy(36,19); cout<<"============  --------------";
+    // Colocar cursor en el input default (Monto abonado)
+    gotoxy(37,10);
   } else if (menu.compare("3_empleados")  == 0) {
     system("cls");
     cout << "Menu de empleados!" << endl;

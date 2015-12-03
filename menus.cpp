@@ -122,8 +122,10 @@ void membresias(string usuario) {
   dibujarMenu("2_clientes");
 } // Fin de suscribirse a membresía
 
-void miCredito() {
+void miCredito(string usuario) {
   dibujarMenu("2.5_credito");
+  getch();
+  dibujarMenu("2.5_credito_f2");
   getch();
   dibujarMenu("2_clientes");
 } // Fin de manejar dinero en la cuenta
@@ -279,7 +281,7 @@ void clientes(string usuario) {
         case 2: menu::comprar();            break;
         case 3: menu::membresias(usuario);  break;
         case 4: menu::catalogo(usuario);    break;
-        case 5: menu::miCredito();          break;
+        case 5: menu::miCredito(usuario);   break;
       } // Fin de lanzar menú correspondiente
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito
