@@ -113,23 +113,23 @@ void dibujarMenu(string menu) {
   } else if (menu.compare("2_clientes")  == 0) {
     system("cls"); dibujarBordes();
     // ASCII Art 'Millenial Falcon' -> http://www.chris.com/ascii/
-    gotoxy(28,5);  cout<<"                c==o"                         <<endl;
-    gotoxy(28,6);  cout<<"              _/____\\_"                      <<endl;
-    gotoxy(28,7);  cout<<"       _.,--'\" ||^ || \"`z._"                <<endl;
-    gotoxy(28,8);  cout<<"      /_/^ ___\\||  || _/o\\ \"`-._"          <<endl;
-    gotoxy(28,9);  cout<<"    _/  ]. L_| || .||  \\_/_  . _`--._"       <<endl;
-    gotoxy(28,10); cout<<"   /_~7  _ . \" ||. || /] \\ ]. (_)  . \"`--."<<endl;
-    gotoxy(28,11); cout<<"  |__7~.(_)_ []|+--+|/____T_____________L|"   <<endl;
-    gotoxy(28,12); cout<<"  |__|  _^(_) /^   __\\____ _   _|"           <<endl;
-    gotoxy(28,13); cout<<"  |__| (_){_) J ]K{__ L___ _   _]"            <<endl;
-    gotoxy(28,14); cout<<"  |__| . _(_) \v     /__________|________"    <<endl;
-    gotoxy(28,15); cout<<"  l__l_ (_). []|+-+-<\\^   L  . _   - ---L|"  <<endl;
-    gotoxy(28,16); cout<<"   \\__\\    __. ||^l  \\Y] /_]  (_) .  _,--'"<<endl;
-    gotoxy(28,17); cout<<"     \\~_]  L_| || .\\ .\\/~.    _,--'\""     <<endl;
-    gotoxy(28,18); cout<<"      \\_\\ . __/||  |\\  \\`-+-<'\""         <<endl;
-    gotoxy(28,19); cout<<"        \"`---._|J__L|X o~~|[\\"              <<endl;
-    gotoxy(28,20); cout<<"               \\____/ \\___|[//"             <<endl;
-    gotoxy(28,21); cout<<"                `--'   `--+-'";
+    gotoxy(28,5);  cout<<"                c==o"                         ;
+    gotoxy(28,6);  cout<<"              _/____\\_"                      ;
+    gotoxy(28,7);  cout<<"       _.,--'\" ||^ || \"`z._"                ;
+    gotoxy(28,8);  cout<<"      /_/^ ___\\||  || _/o\\ \"`-._"          ;
+    gotoxy(28,9);  cout<<"    _/  ]. L_| || .||  \\_/_  . _`--._"       ;
+    gotoxy(28,10); cout<<"   /_~7  _ . \" ||. || /] \\ ]. (_)  . \"`--.";
+    gotoxy(28,11); cout<<"  |__7~.(_)_ []|+--+|/____T_____________L|"   ;
+    gotoxy(28,12); cout<<"  |__|  _^(_) /^   __\\____ _   _|"           ;
+    gotoxy(28,13); cout<<"  |__| (_){_) J ]K{__ L___ _   _]"            ;
+    gotoxy(28,14); cout<<"  |__| . _(_) \v     /__________|________"    ;
+    gotoxy(28,15); cout<<"  l__l_ (_). []|+-+-<\\^   L  . _   - ---L|"  ;
+    gotoxy(28,16); cout<<"   \\__\\    __. ||^l  \\Y] /_]  (_) .  _,--'";
+    gotoxy(28,17); cout<<"     \\~_]  L_| || .\\ .\\/~.    _,--'\""     ;
+    gotoxy(28,18); cout<<"      \\_\\ . __/||  |\\  \\`-+-<'\""         ;
+    gotoxy(28,19); cout<<"        \"`---._|J__L|X o~~|[\\"              ;
+    gotoxy(28,20); cout<<"               \\____/ \\___|[//"             ;
+    gotoxy(28,21); cout<<"                `--'   `--+-'"                ;
     // Renderizado de texto
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
     gotoxy(5, 5);   cout << "Que es lo que deseas hacer?";
@@ -189,20 +189,20 @@ void dibujarMenu(string menu) {
     gotoxy(5, 16);  cout<<"cine durante festividades.";
     gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
     // Dibujo de ASCII Art 'Totoro' -> http://www.asciiworld.com/-Mangas,48-.html
-    gotoxy(40,8);   cout<<"           !         !          "       <<endl;
-    gotoxy(40,9);   cout<<"          ! !       ! !          "      <<endl;
-    gotoxy(40,10);  cout<<"         ! . !     ! . !          "     <<endl;
-    gotoxy(40,11);  cout<<"            ^^^^^^^^^ ^            "    <<endl;
-    gotoxy(40,12);  cout<<"          ^             ^          "    <<endl;
-    gotoxy(40,13);  cout<<"        ^  (0)       (0)  ^       "     <<endl;
-    gotoxy(40,14);  cout<<"       ^        \"\"         ^       "    <<endl;
-    gotoxy(40,15);  cout<<"      ^   ***************    ^     "    <<endl;
-    gotoxy(40,16);  cout<<"    ^   *                 *   ^    "    <<endl;
-    gotoxy(40,17);  cout<<"   ^   *   /\\   /\\   /\\    *    ^   "<<endl;
-    gotoxy(40,18);  cout<<"  ^   *                     *    ^"     <<endl;
-    gotoxy(40,19);  cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^"<<endl;
-    gotoxy(40,20);  cout<<"^   *                         *    ^"   <<endl;
-    gotoxy(40,21);  cout<<"^  *                           *   ^";
+    gotoxy(40,8);   cout<<"           !         !          "       ;
+    gotoxy(40,9);   cout<<"          ! !       ! !          "      ;
+    gotoxy(40,10);  cout<<"         ! . !     ! . !          "     ;
+    gotoxy(40,11);  cout<<"            ^^^^^^^^^ ^            "    ;
+    gotoxy(40,12);  cout<<"          ^             ^          "    ;
+    gotoxy(40,13);  cout<<"        ^  (0)       (0)  ^       "     ;
+    gotoxy(40,14);  cout<<"       ^        \"\"         ^       "  ;
+    gotoxy(40,15);  cout<<"      ^   ***************    ^     "    ;
+    gotoxy(40,16);  cout<<"    ^   *                 *   ^    "    ;
+    gotoxy(40,17);  cout<<"   ^   *   /\\   /\\   /\\    *    ^   ";
+    gotoxy(40,18);  cout<<"  ^   *                     *    ^"     ;
+    gotoxy(40,19);  cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^";
+    gotoxy(40,20);  cout<<"^   *                         *    ^"   ;
+    gotoxy(40,21);  cout<<"^  *                           *   ^"   ;
     // Renderizado de botones
     gotoxy(5, 18);  cout<<"===============";
     gotoxy(5, 19);  cout<<"|| AFILIARME ||";
@@ -216,24 +216,24 @@ void dibujarMenu(string menu) {
   } else if(menu.compare("2.3_membresias_reglas")  == 0) {
     system("cls"); dibujarBordes();
     // Totoro por segunda vez, pero más arriba
-    gotoxy(40,4);  cout<<"           !         !          "       <<endl;
-    gotoxy(40,5);  cout<<"          ! !       ! !          "      <<endl;
-    gotoxy(40,6);  cout<<"         ! . !     ! . !          "     <<endl;
-    gotoxy(40,7);  cout<<"            ^^^^^^^^^ ^            "    <<endl;
-    gotoxy(40,8);  cout<<"          ^             ^          "    <<endl;
-    gotoxy(40,9);  cout<<"        ^  (0)       (0)  ^       "     <<endl;
-    gotoxy(40,10); cout<<"       ^        \"\"         ^       "  <<endl;
-    gotoxy(40,11); cout<<"      ^   ***************    ^     "    <<endl;
-    gotoxy(40,12); cout<<"    ^   *                 *   ^    "    <<endl;
-    gotoxy(40,13); cout<<"   ^   *   /\\   /\\   /\\    *    ^   "<<endl;
-    gotoxy(40,14); cout<<"  ^   *                     *    ^"     <<endl;
-    gotoxy(40,15); cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^"<<endl;
-    gotoxy(40,16); cout<<"^   *                         *    ^"   <<endl;
-    gotoxy(40,17); cout<<"^  *                           *   ^"   <<endl;
-    gotoxy(40,18); cout<<"^  *                           *   ^"   <<endl;
-    gotoxy(40,19); cout<<" ^ *                           *  ^  "  <<endl;
-    gotoxy(40,20); cout<<"  ^*                           * ^ "    <<endl;
-    gotoxy(40,21); cout<<"   ^ *                        * ^";
+    gotoxy(40,4);  cout<<"           !         !          "       ;
+    gotoxy(40,5);  cout<<"          ! !       ! !          "      ;
+    gotoxy(40,6);  cout<<"         ! . !     ! . !          "     ;
+    gotoxy(40,7);  cout<<"            ^^^^^^^^^ ^            "    ;
+    gotoxy(40,8);  cout<<"          ^             ^          "    ;
+    gotoxy(40,9);  cout<<"        ^  (0)       (0)  ^       "     ;
+    gotoxy(40,10); cout<<"       ^        \"\"         ^       "  ;
+    gotoxy(40,11); cout<<"      ^   ***************    ^     "    ;
+    gotoxy(40,12); cout<<"    ^   *                 *   ^    "    ;
+    gotoxy(40,13); cout<<"   ^   *   /\\   /\\   /\\    *    ^   ";
+    gotoxy(40,14); cout<<"  ^   *                     *    ^"     ;
+    gotoxy(40,15); cout<<" ^   *   /\\   /\\   /\\   /\\   *    ^";
+    gotoxy(40,16); cout<<"^   *                         *    ^"   ;
+    gotoxy(40,17); cout<<"^  *                           *   ^"   ;
+    gotoxy(40,18); cout<<"^  *                           *   ^"   ;
+    gotoxy(40,19); cout<<" ^ *                           *  ^  "  ;
+    gotoxy(40,20); cout<<"  ^*                           * ^ "    ;
+    gotoxy(40,21); cout<<"   ^ *                        * ^"      ;
     // Renderizado de texto
     gotoxy(31,2);   cout<<"MEMBRESIAS: REGLAS";
     gotoxy(5, 5);   cout<<"1-Devolver las peliculas rentadas";
@@ -259,8 +259,8 @@ void dibujarMenu(string menu) {
     gotoxy(6,11);   cout << "||"; gotoxy(20,10);  cout << "||";
     gotoxy(20,11);  cout << "||"; gotoxy(36,10);  cout << "|";
     gotoxy(48,10);  cout << "|";
-    for(int x=22; x<=48; x++) {   gotoxy(x, 9);   cout<<"_"; }
-    for(int x=22; x<=76; x++) {   gotoxy(x, 11);  cout<<"_"; }
+    for(int x=22; x<=48; x++) {   gotoxy(x, 9);   cout <<"_"; }
+    for(int x=22; x<=76; x++) {   gotoxy(x, 11);  cout <<"_"; }
     gotoxy(36,11);  cout << "|";  gotoxy(48,11);  cout << "|";
     // Renderizado de texto
     gotoxy(5, 5);   cout<<"La membresia Blockbuster tiene un costo de 250 pesos.";
@@ -413,9 +413,9 @@ void dibujarMenu(string menu) {
     gotoxy(36,14); cout<<"| | Abonar a otra persona";
     gotoxy(36,15); cout<<"---";
     // Renderizado de botones
-    gotoxy(36,17); cout<<"============  --------------";
-    gotoxy(36,18); cout<<"|| ABONAR ||  |  CANCELAR  |";
-    gotoxy(36,19); cout<<"============  --------------";
+    gotoxy(36,17); cout<<"------------  --------------";
+    gotoxy(36,18); cout<<"|  ABONAR  |  |  CANCELAR  |";
+    gotoxy(36,19); cout<<"------------  --------------";
     // Colocar cursor en el input default (Monto abonado)
     gotoxy(37,10);
   } else if (menu.compare("3_empleados")  == 0) {
@@ -433,7 +433,8 @@ void limpiarZona(string menu, int zona) {
       case 0: // Lista de películas
         for(int x=4, y=4; y<=14; y+=1) {
           gotoxy(x,y);
-          cout << "                                                    ";
+          cout << "                          "
+               << "                          ";
         } // Fin de llenar con espacio blanco
       break;
 
@@ -526,6 +527,9 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(23,17); break;
       case 2: // Repetir contraseña
         gotoxy(50,12); cout<<"                  ";
+        gotoxy(57,16); cout << "-----------";
+        gotoxy(57,17); cout << "|  LISTO  |";
+        gotoxy(57,18); cout << "-----------";
         gotoxy(50,12); break;
       case 3: // Botón 'Listo'
         gotoxy(57,16); cout << "===========";
