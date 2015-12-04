@@ -2,5 +2,6 @@ itzeltapia;deportiva123;empleado;null
 Diego9211;johncenaaa;empleado;null
 JesterRelik;l0loflegends;empleado;null
 luishendrix92;metalslug;empleado;null
-el_cliente;123456;cliente;1000
+el_cliente;123456;cliente;84700
 usuario;padrote;cliente;8100
+colegio;sanmarin;cliente;0

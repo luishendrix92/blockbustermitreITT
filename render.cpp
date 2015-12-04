@@ -453,13 +453,15 @@ void dibujarMenu(string menu) {
     gotoxy(5,11);  cout<<"|                  | ";
     gotoxy(5,12);  cout<<"*------------------*";
     gotoxy(36,11); cout<<"--------------";
-    gotoxy(36,13); cout<<"---";
-    gotoxy(36,14); cout<<"| | Abonar a otra persona";
-    gotoxy(36,15); cout<<"---";
+    gotoxy(36,13); cout<<"   ";
+    gotoxy(36,14); cout<<"[ ] Abonar a otra persona";
+    gotoxy(36,15); cout<<"   ";
     // Renderizado de botones
     gotoxy(36,17); cout<<"------------  --------------";
-    gotoxy(36,18); cout<<"|  ABONAR  |  |  CANCELAR  |";
+    gotoxy(36,18); cout<<"|  ABONAR  |  |  REGRESAR  |";
     gotoxy(36,19); cout<<"------------  --------------";
+    // Enfocar el input default
+    gotoxy(37,10);
   } else if (menu.compare("3_empleados")  == 0) {
     system("cls");
     cout << "Menu de empleados!" << endl;
@@ -487,12 +489,12 @@ void limpiarZona(string menu, int zona) {
       break;
 
       case 2: // Detalles y sinopsis de película
-        gotoxy(66, 4); cout << "      ";        // Precio
-        gotoxy(67, 6); cout << "       ";       // Duración
+        gotoxy(66, 4); cout << "      "      ;  // Precio
+        gotoxy(67, 6); cout << "       "     ;  // Duración
         gotoxy(65, 8); cout << "            ";  // Género
-        gotoxy(73,10); cout << "   ";           // Stock
-        gotoxy(62,12); cout << "    ";          // Año
-        gotoxy(73,12); cout << "   ";           // MovieID
+        gotoxy(73,10); cout << "   "         ;  // Stock
+        gotoxy(62,12); cout << "    "        ;  // Año
+        gotoxy(73,12); cout << "   "         ;  // MovieID
         // Borrar sinopsis
         for(int x=4, y=18; y<=21; y+=1) {
           gotoxy(x,y);
@@ -762,14 +764,56 @@ void enfocarElemento(string menu, int elemento) {
   } else if (menu.compare("2.5_credito_f2") == 0) {
     switch(elemento) {
       case 0: // Monto abonado
+        // Desenfocar los botones
+        gotoxy(36,17); cout<<"------------  --------------";
+        gotoxy(36,18); cout<<"|  ABONAR  |  |  REGRESAR  |";
+        gotoxy(36,19); cout<<"------------  --------------";
+        gotoxy(36,13); cout<<"                                    ";
+        gotoxy(36,14); cout<<"["                                   ;
+        gotoxy(38,14); cout<<"] Abonar a otra persona           "  ;
+        gotoxy(36,15); cout<<"                                    ";
+        gotoxy(37,10); cout<<"             ";
         gotoxy(37,10); break;
       case 1: // Beneficiario (Opcional)
+        // Desenfocar los botones
+        gotoxy(36,17); cout<<"------------  --------------";
+        gotoxy(36,18); cout<<"|  ABONAR  |  |  REGRESAR  |";
+        gotoxy(36,19); cout<<"------------  --------------";
+        gotoxy(36,13); cout<<"                                    ";
+        gotoxy(36,14); cout<<"["                                   ;
+        gotoxy(38,14); cout<<"] Abonar a otra persona           "  ;
+        gotoxy(36,15); cout<<"                                    ";
+        gotoxy(52,10); cout<<"                  ";
         gotoxy(52,10); break;
       case 2: // Checkbox
+        // Desenfocar los botones
+        gotoxy(36,17); cout<<"------------  --------------";
+        gotoxy(36,18); cout<<"|  ABONAR  |  |  REGRESAR  |";
+        gotoxy(36,19); cout<<"------------  --------------";
+        gotoxy(36,13); cout<<" =                                  ";
+        gotoxy(36,14); cout<<"["                                   ;
+        gotoxy(38,14); cout<<"] (!) Presiona ENTER para activar "  ;
+        gotoxy(36,15); cout<<" =      o desactivar esta opcion.   ";
         gotoxy(37,14); break;
       case 3: // Abonar
+        // Enfocar el botón necesario
+        gotoxy(36,17); cout<<"============  --------------";
+        gotoxy(36,18); cout<<"|| ABONAR ||  |  REGRESAR  |";
+        gotoxy(36,19); cout<<"============  --------------";
+        gotoxy(36,13); cout<<"                                    ";
+        gotoxy(36,14); cout<<"["                                   ;
+        gotoxy(38,14); cout<<"] Abonar a otra persona           "  ;
+        gotoxy(36,15); cout<<"                                    ";
         gotoxy(39,18); break;
       case 4: // Cancelar
+        // Enfocar el botón necesario
+        gotoxy(36,17); cout<<"------------  ==============";
+        gotoxy(36,18); cout<<"|  ABONAR  |  || REGRESAR ||";
+        gotoxy(36,19); cout<<"------------  ==============";
+        gotoxy(36,13); cout<<"                                    ";
+        gotoxy(36,14); cout<<"["                                   ;
+        gotoxy(38,14); cout<<"] Abonar a otra persona           "  ;
+        gotoxy(36,15); cout<<"                                    ";
         gotoxy(53,18); break;
     }
   } // Fin de manejar elementos de cada menú
@@ -843,6 +887,66 @@ void mostrarAviso(string aviso, string datoExtra) {
     gotoxy(5, 18); cout<<"tecla para";
     gotoxy(5, 19); cout<<"continuar" ;
     getch(); system("color 1F");
+  } else if (aviso.compare("abono_regalo") == 0) {
+    system("cls"); dibujarBordes();
+    // Renderizado de sombra y luz
+    gotoxy(4, 4); cout<<"####################################"<<
+                        "#####################################";
+    gotoxy(4, 5); cout<<"####################################"<<
+                        "#####################################";
+    gotoxy(4, 6); cout<<"####################################"<<
+                        "#####################################";
+    gotoxy(4, 7); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4, 8); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4, 9); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,10); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,11); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,12); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,13); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,14); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,15); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,16); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,17); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,18); cout<<"##########                          "<<
+                        "                          ###########";
+    gotoxy(4,19); cout<<"####################################"<<
+                        "#####################################";
+    gotoxy(4,20); cout<<"####################################"<<
+                        "#####################################";
+    gotoxy(4,21); cout<<"####################################"<<
+                        "#####################################";
+    // Renderizado de regalo
+    gotoxy(16,9);  cout<<"      _   _      "  ;
+    gotoxy(16,10); cout<<"     ((\\o/))     " ;
+    gotoxy(16,11); cout<<".-----//^\\\\-----.";
+    gotoxy(16,12); cout<<"|    /`| |`\\    |" ;
+    gotoxy(16,13); cout<<"|      | |      |"  ;
+    gotoxy(16,14); cout<<"|      | |      |"  ;
+    gotoxy(16,15); cout<<"|      | |      |"  ;
+    gotoxy(16,16); cout<<"'------===------'"  ;
+    // Renderizado de texto
+    gotoxy(35,2);  cout<<"$ CR"<<char(144)<<"DITO $ ";
+    gotoxy(35,9);  cout<<"ABONO DE REGALO EXITOSO!";
+    gotoxy(35,11); cout<<"El usuario "<<datoExtra;
+    gotoxy(35,12); cout<<"ha recibido tu donacion, y de";
+    gotoxy(35,13); cout<<"seguro se pondra muy feliz!";
+    // Renderizado del botón
+    gotoxy(41,15); cout << "===============";
+    gotoxy(41,16); cout << "|| ENTENDIDO ||";
+    gotoxy(41,17); cout << "===============";
+    // Enfocar el botón
+    gotoxy(44,16);
   }
 } // Fin de mostrar confirmaciones, pantallas y avisos
 
@@ -920,6 +1024,24 @@ void mostrarCredito(string usuario) {
   gotoxy(6,11); cout << usuario;
   gotoxy(7,16); cout << credito;
 } // Fin de mostrar dinero del usuario
+
+void activarRegalo(bool marcado) {
+  if (marcado) {
+    cout << " ";
+    gotoxy(52,9);  cout<<"             ";
+    gotoxy(52,10); cout<<"                  ";
+    gotoxy(52,11); cout<<"                  ";
+  } else {
+    cout << "O";
+    // Mostrar el cuadro de texto 'beneficiario'
+    gotoxy(52,9);  cout<<"Beneficiario:";
+    gotoxy(52,10); cout<<"                  ";
+    gotoxy(52,11); cout<<"------------------";
+  } // Fin de marcar checkbox
+
+  // Re-enfocar checkbox
+  gotoxy(37,14);
+} // Fin de activar o desactivar regalo de crédito
 
 /* ======================================================
 ||||||||||| ELEMENTOS DE ANIMACIÓN Y ADORNOS ||||||||||||
@@ -1140,17 +1262,3 @@ void despedida() {
   cout <<" .   .       .      :  .   .: ::/  .  .::\\"<< endl;
   Sleep(2000);
 } // Fin de ticket de despedida
-
-/*cout<<"            _.-'~~`~~'-._"          ;
-cout<<"         .'`  B   E   R  `'."       ;
-cout<<"        / I               T \\"     ;
-cout<<"      /`       .-'~\"-.       `\\"  ;
-cout<<"     ; L      / `-    \\      Y ;"  ;
-cout<<"    ;        />  `.  -.|        ;"  ;
-cout<<"    |       /_     '-.__)       |"  ;
-cout<<"    |        |-  _.' \\ |        |" ;
-cout<<"    ;        `~~;     \\\\        ;";
-cout<<"     ;  INGODWE /      \\\\)P    ;" ;
-cout<<"      \\  TRUST '.___.-'`\"     /"  ;
-cout<<"       `\\                   /`"    ;
-cout<<"         '._   1 9 9 7   _.'"       ;*/

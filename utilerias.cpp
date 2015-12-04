@@ -226,6 +226,30 @@ string cuandoExpira(short int duracion) {
   return fechaExpiracion;
 } // Fin de fecha de expiración de membresía nueva
 
+void marchaImperial() {
+  // Crédito de la canción en console::beep() ->
+  // social.technet.microsoft.com/wiki/contents/articles/
+  // 20989.music-from-the-command-line-performed-by-powershell.aspx
+  Beep(440,500) ;
+  Beep(440,500) ;
+  Beep(440,500) ;
+  Beep(349,350) ;
+  Beep(523,150) ;
+  Beep(440,500) ;
+  Beep(349,350) ;
+  Beep(523,150) ;
+  Beep(440,1000);
+  Beep(659,500) ;
+  Beep(659,500) ;
+  Beep(659,500) ;
+  Beep(698,350) ;
+  Beep(523,150) ;
+  Beep(415,500) ;
+  Beep(349,350) ;
+  Beep(523,150) ;
+  Beep(440,1000);
+} // Fin de canción de Star Wars
+
 /* ======================================================
 |||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO   |||||||||||
 =======================================================*/

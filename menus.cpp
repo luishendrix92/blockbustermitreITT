@@ -1,3 +1,8 @@
+#define ENTER 13
+#define ESC 27
+#define BCKSP 8
+#define DEL 224
+
 namespace menu {
 void rentas() {
   dibujarMenu("2.1_renta_f1");
@@ -126,20 +131,20 @@ void membresias(string usuario) {
 void abonar(string usuario) {
   dibujarMenu("2.5_credito_f2");
   // variables necesarias
+  int dir, input = 0, abono = 0; char tecla;
+  bool beneficiario = false; string destinatario, monto;
   int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
   {3,4,0,2,1}, {2,4,3,0,1}};
-  int dir, input = 0, monto = 300; char tecla;
-  bool beneficiario = false; string destinatario;
 
   // Mostrar el usuario y su crédito en pantalla
   mostrarCredito(usuario); gotoxy(37,10);
 
-  while (tecla != 27) { // Tecla NO es 'ESC'
+  while (tecla != ESC) {
     tecla = getch();
     if(tecla == 0) { tecla = getch(); } else {
       if ( /* Direccional o ENTER sin estar en botones */
         esDireccional(tecla) ||
-        (tecla == 13 && // ENTER en los cuadros de texto
+        (tecla == ENTER && // ENTER en los cuadros de texto
         (input != 4 && input != 3 && input != 2))
       ) {  /* Direccional o ENTER sin estar en botones */
         dir = obtenerDireccion(tecla);
@@ -154,23 +159,37 @@ void abonar(string usuario) {
             "2.5_credito_f2", orden[dir][input]
           ); // Fin de enfocar inputs
           input = orden[dir][input];
-      } else if (tecla == 13) { // 'ENTER'
+      } else if (tecla == ENTER) { // 'ENTER'
         switch(input) {
           case 2: // Checkbox 'Regalar Crédito'
             // Activar/Desactivar la opción de abonar a otro
-            beneficiario = !beneficiario; break;
+            activarRegalo(beneficiario);
+            beneficiario = !beneficiario;
+            destinatario.clear(); break;
           case 3: // Botón 'Abonar'
             if (beneficiario) {
-              abonarCredito(destinatario, monto);
+              abonarCredito(destinatario, abono);
+              mostrarAviso("abono_regalo", destinatario);
+              tecla = 0; // Permite entrar al ciclo
+              while (tecla != ENTER) {
+                tecla = getch();
+                if (tecla == 13) {
+                  dibujarMenu("2.5_credito_f2");
+                  input = 0; // Volver al primer textbox
+                } // Fin de aceptar
+              } // Fin de esperar ENTER
+              destinatario.clear();
             } else { // El crédito es para el usuario
-              abonarCredito(usuario, monto);
+              abonarCredito(usuario, abono);
               mostrarCredito(usuario);
               gotoxy(39,18); // Puntero de vuelta en botón
             } // Fin de ver a quién abonar el crédito
-            beneficiario = false;         break;
+            beneficiario = false;
+            abono        = 0;
+            monto.clear(); break;
           case 4: // Botón 'Cancelar'
-            tecla = 27; break; // Salir
-        }
+            tecla = 27;    break; // Salir
+        } // Fin de asignar comportamiento a botones
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
   } // Fin de pedir tecla y terminar al presionar 'ESC'
