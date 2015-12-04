@@ -288,7 +288,7 @@ void dibujarMenu(string menu) {
     "s consultar tus rentas, adeudos, d"<<char(161)<<"as restantes, etc.";
     gotoxy(5, 8);   cout<<"Hola,                         Pel"<<
     char(161)<<"cula rentada #1 ";
-    gotoxy(5,10);   cout<<"Te quedan [   ] d"<<char(161)<<"as a tu     -----------------------------------------";
+    gotoxy(5,10);   cout<<"Le quedan [   ] d"<<char(161)<<"as a tu     -----------------------------------------";
     gotoxy(5,11);   cout<<"suscripci"<<char(162)<<"n. Puedes renovar ";
     gotoxy(5,12);   cout<<"cuantas veces quieras a un ";
     gotoxy(5,13);   cout<<"costo de $250 pesos.          Pel"<<char(161)<<"cula rentada #2";
@@ -426,9 +426,9 @@ void dibujarMenu(string menu) {
     gotoxy(5,15);   cout<<"*-----------*";
     gotoxy(5,16);   cout<<"|$          |";
     gotoxy(5,17);   cout<<"*-----------*";
-    gotoxy(36,9);   cout<<"============  -----------------";
-    gotoxy(36,10);  cout<<"|| ABONAR ||  |  VOLVER ATRAS |";
-    gotoxy(36,11);  cout<<"============  -----------------";
+    gotoxy(36,9);   cout<<"============  ------------------";
+    gotoxy(36,10);  cout<<"|| ABONAR ||  |  VOLVER ATRAS  |";
+    gotoxy(36,11);  cout<<"============  ------------------";
   } else if (menu.compare("2.5_credito_f2")  == 0) {
      system("cls"); dibujarBordes();
     // Renderizado de texto
@@ -514,6 +514,8 @@ void limpiarZona(string menu, int zona) {
       gotoxy(x,y);  cout<<"                                    ";
                     cout<<"                                   ";
     }
+  } else if (menu.compare("2.5_credito_f2") == 0) {
+    //
   } // Fin de revisar en qué menú trabajar
 } // Fin de borrar zonas de contenido
 
@@ -741,6 +743,27 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(28,19); cout<<"|  AFILIARME  |  || CANCELAR ||";
         gotoxy(28,20); cout<<"---------------  ==============";
         gotoxy(48,19); break;
+    }
+  } else if (menu.compare("2.5_credito") == 0) {
+    switch(elemento) {
+      case 0: // Boton de abonar crédito
+        gotoxy(36,9);  cout<<"============  ------------------";
+        gotoxy(36,10); cout<<"|| ABONAR ||  |  VOLVER ATRAS  |";
+        gotoxy(36,11); cout<<"============  ------------------";
+        gotoxy(39,10); break;
+      case 1: // Botón de volver atrás
+        gotoxy(36,9);  cout<<"------------  ==================";
+        gotoxy(36,10); cout<<"|  ABONAR  |  || VOLVER ATRAS ||";
+        gotoxy(36,11); cout<<"------------  ==================";
+        gotoxy(53,10); break;
+    }
+  } else if (menu.compare("2.5_credito_f2") == 0) {
+    switch(elemento) {
+      case 0: gotoxy(37,10); break;
+      case 1: gotoxy(52,10); break;
+      case 2: gotoxy(37,14); break;
+      case 3: gotoxy(39,18); break;
+      case 4: gotoxy(53,18); break;
     }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada

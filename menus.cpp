@@ -124,12 +124,63 @@ void membresias(string usuario) {
   dibujarMenu("2_clientes");
 } // Fin de suscribirse a membresía
 
+void abonar(string usuario) {
+  dibujarMenu("2.5_credito_f2");
+  // variables necesarias
+  int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
+  {3,4,0,2,1}, {2,4,3,0,1}};
+  int dir, input = 0; char tecla;
+  bool beneficiario = false;
+
+  // Mostrar el usuario y su crédito en pantalla
+  mostrarCredito(usuario); gotoxy(39,10);
+
+  while (tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if(tecla == 0) { tecla = getch(); } else {
+      if ( /* Direccional o ENTER sin estar en botones */
+        esDireccional(tecla) ||
+        (tecla == 13 && (input != 3 && input != 4))
+      ) {  /* Direccional o ENTER sin estar en botones */
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento(
+          "2.5_credito_f2", orden[dir][input]
+        ); // Fin de enfocar inputs
+        input = orden[dir][input];
+      } else if (tecla == 13) { // 'ENTER'
+        cout << "ENTER";
+      } // Fin de reaccionar a teclas
+    } // Fin de selección de tecla
+  } // Fin de pedir tecla y terminar al presionar 'ESC'
+} // Fin de abonar a mi cuenta o la de otros
+
 void miCredito(string usuario) {
   dibujarMenu("2.5_credito");
-  mostrarCredito(usuario);
-  gotoxy(39,10); getch();
-  dibujarMenu("2.5_credito_f2");
-  getch();
+  // Variables necesarias
+  int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
+  int dir, boton = 0; char tecla;
+
+  // Mostrar el usuario y su crédito en pantalla
+  mostrarCredito(usuario); gotoxy(39,10);
+
+  while (tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if(tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) { // Der-Izq-Tab
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento("2.5_credito", orden[dir][boton]);
+        boton = orden[dir][boton];
+      } else if (tecla == 13) { // 'ENTER'
+        switch(boton) {
+          case 0: menu::abonar(usuario);     boton=0;
+          tecla = 27;                        break;
+          case 1: tecla = 27;                break;
+        } // Fin de lanzar menú adecuado
+      } // Fin de reaccionar a teclas
+    } // Fin de selección de tecla
+  } // Fin de pedir tecla y terminar al presionar 'ESC'
   dibujarMenu("2_clientes");
 } // Fin de manejar dinero en la cuenta
 
@@ -320,7 +371,9 @@ void login() {
       ) {  /* Direccional o ENTER sin estar en el botón */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
-        enfocarElemento("1_principal_login", orden[dir][input]);
+        enfocarElemento(
+          "1_principal_login", orden[dir][input]
+        ); // Fin de enfocar inputs
         input = orden[dir][input];
         // Limpiar cadenas de texto
         switch(input) {
@@ -388,7 +441,9 @@ void registro() {
       ) {  /* Direccional o ENTER sin estar en el botón */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
-        enfocarElemento("1_principal_registro", orden[dir][input]);
+        enfocarElemento(
+          "1_principal_registro", orden[dir][input]
+        ); // Fin de enfocar inputs
         input = orden[dir][input];
         switch(input) {
           case 0: usuario.clear();       break;
