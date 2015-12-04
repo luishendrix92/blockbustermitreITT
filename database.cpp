@@ -1,4 +1,5 @@
-/*  Manejo de base de datos de
+/*=================================================
+    Manejo de base de datos de
     lectura y escritura con .txt. 
 ================================================= */
 
@@ -23,7 +24,7 @@ void modificarRegistro(
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro"
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       if (registro[campoBuscado].compare(valorBuscado) == 0) {
         // Modificar el valor del record en el campo a modificar
         registro[campoModificado] = valorNuevo;
@@ -44,17 +45,16 @@ void modificarRegistro(
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
     system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 } // Fin de modificar un registro en una tabla
 
 /* La siguiente función emula el comportamiento de un query en SQL
 que elimina registros que coinciden con el criterio de filtrado:
-DELETE FROM tabla WHERE campoBuscado = valorBuscado; */
+DELETE FROM tabla WHERE campoBuscado = valorBuscado;            */
 
 void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
-  fstream tabla, memoria;
-  string linea;
+  fstream tabla, memoria; string linea;
   vector<string> registro;
 
   tabla.open(archivo.c_str(), ios::in);
@@ -63,7 +63,7 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro"
-      registro = separarLinea(linea, 1);
+      registro = separarLinea(linea, ';');
       // Si el registro es el deseado, omitirlo para que no exista más
       if (!(registro[campoBuscado].compare(valorBuscado) == 0)) {
         memoria << linea << endl;
@@ -78,13 +78,13 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
     system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 } // Fin de borrar registro de una tabla
 
 /* La siguiente función emula el comportamiento de un query en SQL
 que devuelve registros que coinciden con el criterio de filtrado:
-SELECT FROM tabla WHERE campoFiltrado = valorFiltrado; */
+SELECT FROM tabla WHERE campoFiltrado = valorFiltrado;          */
 
 vector<string> filtrarRegistros(
 /* La tabla */        string archivo,
@@ -93,14 +93,13 @@ vector<string> filtrarRegistros(
                                ) {
   vector<string> registros;
   vector<string> registroTemporal;
-  fstream tabla;
-  string linea;
+  fstream tabla; string linea;
 
   tabla.open(archivo.c_str(), ios::in);
   if (tabla.is_open()) {
     while(getline(tabla, linea)) {
       // Grabar celdas en el "registro temporal"
-      registroTemporal = separarLinea(linea, 1);
+      registroTemporal = separarLinea(linea, ';');
       // Si el registro cumple los criterios, meterlo al vector
       if (registroTemporal[campoFiltrado].compare(valorFiltrado) == 0) {
         registros.push_back(linea);
@@ -111,12 +110,180 @@ vector<string> filtrarRegistros(
     } // Fin de meter líneas del .txt al vector
     tabla.close();
   } else {
-    system("cls");
-    cout << "Error de base de datos con: " << archivo; getch();
+    system("cls"); cout << "Error de base de datos con: " << archivo;
   } // Fin de comprobar si el archivo existe
 
+  //if(registros.size() == 0) { registros.push_back("null"); }
   return registros;
 } // Fin de descargar .txt por criterios en vector
+
+/* La siguiente función emula el comportamiento de un query en SQL
+que inserta un nuevo registro en una base de datos:
+INSERT INTO tabla VALUES (nuevoRegistro)                        */
+
+void insertarRegistro(string archivo, string nuevoRegistro) {
+  fstream tabla;
+
+  tabla.open(archivo.c_str(), ios::out | ios::app);
+  /* Insertar */  tabla << nuevoRegistro << endl;
+  tabla.close();
+} // Fin de añadir datos a tabla
+
+vector<string> descargarTabla(string archivo) {
+  fstream tabla; string linea;
+  vector<string> registros;
+
+  tabla.open(archivo.c_str(), ios::in);
+  if(tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      if (linea.length() > 0) {
+        registros.push_back(linea);
+      } // Fin de ver si no es una línea vacía
+    } // Fin de meter líneas del .txt al vector
+  } else {
+    system("cls"); cout << "Error de base de datos.";
+  } // Fin de comprobar si el archivo existe
+} // Fin de crear un arreglo con todos los registros
+
+string consultaRapida(
+/* La tabla     */string archivo,
+/* Criterios de */int campoBuscado,
+/*   filtrado.  */string valorBuscado,
+/* Consulta     */int campoConsultado
+                     ) {
+  vector<string> registroTemporal;
+  fstream tabla; string linea, resultado = "null";
+
+  tabla.open(archivo.c_str(), ios::in);
+  if (tabla.is_open()) {
+    while(getline(tabla, linea)) {
+      // Grabar celdas en el "registro temporal"
+      registroTemporal = separarLinea(linea, ';');
+      /* Si el registro en el campo buscado
+      coincide con nuestra búsqueda, devolver
+      lo que haya en el campo consultado   */
+      if (registroTemporal[campoBuscado].compare(valorBuscado) == 0) {
+        resultado = registroTemporal[campoConsultado];
+        break; // Finaliza la lectura del archivo
+      } // Fin de omitir línea en el temporal
+
+      // Limpiar registro temporal
+      registroTemporal.clear();
+    } // Fin de meter líneas del .txt al vector
+    tabla.close(); return resultado;
+  } else {
+    system("cls"); cout << "Error de base de datos con: " << archivo;
+  } // Fin de comprobar si el archivo existe
+} // Fin de consultar un campo a través de una búsqueda
+
+
+
+/* ======================================================
+|||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
+=======================================================*/
+
+bool autenticar(string nombre, string clave) {
+  // Arreglo 'usuario' -> [0] Nombre - [1] Clave
+  fstream tablaUsuarios;   string linea;
+  vector<string> registro; bool coinciden = false;
+
+  tablaUsuarios.open("usuarios.txt", ios::in);
+  if (tablaUsuarios.is_open()) {
+    while(getline(tablaUsuarios, linea)) {
+      registro = separarLinea(linea, ';');
+      if (nombre.compare(registro[0]) == 0 &&
+          clave.compare(registro[1]) == 0
+         ) { // Si coinciden nombre y clave
+        coinciden = true; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaUsuarios.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return coinciden;
+} // Fin de autenticar usuarios
+
+/* ======================================================
+|||||||||||   COMPLEMENTOS DE MENÚ REGISTRO   |||||||||||
+=======================================================*/
+
+bool nombreDisponible(string nombre) {
+  fstream tablaUsuarios;   string linea;
+  vector<string> registro; bool disponible = true;
+
+  tablaUsuarios.open("usuarios.txt", ios::in);
+  if (tablaUsuarios.is_open()) {
+    while(getline(tablaUsuarios, linea)) {
+      registro = separarLinea(linea, ';');
+      if (nombre.compare(registro[0]) == 0) {
+        disponible = false; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaUsuarios.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return disponible;
+} // Fin de si un nombre de usuario está libre para usar
+
+/* ======================================================
+|||||||||||  COMPLEMENTOS DE MENÚ MEMBRESÍAS  |||||||||||
+=======================================================*/
+
+bool realizarGasto(string usuario, int monto) {
+  string dinero; int credito;
+
+  // Consultar el crédito del usuario y almacenarlo
+  dinero = consultaRapida("usuarios.txt", 0, usuario, 3);
+  credito = atoi(dinero.c_str());
+
+  // Comprobar si se puede realizar la compra
+  if (monto <= credito) {
+    credito -= monto;
+    // Actualizar la base de datos ya realizado el gasto
+    modificarRegistro("usuarios.txt", 3,
+      enteroATexto(credito), 0, usuario);
+    return true;
+  } else { // No le alcanza
+    return false;
+  } // Fin de comprobar si tiene dinero
+} // Fin de sustraer un gasto al crédito de un usuario
+
+void nuevaMembresia(string usuario, string expiracion) {
+  string nuevoMiembro;
+
+  nuevoMiembro =  usuario    + ";" +
+                  expiracion + ";" +
+                  "null;null;null"; // Usuario afiliado
+
+  insertarRegistro("membresias.txt", nuevoMiembro);
+} // Fin de afiliar usuario a Blockbuster
+
+bool tieneMembresia(string usuario) {
+  fstream tablaMiembros;   string linea;
+  vector<string> registro; bool afiliado = false;
+
+  tablaMiembros.open("membresias.txt", ios::in);
+  if (tablaMiembros.is_open()) {
+    while(getline(tablaMiembros, linea)) {
+      registro = separarLinea(linea, ';');
+      if (usuario.compare(registro[0]) == 0) {
+        afiliado = true; break;
+      } // Fin de comparar registros
+      registro.clear();
+    } // Fin de meter líneas del .txt al vector
+    tablaMiembros.close();
+  } else {
+    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+  } // Fin de comprobar si el archivo existe
+
+  return afiliado;
+}
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 
@@ -147,12 +314,12 @@ Tabla: USUARIOS (usuarios.txt)
 |     USUARIO     |    CONTRASEÑA   |  PERMISOS  |  CREDITO  |
 |=================|=================|============|============
 | alfanumérico    | alfanumérico    |  empleado  |  integer  |
-| de 6 a 20 chars | de 6 a 20 chars |  cliente   |           |
+| de 6 a 18 chars | de 6 a 18 chars |  cliente   |           |
 ==============================================================
 Nota: Cuando se cree un usuario, inicializarlo con 0 (MXN).
 Los empleados tendrán un valor en el campo CREDITO de "null".
 
-Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [6] RENTA N => N películas rentadas (5)...
+Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [4] RENTA N => N películas rentadas (3)...
 ------------------------------------------------------------------------------------------------------------
 |       [0]       |       [1]      |          [2]          |          [3]          |          [4]          |
 ============================================================================================================
@@ -165,6 +332,6 @@ Tabla: MEMBRESÍAS (membresias.txt)                         [2] -> [6] RENTA N =
 ============================================================================================================
 |                 |                |  [2][0]  |   [2][1]   |  [3][0]  |   [3][1]   |  [4][0]  |   [4][1]   |
 ------------------------------------------------------------------------------------------------------------
-Nota: Inicializar cada membresía en los campos del index [2] al [6] con el sub-arreglo "null,null".
+Nota: Inicializar cada membresía en los campos del index [2] al [4] con el sub-arreglo "null,null".
 
 FIN DE VISUALIZACIÓN DE BASE DE DATOS */

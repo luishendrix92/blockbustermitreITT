@@ -63,7 +63,7 @@ int main() {
     pelis.push_back("Orient Express");
     pelis.push_back("Caballeros de la mesa redonda");
 
-    while (true) {
+    while(true) {
       // Guarda la tecla presionada
       char tecla = getch();
       // Si se presiona backspace o delete, reiniciar el input
@@ -76,7 +76,7 @@ int main() {
 
       reset("resultados");
 
-      // Buscar las pelìculas y mostrarlas en pantala
+      // Buscar las películas y mostrarlas en pantala
       for (int i=0, j=1; i < pelis.size(); i+=1) {
         if (encontrarTexto(criterio, pelis[i])) {
             gotoxy(30, j);

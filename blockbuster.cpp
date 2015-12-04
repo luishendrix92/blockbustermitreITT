@@ -6,29 +6,41 @@
 #include <fstream>
 #include <windows.h>
 #include <stdio.h>
+#include <cstdlib>
 #include <sstream>
-//#include <math.h>
-#include "color.h"
+#include <ctime>
+//#include "color.h"
 #include "utilerias.cpp"
-#include "render.cpp"
 #include "database.cpp"
-//#include "secciones.cpp"
+#include "render.cpp"
+#include "menus.cpp"
 
 int main() {
-  int opcion;
+  char tecla; int boton = 0, dir;
+  int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
 
   // Darle título a la ventana del programa
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
+  // Renderizar intro y menú principal
+  /*intro(280);*/ dibujarMenu("1_principal");
 
-  intro(280);
-  dibujarMenu("1_principal"); getch();
-  dibujarMenu("1_principal_registro"); getch();
-  dibujarMenu("1_principal_login"); getch();
-  dibujarMenu("2_clientes"); getch();
-  dibujarMenu("2.1_renta_f1"); getch();
-  dibujarMenu("2.3_membresias_nuevo"); getch();
-  dibujarMenu("2.4_catalogo_f1"); getch();
-  dibujarMenu("2.4_catalogo_f2"); getch();
-  
-  system("cls");
+  // Manejo de teclas direccionales y 'ENTER'
+  while (tecla != 27) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if(tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) { // Der-Izq-Tab
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento("1_principal", orden[dir][boton]);
+        boton = orden[dir][boton];
+      } else if (tecla == 13) { // 'ENTER'
+        switch(boton) {
+          case 0: menu::registro(); boton=0; break;
+          case 1: menu::login();    boton=0; break;
+        } // Fin de lanzar menú adecuado
+      } // Fin de reaccionar a teclas
+    } // Fin de selección de tecla
+  } // Fin de pedir tecla y terminar al presionar 'ESC'
+
+  /*despedida();*/ system("cls"); return 0;
 } // Fin del programa
