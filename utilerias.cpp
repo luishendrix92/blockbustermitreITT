@@ -5,12 +5,12 @@
 using namespace std;
 
 void gotoxy(int x, int y) {
-  HANDLE hcon;  
-  hcon    = GetStdHandle(STD_OUTPUT_HANDLE);  
-  COORD  dwPos;  
-  dwPos.X = x;  
-  dwPos.Y = y;  
-  SetConsoleCursorPosition(hcon,dwPos);  
+  HANDLE hcon;
+  hcon    = GetStdHandle(STD_OUTPUT_HANDLE);
+  COORD  dwPos;
+  dwPos.X = x;
+  dwPos.Y = y;
+  SetConsoleCursorPosition(hcon,dwPos);
 } // Fin de añadir GoToXY
 
 bool encontrarTexto(string buscado, string dondeBuscar) {
@@ -26,7 +26,7 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
 } // Fin de buscar strings en otras
 
 vector<string> separarLinea(string linea, char separador) {
-  // Declarar un string stream para extraer texto de éste 
+  // Declarar un string stream para extraer texto de éste
   istringstream copia(linea);
   vector<string> registro;
   string celda;
@@ -54,20 +54,20 @@ string unirRegistro(vector<string> registro, string separador) {
 string enteroATexto(int numero) {
   string numTexto = "";
   stringstream entero;
-  
+
   entero << numero;
   numTexto += entero.str();
-  
+
   return numTexto;
 } // Convertir tipo "int" a "string"
 
 string floatATexto(float numero) {
   string numTexto = "";
   stringstream flotante;
-  
+
   flotante << numero;
   numTexto += flotante.str();
-  
+
   return numTexto;
 } // Convertir tipo "int" a "string"
 
@@ -182,7 +182,7 @@ string sumarMeses(string fecha, short int meses) {
       mes = (meses - (12 * difYears)) - (12 - mes);
     } else {
       year += meses / 12;
-    } // Fin de comprobar aumento de 12 meses, 24, 36... etc  
+    } // Fin de comprobar aumento de 12 meses, 24, 36... etc
   } else {
     mes += meses; // Sumar los meses
   } // Fin de sumar meses sin pasarse de diciembre

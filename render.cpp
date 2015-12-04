@@ -1,7 +1,7 @@
-/*=================================================
-    Rendereado de texto y marcos
-    para la ventana de consola.
-================================================= */
+/*========================================================
+    Renderizado de texto, marcos, ASCII Art y
+    animaciones para la ventana de consola.
+========================================================*/
 void dibujarBordes() {
   int tamHorizontal = 78, tamVertical = 23;
 
@@ -278,7 +278,7 @@ void dibujarMenu(string menu) {
     gotoxy(34,20);  cout<<"===============";
     // Mover cursor al botón default (AFILIARME)
     gotoxy(37,19);
-  } else if(menu.compare("2.3_membresias_ctrl")  == 0) {
+  } else if(menu.compare("2.3_membresias_ctrl") == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto
     gotoxy(31,2);   cout<<"MEMBRES"<<char(161)<<"AS: DETALLES ";
@@ -444,11 +444,10 @@ void dibujarMenu(string menu) {
     gotoxy(5,20);  cout<<"L"<<char(161)<<"mite: $9999.0";
     gotoxy(36,9);  cout<<"Monto abonado:";
     gotoxy(36,10); cout<<"$";
-    gotoxy(5,23);  cout<<"Para volver al men"<<char(163)<<
-    " anterior, presiona <ESC>.";
+    gotoxy(5,23);  cout<<"Utiliza las teclas direccionales para moverte.";
     // Renderizado de recuadros
     gotoxy(5,15);  cout<<"*-----------*";
-    gotoxy(5,16);  cout<<"|           |";
+    gotoxy(5,16);  cout<<"|$          |";
     gotoxy(5,17);  cout<<"*-----------*";
     gotoxy(5,10);  cout<<"*------------------*";
     gotoxy(5,11);  cout<<"|                  | ";
@@ -461,8 +460,6 @@ void dibujarMenu(string menu) {
     gotoxy(36,17); cout<<"------------  --------------";
     gotoxy(36,18); cout<<"|  ABONAR  |  |  CANCELAR  |";
     gotoxy(36,19); cout<<"------------  --------------";
-    // Colocar cursor en el input default (Monto abonado)
-    gotoxy(37,10);
   } else if (menu.compare("3_empleados")  == 0) {
     system("cls");
     cout << "Menu de empleados!" << endl;
@@ -514,8 +511,13 @@ void limpiarZona(string menu, int zona) {
       gotoxy(x,y);  cout<<"                                    ";
                     cout<<"                                   ";
     }
-  } else if (menu.compare("2.5_credito_f2") == 0) {
-    //
+  } else if (menu.compare("2.5_credito") == 0) {
+    switch(zona) {
+      case 0: // Usuario y monto
+        gotoxy(6,11); cout << "                  ";
+        gotoxy(7,16); cout << "         ";
+      break;
+    }
   } // Fin de revisar en qué menú trabajar
 } // Fin de borrar zonas de contenido
 
@@ -759,11 +761,16 @@ void enfocarElemento(string menu, int elemento) {
     }
   } else if (menu.compare("2.5_credito_f2") == 0) {
     switch(elemento) {
-      case 0: gotoxy(37,10); break;
-      case 1: gotoxy(52,10); break;
-      case 2: gotoxy(37,14); break;
-      case 3: gotoxy(39,18); break;
-      case 4: gotoxy(53,18); break;
+      case 0: // Monto abonado
+        gotoxy(37,10); break;
+      case 1: // Beneficiario (Opcional)
+        gotoxy(52,10); break;
+      case 2: // Checkbox
+        gotoxy(37,14); break;
+      case 3: // Abonar
+        gotoxy(39,18); break;
+      case 4: // Cancelar
+        gotoxy(53,18); break;
     }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
@@ -907,6 +914,8 @@ void mostrarCredito(string usuario) {
   string credito = consultaRapida(
     "usuarios.txt", 0, usuario, 3
   ); // Fin de almacenar el crédito del usuario
+
+  limpiarZona("2.5_credito", 0);
 
   gotoxy(6,11); cout << usuario;
   gotoxy(7,16); cout << credito;
@@ -1131,3 +1140,17 @@ void despedida() {
   cout <<" .   .       .      :  .   .: ::/  .  .::\\"<< endl;
   Sleep(2000);
 } // Fin de ticket de despedida
+
+/*cout<<"            _.-'~~`~~'-._"          ;
+cout<<"         .'`  B   E   R  `'."       ;
+cout<<"        / I               T \\"     ;
+cout<<"      /`       .-'~\"-.       `\\"  ;
+cout<<"     ; L      / `-    \\      Y ;"  ;
+cout<<"    ;        />  `.  -.|        ;"  ;
+cout<<"    |       /_     '-.__)       |"  ;
+cout<<"    |        |-  _.' \\ |        |" ;
+cout<<"    ;        `~~;     \\\\        ;";
+cout<<"     ;  INGODWE /      \\\\)P    ;" ;
+cout<<"      \\  TRUST '.___.-'`\"     /"  ;
+cout<<"       `\\                   /`"    ;
+cout<<"         '._   1 9 9 7   _.'"       ;*/

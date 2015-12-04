@@ -1,6 +1,6 @@
 /*=================================================
     Manejo de base de datos de
-    lectura y escritura con .txt. 
+    lectura y escritura con .txt.
 ================================================= */
 
 /* La siguiente función emula el comportamiento de un query en SQL
@@ -176,8 +176,6 @@ string consultaRapida(
   } // Fin de comprobar si el archivo existe
 } // Fin de consultar un campo a través de una búsqueda
 
-
-
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
 =======================================================*/
@@ -284,6 +282,23 @@ bool tieneMembresia(string usuario) {
 
   return afiliado;
 }
+
+/* ======================================================
+|||||||||||    COMPLEMENTOS DE MENÚ CRÉDITO   |||||||||||
+=======================================================*/
+
+void abonarCredito(string beneficiario, int credito) {
+  string creditoActual = consultaRapida(
+    "usuarios.txt", 0, beneficiario, 3
+  ); // Fin de almacenar el crédito actual
+
+  credito += atoi(creditoActual.c_str());
+  string nuevoCredito = enteroATexto(credito);
+
+  modificarRegistro(
+    "usuarios.txt", 3, nuevoCredito, 0, beneficiario
+  ); // Fin de abonar crédito al beneficiario
+} // Fin de sumar crédito a un beneficiario
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
 

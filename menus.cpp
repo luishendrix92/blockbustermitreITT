@@ -12,8 +12,6 @@ void comprar() {
 void membresiasControl(string usuario) {
   dibujarMenu("2.3_membresias_ctrl");
   getch();
-  dibujarMenu("2.3_membresias_devol");
-  getch();
 } // Fin de panel de control de membresía
 
 void membresiasAfiliacion(string usuario) {
@@ -80,15 +78,16 @@ void membresiasAfiliacion(string usuario) {
 } // Fin de complemento menu::membresias
 
 void membresias(string usuario) {
-  dibujarMenu("2.3_membresias_nuevo");
   // Variables para los valores del input
-  char tecla; int dir, btn = 0;
-  /* 0: Botón 'Afiliarme' - 1: Botón 'Reglas'*/
+  int dir, btn = 0; char tecla;
+  /* 0: 'Afiliarme' - 1: 'Reglas' */
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
 
   if (tieneMembresia(usuario)) {
      menu::membresiasControl(usuario);
      tecla = 27; // Previene mostrar opción de afiliarse
+  } else { // No está afiliado aún
+    dibujarMenu("2.3_membresias_nuevo");
   } // Fin de revisar si ya está afiliado
 
   while(tecla != 27) { // Tecla NO es 'ESC'
@@ -129,27 +128,49 @@ void abonar(string usuario) {
   // variables necesarias
   int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
   {3,4,0,2,1}, {2,4,3,0,1}};
-  int dir, input = 0; char tecla;
-  bool beneficiario = false;
+  int dir, input = 0, monto = 300; char tecla;
+  bool beneficiario = false; string destinatario;
 
   // Mostrar el usuario y su crédito en pantalla
-  mostrarCredito(usuario); gotoxy(39,10);
+  mostrarCredito(usuario); gotoxy(37,10);
 
   while (tecla != 27) { // Tecla NO es 'ESC'
     tecla = getch();
     if(tecla == 0) { tecla = getch(); } else {
       if ( /* Direccional o ENTER sin estar en botones */
         esDireccional(tecla) ||
-        (tecla == 13 && (input != 3 && input != 4))
+        (tecla == 13 && // ENTER en los cuadros de texto
+        (input != 4 && input != 3 && input != 2))
       ) {  /* Direccional o ENTER sin estar en botones */
-        // Desplazarse entre botones
         dir = obtenerDireccion(tecla);
-        enfocarElemento(
-          "2.5_credito_f2", orden[dir][input]
-        ); // Fin de enfocar inputs
-        input = orden[dir][input];
+        /* Prevenir el enfoque del campo de texto
+        'beneficiario' si no se ha marcado esa opción */
+        if (!beneficiario && orden[dir][input] == 1) {
+          /* Saltarse el siguiente input en caso de que
+          el siguiente sea el campo 'Beneficiario' */
+          input = orden[dir][input];
+        } // Fin de comprobar el checkbox
+          enfocarElemento(
+            "2.5_credito_f2", orden[dir][input]
+          ); // Fin de enfocar inputs
+          input = orden[dir][input];
       } else if (tecla == 13) { // 'ENTER'
-        cout << "ENTER";
+        switch(input) {
+          case 2: // Checkbox 'Regalar Crédito'
+            // Activar/Desactivar la opción de abonar a otro
+            beneficiario = !beneficiario; break;
+          case 3: // Botón 'Abonar'
+            if (beneficiario) {
+              abonarCredito(destinatario, monto);
+            } else { // El crédito es para el usuario
+              abonarCredito(usuario, monto);
+              mostrarCredito(usuario);
+              gotoxy(39,18); // Puntero de vuelta en botón
+            } // Fin de ver a quién abonar el crédito
+            beneficiario = false;         break;
+          case 4: // Botón 'Cancelar'
+            tecla = 27; break; // Salir
+        }
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
   } // Fin de pedir tecla y terminar al presionar 'ESC'
