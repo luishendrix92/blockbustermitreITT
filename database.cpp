@@ -1,7 +1,13 @@
 /*=================================================
     Manejo de base de datos de
     lectura y escritura con .txt.
-================================================= */
+==================================================*/
+#define NOMBRE  0
+#define CLAVE   1
+#define ROL     2
+#define CREDITO 3
+#define CLIENTE 0
+#define EXPIR   1
 
 /* La siguiente  función emula el comportamiento de un query en SQL
 que modifica un registro en una tabla de una base de datos:
@@ -189,8 +195,8 @@ bool autenticar(string nombre, string clave) {
   if (tablaUsuarios.is_open()) {
     while(getline(tablaUsuarios, linea)) {
       registro = separarLinea(linea, ';');
-      if (nombre.compare(registro[0]) == 0 &&
-          clave.compare(registro[1]) == 0
+      if (nombre.compare(registro[NOMBRE]) == 0 &&
+          clave.compare(registro[CLAVE]) == 0
          ) { // Si coinciden nombre y clave
         coinciden = true; break;
       } // Fin de comparar registros
@@ -216,7 +222,7 @@ bool nombreDisponible(string nombre) {
   if (tablaUsuarios.is_open()) {
     while(getline(tablaUsuarios, linea)) {
       registro = separarLinea(linea, ';');
-      if (nombre.compare(registro[0]) == 0) {
+      if (nombre.compare(registro[NOMBRE]) == 0) {
         disponible = false; break;
       } // Fin de comparar registros
       registro.clear();
@@ -237,17 +243,21 @@ bool realizarGasto(string usuario, int monto) {
   string dinero; int credito;
 
   // Consultar el crédito del usuario y almacenarlo
-  dinero = consultaRapida("usuarios.txt", 0, usuario, 3);
+  dinero  = consultaRapida(
+    "usuarios.txt", NOMBRE, usuario, CREDITO
+  ); // Fin de almacenar crédito del usuario
   credito = atoi(dinero.c_str());
+  dinero  = enteroATexto(credito);
 
   // Comprobar si se puede realizar la compra
   if (monto <= credito) {
     credito -= monto;
     // Actualizar la base de datos ya realizado el gasto
-    modificarRegistro("usuarios.txt", 3,
-      enteroATexto(credito), 0, usuario);
+    modificarRegistro(
+      "usuarios.txt", CREDITO, dinero, NOMBRE, usuario
+    ); // Fin de restarle dinero al usuario
     return true;
-  } else { // No le alcanza
+  } else { // No le alcanzó
     return false;
   } // Fin de comprobar si tiene dinero
 } // Fin de sustraer un gasto al crédito de un usuario
@@ -270,7 +280,7 @@ bool tieneMembresia(string usuario) {
   if (tablaMiembros.is_open()) {
     while(getline(tablaMiembros, linea)) {
       registro = separarLinea(linea, ';');
-      if (usuario.compare(registro[0]) == 0) {
+      if (usuario.compare(registro[CLIENTE]) == 0) {
         afiliado = true; break;
       } // Fin de comparar registros
       registro.clear();
@@ -281,7 +291,7 @@ bool tieneMembresia(string usuario) {
   } // Fin de comprobar si el archivo existe
 
   return afiliado;
-}
+} // Fin de verificar si ya es miembro
 
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ CRÉDITO   |||||||||||
@@ -289,15 +299,17 @@ bool tieneMembresia(string usuario) {
 
 void abonarCredito(string beneficiario, int credito) {
   string creditoActual = consultaRapida(
-    "usuarios.txt", 0, beneficiario, 3
+    "usuarios.txt", NOMBRE, beneficiario, CREDITO
   ); // Fin de almacenar el crédito actual
+  int creditoUsuario   = atoi(creditoActual.c_str());
 
-  credito += atoi(creditoActual.c_str());
-  string nuevoCredito = enteroATexto(credito);
-
-  modificarRegistro(
-    "usuarios.txt", 3, nuevoCredito, 0, beneficiario
-  ); // Fin de abonar crédito al beneficiario
+  if (credito + creditoUsuario <= 9999) {
+    credito += creditoUsuario;
+    string nuevoCredito = enteroATexto(credito);
+    modificarRegistro(
+      "usuarios.txt", CREDITO, nuevoCredito, NOMBRE, beneficiario
+    ); // Fin de abonar crédito al beneficiario
+  } // Fin de evitar superar $9999.00
 } // Fin de sumar crédito a un beneficiario
 
 /* VISUALIZACIÓN DE LAS 3 TABLAS EN LA BASE DE DATOS:
@@ -311,7 +323,7 @@ Tabla: PELÍCULAS (peliculas.txt)
 ================================================================================================================
 | ID  | TITULO |  AÑO  | GÉNERO  | STATUS  | DURACIÓN | PRECIO | STOCK |          PÁRRAFO DE SINOPSIS          |
 ======|========|=======|=========|=========|==========|========|=======|=======================================|
-| 000 | string | aaaa  | Comedia | Estreno | minutos  | float  | intgr | LINEA 1 | LINEA 2 | LINEA 3 | LINEA 4 |
+| 000 | string | aaaa  | Comedia | Estreno | minutos  | intgr  | intgr | LINEA 1 | LINEA 2 | LINEA 3 | LINEA 4 |
 | 001 |        |       | Horror  | Remate  |          |        |       |=========|=========|=========|=========|
 |     |        |       | Accion  | Normal  |          |        |       | string  | string  | string  | string  |
 |     |        |       | Drama   |         |          |        |       |         |         |         |         |

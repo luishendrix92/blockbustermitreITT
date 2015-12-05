@@ -1,8 +1,18 @@
 /*=================================================
     Pequeñas funciones que permiten
     realizar tareas útiles y repetitivas
-================================================= */
+==================================================*/
 using namespace std;
+
+#define IZQ    75
+#define DER    77
+#define ARR    72
+#define ABJ    80
+#define TAB    9
+#define ENTER  13
+#define ESC    27
+#define BCKSP  8
+#define DEL    224
 
 void gotoxy(int x, int y) {
   HANDLE hcon;
@@ -17,11 +27,15 @@ bool encontrarTexto(string buscado, string dondeBuscar) {
   size_t encontrado;
 
   // Convertir las cadenas a minúsculas para evitar conflictos
-  transform(buscado.begin(), buscado.end(), buscado.begin(), ::tolower);
-  transform(dondeBuscar.begin(), dondeBuscar.end(), dondeBuscar.begin(), ::tolower);
+  transform(
+    buscado.begin(), buscado.end(), buscado.begin(), ::tolower
+  ); // Fin de convertir a minúsculas
+  transform(
+    dondeBuscar.begin(),dondeBuscar.end(),dondeBuscar.begin(),::tolower
+  ); // Fin de convertir a minúsculas
+
   // Buscar la cadena "buscado" en "dondeBuscar"
   encontrado = dondeBuscar.find(buscado);
-
   return (encontrado!=string::npos) ? true : false;
 } // Fin de buscar strings en otras
 
@@ -80,17 +94,17 @@ bool esAlfaNum(char tecla) {
   ); // Revisa rangos de caracteres ASCII
 } // Fin de ver si una tecla es alfanumérica
 
-bool esNumerico(char tecla) {
+bool esNumerica(char tecla) {
   return  ( // [0-9 | \d+]
     (tecla >= 48 && tecla <= 57)
   ); // Revisa rangos de caracteres ASCII
 } // Fin de ver si una tecla es numérica
 
 bool esDireccional(char tecla) {
-  return  ( // Tab, Izq, Der, Arr, Abj
-    tecla == 77 || tecla == 75 ||
-    tecla == 72 || tecla == 80 ||
-    tecla == 9 /* Tab */
+  return  (
+    tecla == IZQ  || tecla == DER ||
+    tecla == ARR  || tecla == ABJ ||
+    tecla == TAB
   ); // Fin de comprobar tecla
 } // Fin de ver si una tecla es TAB o flecha
 
@@ -98,15 +112,15 @@ int obtenerDireccion(char tecla) {
   /* ROL DE DIRECCIONES
   =========================
   0: Derecha - 1: Izquierda
-  2: Arriba - 3: Abajo   */
+  2: Arriba  - 3: Abajo  */
   int direccion;
   switch(tecla) {
-    case 77: direccion = 0; break;
-    case 13: direccion = 0; break;
-    case 9:  direccion = 0; break;
-    case 75: direccion = 1; break;
-    case 72: direccion = 2; break;
-    case 80: direccion = 3; break;
+    case DER:   direccion = 0; break;
+    case ENTER: direccion = 0; break;
+    case TAB:   direccion = 0; break;
+    case IZQ:   direccion = 1; break;
+    case ARR:   direccion = 2; break;
+    case ABJ:   direccion = 3; break;
     default: // No se dio tecla correcta
       system("cls"); cout << "Error de utileria";
   } // Fin de establecer dirección
@@ -120,7 +134,7 @@ int elementoFecha(string elemento) {
          mes    = fecha->tm_mon + 1,
          diaMes = fecha->tm_mday;
 
-  if (elemento.compare("year") == 0) {
+  if (elemento.compare("year")       == 0) {
     // Año desde 1900 (+1900)
     return year;
   } else if (elemento.compare("mes") == 0) {
@@ -226,6 +240,59 @@ string cuandoExpira(short int duracion) {
   return fechaExpiracion;
 } // Fin de fecha de expiración de membresía nueva
 
+/*=======================================================
+|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO   |||||||||||
+=======================================================*/
+
+vector<vector<int> > paginacion(int cantElem, int maxElem) {
+  vector<vector<int> > rolPaginas;
+  vector<int> pagina; int nPaginas;
+
+  if(cantElem % maxElem == 0) {
+    // Cada página estará llena por igual
+    nPaginas = cantElem / maxElem;
+  } else {
+    // Habrá una página extra
+    nPaginas = (cantElem / maxElem) + 1;
+  } // Fin de establecer número de páginas
+
+  for (int i = 0; i < nPaginas; i+=1) {
+    pagina.push_back(i*maxElem);
+    if (i+1 == nPaginas) { // Única o última página
+      pagina.push_back((i*maxElem) + (cantElem-(i*maxElem+1)));
+    } else { // Las páginas anteriores
+      pagina.push_back((i*maxElem) + (maxElem-1));
+    } // Fin de verificar la última página
+    rolPaginas.push_back(pagina); pagina.clear();
+  } // Fin de crear nuevas páginas
+
+  return rolPaginas;
+} // Fin de manejar paginación vertical
+
+string obtenerGenero(int id) {
+  string genero;
+
+  switch(id) {
+    case 0:  genero = "Horror";     break;
+    case 1:  genero = "Sci-Fi";     break;
+    case 2:  genero = "Drama";      break;
+    case 3:  genero = "Aventura";   break;
+    case 4:  genero = "Accion";     break;
+    case 5:  genero = "Biografia";  break;
+    case 6:  genero = "Comedia";    break;
+    case 7:  genero = "Romance";    break;
+    case 8:  genero = "Documental"; break;
+    case 9:  genero = "Estrenos";   break;
+    case 10: genero = "En remate";  break;
+  }
+
+  return genero;
+} // Fin de devolver la lista de generos
+
+/*=======================================================
+|||||||||||      MELODÍAS CON Beep(Hz,s)      |||||||||||
+=======================================================*/
+
 void marchaImperial() {
   // Crédito de la canción en console::beep() ->
   // social.technet.microsoft.com/wiki/contents/articles/
@@ -251,78 +318,36 @@ void marchaImperial() {
 } // Fin de canción de Star Wars
 
 void finalFantasy(float velocidad) {
-  Beep(987,(200 * velocidad)); // B5
-  Beep(987,(200 * velocidad)); // B5
-  Beep(987,(200 * velocidad)); // B5
-  Beep(987,(500 * velocidad)); // B5
-  Beep(787,(500 * velocidad)); // G5
-  Beep(880,(600 * velocidad)); // A5
-  Beep(987,(400 * velocidad)); // B5
-  Beep(880,(150 * velocidad)); // A5
-  Beep(987,(700 * velocidad)); // B5
+  Beep(987,(200 * velocidad));  // B5
+  Beep(987,(200 * velocidad));  // B5
+  Beep(987,(200 * velocidad));  // B5
+  Beep(987,(800 * velocidad));  // B5
+  Beep(787,(700 * velocidad));  // G5
+  Beep(880,(600 * velocidad));  // A5
+  Beep(987,(400 * velocidad));  // B5
+  Beep(880,(150 * velocidad));  // A5
+  Beep(987,(1100 * velocidad)); // B5
 } // Fin de 'victory fanfare'
 
 void lostWoods() {
-  Beep(698,200); // F5
-  Beep(880,200); // A5
-  Beep(987,450); // B5
-  Beep(698,200); // F5
-  Beep(880,200); // A5
-  Beep(987,450); // B5
-  Beep(698,200); // F5
-  Beep(880,200); // A5
-  Beep(987,200); // B5
-  Beep(1318,200);// E6
-  Beep(1174,550);// D6
-  Beep(987,200); // B5
-  Beep(1046,200);// C6
-  Beep(987,200); // B5
-  Beep(783,200); // G5 
-  Beep(659,700); // E5
-  Beep(587,200); // D5
-  Beep(659,200); // E5
-  Beep(783,200); // G5
-  Beep(659,700); // E5
+  Beep(698,200);  // F5
+  Beep(880,200);  // A5
+  Beep(987,450);  // B5
+  Beep(698,200);  // F5
+  Beep(880,200);  // A5
+  Beep(987,450);  // B5
+  Beep(698,200);  // F5
+  Beep(880,200);  // A5
+  Beep(987,200);  // B5
+  Beep(1318,200); // E6
+  Beep(1174,550); // D6
+  Beep(987,200);  // B5
+  Beep(1046,200); // C6
+  Beep(987,200);  // B5
+  Beep(783,200);  // G5
+  Beep(659,700);  // E5
+  Beep(587,200);  // D5
+  Beep(659,200);  // E5
+  Beep(783,200);  // G5
+  Beep(659,700);  // E5
 } // Fin de Lost Woods TLOZ
-
-/* ======================================================
-|||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO   |||||||||||
-=======================================================*/
-
-vector<vector<int> > paginacion(int cantElem, int maxElem) {
-  vector<vector<int> > rolPaginas; int nPaginas;
-  vector<int> pagina;
-
-  if(cantElem % maxElem == 0) {
-    // Cada página estará llena por igual
-    nPaginas = cantElem / maxElem;
-  } else {
-    // Habrá una página extra
-    nPaginas = (cantElem / maxElem) + 1;
-  } // Fin de establecer número de páginas
-
-  for (int i = 0; i < nPaginas; i+=1) {
-    pagina.push_back(i*maxElem);
-    if (i+1 == nPaginas) { // Única o última página
-      pagina.push_back((i*maxElem) + (cantElem-(i*maxElem+1)));
-    } else { // Las páginas anteriores
-      pagina.push_back((i*maxElem) + (maxElem-1));
-    } // Fin de verificar la última página
-    rolPaginas.push_back(pagina); pagina.clear();
-  } // Fin de crear nuevas páginas
-
-  return rolPaginas;
-} // Fin de manejar paginación vertical
-
-string obtenerGenero(int id) {
-  vector<string> generos;
-
-  generos.push_back("Horror");     generos.push_back("Sci-Fi");
-  generos.push_back("Drama");      generos.push_back("Aventura");
-  generos.push_back("Accion");     generos.push_back("Biografia");
-  generos.push_back("Comedia");    generos.push_back("Romance");
-  generos.push_back("Documental"); generos.push_back("Estrenos");
-  generos.push_back("En remate");
-
-  return generos[id];
-} // Fin de devolver la lista de generos

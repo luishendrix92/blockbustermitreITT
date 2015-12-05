@@ -894,38 +894,40 @@ void mostrarAviso(string aviso, string datoExtra) {
                         "#####################################";
     gotoxy(4, 5); cout<<"####################################"<<
                         "#####################################";
-    gotoxy(4, 6); cout<<"####################################"<<
-                        "#####################################";
-    gotoxy(4, 7); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4, 8); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4, 9); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,10); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,11); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,12); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,13); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,14); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,15); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,16); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,17); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,18); cout<<"##########                          "<<
-                        "                          ###########";
-    gotoxy(4,19); cout<<"####################################"<<
-                        "#####################################";
+    gotoxy(4, 6); cout<<"##########=========================="<<
+                        "==========================###########";
+    gotoxy(4, 7); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4, 8); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4, 9); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,10); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,11); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,12); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,13); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,14); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,15); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,16); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,17); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,18); cout<<"##########|                         "<<
+                        "                         |###########";
+    gotoxy(4,19); cout<<"##########=========================="<<
+                        "==========================###########";
     gotoxy(4,20); cout<<"####################################"<<
                         "#####################################";
     gotoxy(4,21); cout<<"####################################"<<
                         "#####################################";
+    gotoxy(4,22); cout<<"===================================="<<
+                        "=====================================";
     // Renderizado de regalo
     gotoxy(16,9);  cout<<"      _   _      "  ;
     gotoxy(16,10); cout<<"     ((\\o/))     " ;
@@ -950,7 +952,7 @@ void mostrarAviso(string aviso, string datoExtra) {
   }
 } // Fin de mostrar confirmaciones, pantallas y avisos
 
-void mostrarError(string tipoError, string datoExtra) {
+void mostrarError(string tipoError, string datoExtra = "") {
   if (tipoError.compare("clientes_opcion_equivocada") == 0) {
     gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
     Sleep(2500); enfocarElemento("2_clientes", 0);
@@ -1006,9 +1008,15 @@ void mostrarPagina(vector<string> pelis, int pag) {
   gotoxy(4,4);
 } // Fin de desplegar items de una página
 
-void detallesDeLaPelicula(vector<string> pelicula) {
+void detallesDeLaPelicula(string pelicula) {
   //
 } // Fin de listar los detalles de la película
+
+void moverPuntero(int cursor, int pagina) {
+  gotoxy(4,4+cursor-(11*pagina));
+  cout << ">";
+  gotoxy(4,4+cursor-(11*pagina));
+} // Fin de mover el puntero '>' al desplazarse
 
 /* =======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ CRÉDITO    |||||||||||
@@ -1016,7 +1024,7 @@ void detallesDeLaPelicula(vector<string> pelicula) {
 
 void mostrarCredito(string usuario) {
   string credito = consultaRapida(
-    "usuarios.txt", 0, usuario, 3
+    "usuarios.txt", NOMBRE, usuario, CREDITO
   ); // Fin de almacenar el crédito del usuario
 
   limpiarZona("2.5_credito", 0);
