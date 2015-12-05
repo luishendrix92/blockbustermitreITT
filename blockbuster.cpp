@@ -41,6 +41,7 @@ int main() {
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
   } // Fin de pedir tecla y terminar al presionar 'ESC'
-
+  lostWoods();
+  marchaImperial();
   /*despedida();*/ system("cls"); return 0;
 } // Fin del programa

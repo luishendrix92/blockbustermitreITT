@@ -250,6 +250,41 @@ void marchaImperial() {
   Beep(440,1000);
 } // Fin de canción de Star Wars
 
+void finalFantasy(float velocidad) {
+  Beep(987,(200 * velocidad)); // B5
+  Beep(987,(200 * velocidad)); // B5
+  Beep(987,(200 * velocidad)); // B5
+  Beep(987,(500 * velocidad)); // B5
+  Beep(787,(500 * velocidad)); // G5
+  Beep(880,(600 * velocidad)); // A5
+  Beep(987,(400 * velocidad)); // B5
+  Beep(880,(150 * velocidad)); // A5
+  Beep(987,(700 * velocidad)); // B5
+} // Fin de 'victory fanfare'
+
+void lostWoods() {
+  Beep(698,200); // F5
+  Beep(880,200); // A5
+  Beep(987,450); // B5
+  Beep(698,200); // F5
+  Beep(880,200); // A5
+  Beep(987,450); // B5
+  Beep(698,200); // F5
+  Beep(880,200); // A5
+  Beep(987,200); // B5
+  Beep(1318,200);// E6
+  Beep(1174,550);// D6
+  Beep(987,200); // B5
+  Beep(1046,200);// C6
+  Beep(987,200); // B5
+  Beep(783,200); // G5 
+  Beep(659,700); // E5
+  Beep(587,200); // D5
+  Beep(659,200); // E5
+  Beep(783,200); // G5
+  Beep(659,700); // E5
+} // Fin de Lost Woods TLOZ
+
 /* ======================================================
 |||||||||||   COMPLEMENTOS DE MENÚ CATÁLOGO   |||||||||||
 =======================================================*/

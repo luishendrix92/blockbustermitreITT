@@ -3,7 +3,7 @@
     lectura y escritura con .txt.
 ================================================= */
 
-/* La siguiente función emula el comportamiento de un query en SQL
+/* La siguiente  función emula el comportamiento de un query en SQL
 que modifica un registro en una tabla de una base de datos:
 UPDATE tabla SET campoModificado = valorNuevo WHERE campoBuscado = valorBuscado */
 

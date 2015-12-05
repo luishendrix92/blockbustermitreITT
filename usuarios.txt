@@ -5,3 +5,6 @@ luishendrix92;metalslug;empleado;null
 el_cliente;123456;cliente;84700
 usuario;padrote;cliente;8100
 colegio;sanmarin;cliente;0
+luismitre;juanpistolas;cliente;0
+podrido;manzana;cliente;0
+fanfare;ff7rulz;cliente;0

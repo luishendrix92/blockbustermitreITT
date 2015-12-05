@@ -63,6 +63,7 @@ void membresiasAfiliacion(string usuario) {
               // Si se pudo cobrar $250.00, afiliarse
               nuevaMembresia(usuario, expiracion);
               mostrarAviso("suscripcion_exitosa", usuario);
+              finalFantasy(0.7);
               tecla = 27; // Volver al menú clientes
             } else {
               // Mostrar error, saldo, costo y diferencia
@@ -532,6 +533,7 @@ void registro() {
           // Insertarlo en la base de datos
           insertarRegistro("usuarios.txt", nuevoUsuario);
           mostrarAviso("registro_exitoso", usuario);
+          finalFantasy(0.7);
           break; // Salir de este menú
         } else {
           system("cls"); cout << "Registro invalido";
