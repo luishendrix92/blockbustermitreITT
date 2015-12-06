@@ -68,8 +68,7 @@ void modificarRegistro(
     // Borrar el original y renombrar el temporal como el original
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
-    system("cls");
-    cout << "Error de base de datos con: " << archivo;
+    db_error(archivo);
   } // Fin de comprobar si el archivo existe
 } // Fin de modificar un registro en una tabla
 
@@ -101,8 +100,7 @@ void borrarRegistro(string archivo, int campoBuscado, string valorBuscado) {
     // Borrar el original y renombrar el temporal como el original
     remove(archivo.c_str()); rename("temporal.txt", archivo.c_str());
   } else {
-    system("cls");
-    cout << "Error de base de datos con: " << archivo;
+    db_error(archivo);
   } // Fin de comprobar si el archivo existe
 } // Fin de borrar registro de una tabla
 
@@ -134,7 +132,7 @@ vector<string> filtrarRegistros(
     } // Fin de meter líneas del .txt al vector
     tabla.close();
   } else {
-    system("cls"); cout << "Error de base de datos con: " << archivo;
+    db_error(archivo);
   } // Fin de comprobar si el archivo existe
 
   //if(registros.size() == 0) { registros.push_back("null"); }
@@ -165,7 +163,7 @@ vector<string> descargarTabla(string archivo) {
       } // Fin de ver si no es una línea vacía
     } // Fin de meter líneas del .txt al vector
   } else {
-    system("cls"); cout << "Error de base de datos.";
+    db_error(archivo);
   } // Fin de comprobar si el archivo existe
 } // Fin de crear un arreglo con todos los registros
 
@@ -196,7 +194,7 @@ string consultaRapida(
     } // Fin de meter líneas del .txt al vector
     tabla.close(); return resultado;
   } else {
-    system("cls"); cout << "Error de base de datos con: " << archivo;
+    db_error(archivo);
   } // Fin de comprobar si el archivo existe
 } // Fin de consultar un campo a través de una búsqueda
 
@@ -222,7 +220,7 @@ bool autenticar(string nombre, string clave) {
     } // Fin de meter líneas del .txt al vector
     tablaUsuarios.close();
   } else {
-    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+    db_error("usuarios.txt");
   } // Fin de comprobar si el archivo existe
 
   return coinciden;
@@ -247,7 +245,7 @@ bool nombreDisponible(string nombre) {
     } // Fin de meter líneas del .txt al vector
     tablaUsuarios.close();
   } else {
-    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+    db_error("usuarios.txt");
   } // Fin de comprobar si el archivo existe
 
   return disponible;
@@ -305,7 +303,7 @@ bool tieneMembresia(string usuario) {
     } // Fin de meter líneas del .txt al vector
     tablaMiembros.close();
   } else {
-    system("cls"); cout << "Error de base de datos con: usuarios.txt";
+    db_error("membresias.txt");
   } // Fin de comprobar si el archivo existe
 
   return afiliado;

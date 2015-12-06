@@ -350,3 +350,77 @@ void lostWoods() {
   Beep(783,200);  // G5
   Beep(659,700);  // E5
 } // Fin de Lost Woods TLOZ
+
+/*=======================================================
+|||||||||||    COMPLEMENTOS DE RENDERIZADO    |||||||||||
+=======================================================*/
+
+void dibujarBordes() {
+  int tamHorizontal = 78, tamVertical = 23;
+
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, (tamVertical-1)); cout<<"_";
+  } // Borde inferior
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, 3); cout<<"_";
+  } // Borde de titulo inferior
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, 1); cout<<"_";
+  } // Borde de titulo superior
+  for(int y = 2; y < tamVertical; y+=1) {
+    gotoxy((tamHorizontal-1), y); cout<<"|";
+  } // Borde lateral derecho
+  for(int y = 2; y < tamVertical; y+=1) {
+    gotoxy(3, y); cout<<"|";
+  } // Borde lateral izquierdo
+} // Fin de dibujar bordes (función de alta importancia)
+
+void prepararMensaje(string cabecera) {
+  gotoxy(14,8);  cout<<"__________________________"<<
+                         "__________________________";
+  gotoxy(15,19); cout<<"_________________________"<<
+                       "_________________________";
+  for(int y = 9; y <= 19; y+=1) {
+    gotoxy(14, y); cout<<"|";
+  } // Borde lateral izquierdo
+  for(int y = 9; y <= 19; y+=1) {
+    gotoxy(65, y); cout<<"|";
+  } // Borde lateral derecho
+
+  // Tapar con espacios lo que haya debajo
+  for(int y = 9; y <= 18; y += 1) {
+    gotoxy(15,y);
+    cout<<"                          "<<
+          "                        ";
+  } // Fin de llenar con espacios
+  gotoxy(35,10); cout << cabecera;
+  // Renderizado del botón de entendido
+  gotoxy(41,16); cout<<"===============";
+  gotoxy(41,17); cout<<"|| ENTENDIDO ||";
+  gotoxy(41,18); cout<<"===============";
+} // Fin de bordes para aviso/error
+
+void db_error(string archivo) {
+  system("cls"); system("color 4F"); // Pantalla roja
+  dibujarBordes();
+  // Libro ASCII: www.chris.com/ascii/index.php?art=objects/books
+  gotoxy(10,13); cout<<"              .__=\\__                  .__==__,"              ;
+  gotoxy(10,14); cout<<"            jf'      ~~=\\,         _=/~'      `\\,"           ;
+  gotoxy(10,15); cout<<"        ._jZ'            `\\q,   /=~             `\\__"        ;
+  gotoxy(10,16); cout<<"       j5(/                 `\\./                  V\\\\,"     ;
+  gotoxy(10,17); cout<<"     .Z))' _____              |             .____, \\)/\\"     ;
+  gotoxy(10,18); cout<<"    j5(K=~~     ~~~~\\=_,      |      _/=~~~~'    `~~+K\\\\,"  ;
+  gotoxy(10,19); cout<<"  .Z)\\/                `~=L   |  _=/~                 t\\ZL"  ;
+  gotoxy(10,20); cout<<" j5(_/.__/===========\\__   ~q |j/   .__============___/\\J(N,";
+  gotoxy(10,21); cout<<"4L#XXXL_________________XGm, \\P  .mXL_________________JXXXW8L";
+  // Renderizado de Texto
+  gotoxy(30,2);  cout << "MENSAJE DE ERROR";
+  gotoxy(10,5);  cout<<"Hubo un error al intentar abrir un archivo de texto para la";
+  gotoxy(10,6);  cout<<"extraccion o insercion de informacion. Asegurese que en la";
+  gotoxy(10,7);  cout<<"carpeta donde instalo este programa exista un archivo con el";
+  gotoxy(10,8);  cout<<"nombre correcto: [              ]";
+  gotoxy(10,10); cout<<"Presione cualquier tecla para salir del programa";
+  // Imprimir el nombre del archivo problemático
+  gotoxy(28,8);  cout << archivo; gotoxy(58,10);
+  Beep(400,800); getch();
+} // Fin de función render de alta importancia
