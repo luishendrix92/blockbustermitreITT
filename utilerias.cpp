@@ -229,10 +229,10 @@ string mesTexto(string mes) {
     case 11: return "Noviembre";  break;
     case 12: return "Diciembre";  break;
     default: return "null";
-  }
+  } // Fin de devolver el mes en cadena
 } // Fin de convertir mes numérico a textual
 
-string cuandoExpira(short int duracion) {
+string cuandoExpira(int duracion) {
   string fechaExpiracion;
 
   fechaExpiracion = sumarMeses(fechaDeHoy(), duracion);
@@ -284,8 +284,7 @@ string obtenerGenero(int id) {
     case 8:  genero = "Documental"; break;
     case 9:  genero = "Estrenos";   break;
     case 10: genero = "En remate";  break;
-  }
-
+  } // Fin de devolver el género en cadena
   return genero;
 } // Fin de devolver la lista de generos
 

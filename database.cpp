@@ -2,12 +2,30 @@
     Manejo de base de datos de
     lectura y escritura con .txt.
 ==================================================*/
-#define NOMBRE  0
-#define CLAVE   1
-#define ROL     2
-#define CREDITO 3
-#define CLIENTE 0
-#define EXPIR   1
+// Columnas de la tabla 'usuarios'
+#define NOMBRE    0
+#define CLAVE     1
+#define ROL       2
+#define CREDITO   3
+// Columnas de la tabla 'membresías'
+#define CLIENTE   0
+#define EXPIR     1
+#define RENTA1    2
+#define RENTA2    3
+#define RENTA3    4
+// Columnas de la tabla 'películas'
+#define ID        0
+#define TITULO    1
+#define YEAR      2
+#define GENERO    3
+#define STATUS    4
+#define DURACION  5
+#define PRECIO    6
+#define STOCK     7
+#define SINOP_L1  8
+#define SINOP_L2  9
+#define SINOP_L3  10
+#define SINOP_L4  11
 
 /* La siguiente  función emula el comportamiento de un query en SQL
 que modifica un registro en una tabla de una base de datos:
@@ -319,7 +337,7 @@ reservado como separador de celda. El separador "," se usará para sub-registros
 
 Tabla: PELÍCULAS (peliculas.txt)
 ----------------------------------------------------------------------------------------------------------------
-| [0] |   [1]  |  [2]  |   [3]   |   [4]   |    [5]   |   [6]  |  [7]  |                 [8]                   |
+| [0] |   [1]  |  [2]  |   [3]   |   [4]   |    [5]   |   [6]  |  [7]  |                [8->11]                |
 ================================================================================================================
 | ID  | TITULO |  AÑO  | GÉNERO  | STATUS  | DURACIÓN | PRECIO | STOCK |          PÁRRAFO DE SINOPSIS          |
 ======|========|=======|=========|=========|==========|========|=======|=======================================|
@@ -329,9 +347,9 @@ Tabla: PELÍCULAS (peliculas.txt)
 |     |        |       | Drama   |         |          |        |       |         |         |         |         |
 |     |        |       | Sci-fi  |         |          |        |       |         |         |         |         |
 ================================================================================================================
-|     |        |       |         |         |          |        |       | [8][0]  | [8][1]  | [8][2]  | [8][3]  |
+|     |        |       |         |         |          |        |       |   [8]   |   [9]   |  [10]   |  [11]   |
 ----------------------------------------------------------------------------------------------------------------
-Nota: Si en la sinopsis alguna línea no es necesaria, ponerla "null" como en: /linea1;linea2;null;null/
+Nota: Si en la sinopsis alguna línea no es necesaria, ponerla " " como en: /linea1;linea2; ; /
 en donde se puede ver que las líneas 3 y 4 están vacías, no como: /linea1;linea2;linea3;linea4/.
 
 Tabla: USUARIOS (usuarios.txt)

@@ -16,62 +16,59 @@ void membresiasControl(string usuario) {
 
 void membresiasAfiliacion(string usuario) {
   dibujarMenu("2.3_membresias_afil");
-  // Variables necesarias
-  char tecla; int dir; short int duracionMemb = 6;
-  int boton = 3; // 3: Afiliarme - 4: Cancelar
+  char tecla; int dir, duracionMemb = 6, boton = 3;
   int orden[4][2] = {{3,4},{3,4},{3,4},{3,4}};
 
-  // Paso 1: Mostrar la expiración y almacenarla
+  #define INFO       1
+  #define CONTRATO   2
+  #define COSTO_MEMB 250
+
   string expiracion = cuandoExpira(duracionMemb);
   mostrarAviso("expiracion_membresia", expiracion);
 
-  // Paso 2: ENTER -> Información
-  while(tecla != 27) { // Tecla NO es 'ESC'
+  while(tecla != ESC) { // Paso 2
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if (tecla == 13) { // 'ENTER'
-        enfocarElemento("2.3_membresias_afil", 1);
-        break;
+      if (tecla == ENTER) {
+        enfocarElemento("2.3_membresias_afil", INFO);
+        break; // Pasar al siguiente paso
       } // Fin de esperar 'ENTER'
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
 
-  // Paso 3: ENTER -> Contrato
-  while(tecla != 27) { // Tecla NO es 'ESC'
+  while(tecla != ESC) { // Paso 3
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
       if (tecla == 13) { // 'ENTER'
-        enfocarElemento("2.3_membresias_afil", 2);
-        break;
+        enfocarElemento("2.3_membresias_afil", CONTRATO);
+        break; // Pasar al siguiente paso
       } // Fin de esperar 'ENTER'
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
 
-  // Paso 4: ENTER -> Afiliarse!
-  while(tecla != 27) { // Tecla NO es 'ESC'
+  while(tecla != ESC) { // Paso 4
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if (tecla == 13) { // 'ENTER'
+      if (tecla == ENTER) {
         switch(boton) {
           case 3: // Afiliarme
-            if (realizarGasto(usuario, 250)) {
-              // Si se pudo cobrar $250.00, afiliarse
+            if (realizarGasto(usuario, COSTO_MEMB)) {
+              // Si se pudo cobrar, afiliarse
               nuevaMembresia(usuario, expiracion);
               mostrarAviso("suscripcion_exitosa", usuario);
               finalFantasy(0.7);
-              tecla = 27; // Volver al menú clientes
-            } else {
+              tecla = ESC; // Volver al menú clientes
+            } else { // No tiene suficiente dinero
               // Mostrar error, saldo, costo y diferencia
-
-            } // Fin de comprobar gasto exitoso
-          break;
+            } break; // Fin de comprobar gasto exitoso
           case 4: // Cancelar
-            tecla = 27; // Volver al menú clientes
-          break;
+            tecla = ESC; break; // Volver al menú clientes
         } // Fin de presionar botón
       } else if (esDireccional(tecla)) {
         dir = obtenerDireccion(tecla);
-        enfocarElemento("2.3_membresias_afil", orden[dir][boton]);
+        enfocarElemento(
+          "2.3_membresias_afil", orden[dir][boton]
+        ); // Fin de enfocar botones
         boton = orden[dir][boton];
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
@@ -79,39 +76,38 @@ void membresiasAfiliacion(string usuario) {
 } // Fin de complemento menu::membresias
 
 void membresias(string usuario) {
-  // Variables para los valores del input
   int dir, btn = 0; char tecla;
-  /* 0: 'Afiliarme' - 1: 'Reglas' */
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
 
   if (tieneMembresia(usuario)) {
      menu::membresiasControl(usuario);
-     tecla = 27; // Previene mostrar opción de afiliarse
+     tecla = ESC; // Previene opción de afiliarse
   } else { // No está afiliado aún
     dibujarMenu("2.3_membresias_nuevo");
   } // Fin de revisar si ya está afiliado
 
-  while(tecla != 27) { // Tecla NO es 'ESC'
+  while(tecla != ESC) {
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if (esDireccional(tecla)) { // Der-Izq-Tab
-        // Desplazarse entre botones
+      if (esDireccional(tecla)) {
         dir = obtenerDireccion(tecla);
-        enfocarElemento("2.3_membresias_nuevo", orden[dir][btn]);
+        enfocarElemento(
+          "2.3_membresias_nuevo", orden[dir][btn]
+        ); // Fin de enfocar inputs
         btn = orden[dir][btn];
-      } else if (tecla == 13) { // 'ENTER'
+      } else if (tecla == ENTER) {
         switch(btn) {
           case 0: // Afiliarme
             menu::membresiasAfiliacion(usuario);
-            tecla = 27; // Volver al menú anterior
+            tecla = ESC; // Volver al menú anterior
           break;
 
           case 1: // Reglas
             dibujarMenu("2.3_membresias_reglas");
             tecla = 0; // Para entrar en el ciclo
-            while(tecla != 13) {
+            while(tecla != ENTER) {
               tecla = getch();
-              if (tecla == 13) {
+              if (tecla == ENTER) {
                 dibujarMenu("2.3_membresias_nuevo");
                 btn = 0; // Resetear elección
               } // Fin de aceptar
@@ -126,9 +122,8 @@ void membresias(string usuario) {
 
 void abonar(string usuario) {
   dibujarMenu("2.5_credito_f2");
-  // variables necesarias
   int dir, input = 0, abono = 0; char tecla;
-  bool beneficiario = false; string destinatario, monto;
+  bool paraDonar = false; string beneficiario, monto;
   int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
   {3,4,0,2,1}, {2,4,3,0,1}};
 
@@ -138,15 +133,12 @@ void abonar(string usuario) {
   while (tecla != ESC) {
     tecla = getch();
     if(tecla == 0) { tecla = getch(); } else {
-      if ( /* Direccional o ENTER sin estar en botones */
-        esDireccional(tecla) ||
-        (tecla == ENTER && // ENTER en los cuadros de texto
-        (input != 4 && input != 3 && input != 2))
-      ) {  /* Direccional o ENTER sin estar en botones */
+      if (esDireccional(tecla) || (tecla == ENTER &&
+         (input != 4 && input != 3 && input != 2))) {
         dir = obtenerDireccion(tecla);
         /* Prevenir el enfoque del campo de texto
         'beneficiario' si no se ha marcado esa opción */
-        if (!beneficiario && orden[dir][input] == 1) {
+        if (!paraDonar && orden[dir][input] == 1) {
           /* Saltarse el siguiente input en caso de que
           el siguiente sea el campo 'Beneficiario' */
           input = orden[dir][input];
@@ -157,10 +149,10 @@ void abonar(string usuario) {
         input = orden[dir][input];
         switch(input) {
           case 0: monto.clear();         break;
-          case 1: destinatario.clear();  break;
+          case 1: beneficiario.clear();  break;
         } // Fin de resetear inputs
-      } else if (esAlfaNum(tecla) && // Tecla es alfanumérica
-      input != 2 && input != 3 & input != 4 /* NO botón */) {
+      } else if (esAlfaNum(tecla) &&
+      input != 2 && input != 3 & input != 4)       {
         switch(input) {
           case 0: // Cuadro de texto: Monto abonado
             if (monto.length() < 4 && esNumerica(tecla)) {
@@ -168,31 +160,29 @@ void abonar(string usuario) {
               gotoxy(37+monto.length(),10);
             } break;
           case 1: // Cuadro de texto: Beneficiario
-            if (destinatario.length() < 18) {
-              gotoxy(52,10); destinatario += tecla;
-              cout << destinatario;
-              gotoxy(52+destinatario.length(),10);
+            if (beneficiario.length() < 18) {
+              gotoxy(52,10); beneficiario += tecla;
+              cout << beneficiario;
+              gotoxy(52+beneficiario.length(),10);
             } break;
         } // Fin de capturar datos
-      } else if (tecla == BCKSP || tecla == DEL) {
+      } else if (tecla == BCKSP || tecla == DEL)    {
         // Limpiar cuadros de texto
         enfocarElemento("2.5_credito_f2", input);
         switch(input) {
           case 0: monto.clear();         break;
-          case 1: destinatario.clear();  break;
+          case 1: beneficiario.clear();  break;
         } // Fin de resetear inputs
       } else if (tecla == ENTER) { // 'ENTER'
         switch(input) {
           case 2: // Checkbox 'Regalar Crédito'
-            // Activar/Desactivar la opción de abonar a otro
-            activarRegalo(beneficiario);
-            beneficiario = !beneficiario;
-            destinatario.clear(); break;
+            activarBeneficiario(paraDonar);
+            paraDonar = !paraDonar;      break;
           case 3: // Botón 'Abonar'
             abono = atoi(monto.c_str());
-            if (beneficiario) {
-              abonarCredito(destinatario, abono);
-              mostrarAviso("abono_regalo", destinatario);
+            if (paraDonar) {
+              abonarCredito(beneficiario, abono);
+              mostrarAviso("abono_regalo", beneficiario);
               tecla = 0; // Permite entrar al ciclo
               while (tecla != ENTER) {
                 tecla = getch();
@@ -200,18 +190,18 @@ void abonar(string usuario) {
                   dibujarMenu("2.5_credito_f2");
                 } // Fin de aceptar
               } // Fin de esperar ENTER
-              destinatario.clear();
             } else { // El crédito es para el usuario
               abonarCredito(usuario, abono);
             } // Fin de ver a quién abonar el crédito
             mostrarCredito(usuario); input = 0;
             // Volver al primer textbox
             enfocarElemento("2.5_credito_f2", input);
-            beneficiario = false;
-            abono        = 0;
-            monto.clear(); break;
+            paraDonar = false;
+            abono     = 0;
+            beneficiario.clear();
+            monto.clear();    break;
           case 4: // Botón 'Cancelar'
-            tecla = ESC;    break; // Salir
+            tecla     = ESC;  break; // Salir
         } // Fin de asignar comportamiento a botones
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
@@ -220,26 +210,25 @@ void abonar(string usuario) {
 
 void miCredito(string usuario) {
   dibujarMenu("2.5_credito");
-  // Variables necesarias
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
   int dir, boton = 0; char tecla;
 
   // Mostrar el usuario y su crédito en pantalla
   mostrarCredito(usuario); gotoxy(39,10);
 
-  while (tecla != 27) { // Tecla NO es 'ESC'
+  while (tecla != ESC) {
     tecla = getch();
     if(tecla == 0) { tecla = getch(); } else {
-      if (esDireccional(tecla)) { // Der-Izq-Tab
+      if (esDireccional(tecla)) {
         // Desplazarse entre botones
         dir = obtenerDireccion(tecla);
         enfocarElemento("2.5_credito", orden[dir][boton]);
         boton = orden[dir][boton];
-      } else if (tecla == 13) { // 'ENTER'
+      } else if (tecla == ENTER) {
         switch(boton) {
-          case 0: menu::abonar(usuario);     boton=0;
-          tecla = 27;                        break;
-          case 1: tecla = 27;                break;
+          case 0: menu::abonar(usuario);      boton=0;
+          tecla = ESC;                        break;
+          case 1: tecla = ESC;                break;
         } // Fin de lanzar menú adecuado
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
@@ -255,7 +244,6 @@ void catalogoFrame2(string usuario, int gnrId) {
   #define INICIO   0
   #define LISTA    0
   #define PUNTEROS 1
-  #define DETALLES 2
   /*-------------------------------------------------*/
   vector<string> peliculas; /* Tabla filtrada */
   string genero = obtenerGenero(gnrId);
@@ -272,6 +260,8 @@ void catalogoFrame2(string usuario, int gnrId) {
   if (peliculas.size() > 0) { // Hay películas
     // Desplegar la primera página
     mostrarPagina(peliculas, pagActual);
+    detallesDeLaPelicula(peliculas[puntero]);
+    
     vector<vector<int> > pags = paginacion(
       peliculas.size(), FILAS
     ); // Fin de obtener rol de páginas
@@ -332,7 +322,6 @@ void catalogoFrame2(string usuario, int gnrId) {
             break;
           } // Fin de controlar flechas
           // Localizar y enfocar  el puntero '>'
-          limpiarZona("2.4_catalogo_f2", DETALLES);
           detallesDeLaPelicula(peliculas[puntero]);
           moverPuntero(puntero, pagActual)        ;
         } else if (tecla == ENTER) {
@@ -341,11 +330,7 @@ void catalogoFrame2(string usuario, int gnrId) {
       } // Fin de detectar tecla válida
     } // Fin de ciclar hasta presionar 'ESC'
   } else { // No hay películas
-    gotoxy(5,4);
-    cout << "No se encontro ninguna pelicula.";
-    gotoxy(5,5);
-    cout << "Presione cualquier tecla para volver al catalogo";
-    getch();
+    mostrarError("lista_vacia");
   } // Fin de ver si hay películas
 
   dibujarMenu("2.4_catalogo_f1");
@@ -401,7 +386,7 @@ void clientes(string usuario) {
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito
     } else { // Opción inválida
-      mostrarError("clientes_opcion_equivocada");
+      mostrarError("opcion_equivocada");
     } // Fin de comprobar error de capa 8
   } // Fin de ciclo infinito
 } // Fin de menú de clientes

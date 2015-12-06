@@ -80,18 +80,18 @@ void dibujarMenu(string menu) {
   } else if (menu.compare("1_principal_login") == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto
-    gotoxy(26,2);    cout<<"MENU PRINCIPAL BLOCKBUSTER";
-    gotoxy(5, 5);    cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
-    gotoxy(5, 6);    cout<<"Si eres nuevo en este sistema, elige la opcion \"Crear cuenta\", si";
-    gotoxy(5, 7);    cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
-    gotoxy(5, 8);    cout<<"deseas realizar cambios a la base de datos, elige \"Ingresar\".";
-    gotoxy(7, 11);   cout<<"CREAR CUENTA";
-    gotoxy(7, 13);   cout<<"INGRESAR";
-    gotoxy(5, 16);   cout<<"Presione <ESC>";
-    gotoxy(5, 17);   cout<<"para volver";
-    gotoxy(5, 18);   cout<<"atras";
-    gotoxy(23,11);   cout<<"Nombre de usuario:";
-    gotoxy(49,11);   cout<<"Contrase"<<char(164)<<"a:";
+    gotoxy(26,2);   cout<<"MENU PRINCIPAL BLOCKBUSTER";
+    gotoxy(5, 5);   cout<<"Bienvenido al sistema de rentas y compras virtual de Blockbuster.";
+    gotoxy(5, 6);   cout<<"Si eres nuevo en este sistema, elige la opcion \"Crear cuenta\", si";
+    gotoxy(5, 7);   cout<<"ya tienes una cuenta de cliente o eres empleado de Blockbuster y";
+    gotoxy(5, 8);   cout<<"deseas realizar cambios a la base de datos, elige \"Ingresar\".";
+    gotoxy(7, 11);  cout<<"CREAR CUENTA";
+    gotoxy(7, 13);  cout<<"INGRESAR";
+    gotoxy(5, 16);  cout<<"Presione <ESC>";
+    gotoxy(5, 17);  cout<<"para volver";
+    gotoxy(5, 18);  cout<<"atras";
+    gotoxy(23,11);  cout<<"Nombre de usuario:";
+    gotoxy(49,11);  cout<<"Contrase"<<char(164)<<"a:";
     gotoxy(5, 23);   cout<<"Utiliza las teclas de direccion para moverte entre campos.";
     // Renderizado de líneas
     for(int x=5; x<=69;x++)   { gotoxy(x, 10); cout<<"-"; }
@@ -113,23 +113,23 @@ void dibujarMenu(string menu) {
   } else if (menu.compare("2_clientes")  == 0) {
     system("cls"); dibujarBordes();
     // ASCII Art 'Millenial Falcon' -> http://www.chris.com/ascii/
-    gotoxy(28,5);  cout<<"                c==o"                         ;
-    gotoxy(28,6);  cout<<"              _/____\\_"                      ;
-    gotoxy(28,7);  cout<<"       _.,--'\" ||^ || \"`z._"                ;
-    gotoxy(28,8);  cout<<"      /_/^ ___\\||  || _/o\\ \"`-._"          ;
-    gotoxy(28,9);  cout<<"    _/  ]. L_| || .||  \\_/_  . _`--._"       ;
-    gotoxy(28,10); cout<<"   /_~7  _ . \" ||. || /] \\ ]. (_)  . \"`--.";
-    gotoxy(28,11); cout<<"  |__7~.(_)_ []|+--+|/____T_____________L|"   ;
-    gotoxy(28,12); cout<<"  |__|  _^(_) /^   __\\____ _   _|"           ;
-    gotoxy(28,13); cout<<"  |__| (_){_) J ]K{__ L___ _   _]"            ;
-    gotoxy(28,14); cout<<"  |__| . _(_) \v     /__________|________"    ;
-    gotoxy(28,15); cout<<"  l__l_ (_). []|+-+-<\\^   L  . _   - ---L|"  ;
-    gotoxy(28,16); cout<<"   \\__\\    __. ||^l  \\Y] /_]  (_) .  _,--'";
-    gotoxy(28,17); cout<<"     \\~_]  L_| || .\\ .\\/~.    _,--'\""     ;
-    gotoxy(28,18); cout<<"      \\_\\ . __/||  |\\  \\`-+-<'\""         ;
-    gotoxy(28,19); cout<<"        \"`---._|J__L|X o~~|[\\"              ;
-    gotoxy(28,20); cout<<"               \\____/ \\___|[//"             ;
-    gotoxy(28,21); cout<<"                `--'   `--+-'"                ;
+    gotoxy(28,5);   cout<<"                c==o"                         ;
+    gotoxy(28,6);   cout<<"              _/____\\_"                      ;
+    gotoxy(28,7);   cout<<"       _.,--'\" ||^ || \"`z._"                ;
+    gotoxy(28,8);   cout<<"      /_/^ ___\\||  || _/o\\ \"`-._"          ;
+    gotoxy(28,9);   cout<<"    _/  ]. L_| || .||  \\_/_  . _`--._"       ;
+    gotoxy(28,10);  cout<<"   /_~7  _ . \" ||. || /] \\ ]. (_)  . \"`--.";
+    gotoxy(28,11);  cout<<"  |__7~.(_)_ []|+--+|/____T_____________L|"   ;
+    gotoxy(28,12);  cout<<"  |__|  _^(_) /^   __\\____ _   _|"           ;
+    gotoxy(28,13);  cout<<"  |__| (_){_) J ]K{__ L___ _   _]"            ;
+    gotoxy(28,14);  cout<<"  |__| . _(_) \v     /__________|________"    ;
+    gotoxy(28,15);  cout<<"  l__l_ (_). []|+-+-<\\^   L  . _   - ---L|"  ;
+    gotoxy(28,16);  cout<<"   \\__\\    __. ||^l  \\Y] /_]  (_) .  _,--'";
+    gotoxy(28,17);  cout<<"     \\~_]  L_| || .\\ .\\/~.    _,--'\""     ;
+    gotoxy(28,18);  cout<<"      \\_\\ . __/||  |\\  \\`-+-<'\""         ;
+    gotoxy(28,19);  cout<<"        \"`---._|J__L|X o~~|[\\"              ;
+    gotoxy(28,20);  cout<<"               \\____/ \\___|[//"             ;
+    gotoxy(28,21);  cout<<"                `--'   `--+-'"                ;
     // Renderizado de texto
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
     gotoxy(5, 5);   cout << "Que es lo que deseas hacer?";
@@ -235,72 +235,72 @@ void dibujarMenu(string menu) {
     gotoxy(40,20); cout<<"  ^*                           * ^ "    ;
     gotoxy(40,21); cout<<"   ^ *                        * ^"      ;
     // Renderizado de texto
-    gotoxy(31,2);   cout<<"MEMBRESIAS: REGLAS";
-    gotoxy(5, 5);   cout<<"1-Devolver las peliculas rentadas";
-    gotoxy(7, 6);   cout<<"en tiempo y forma.";
-    gotoxy(5, 8);   cout<<"2-Por cada dia de retraso se";
-    gotoxy(7, 9);   cout<<"te descontara de tu credito.";
-    gotoxy(5,11);   cout<<"3-Una vez que tu membresia expire";
-    gotoxy(7,12);   cout<<"tendras que renovarla.";
-    gotoxy(5,14);   cout<<"4-Si tienes adeudos o tienes 3";
-    gotoxy(7,15);   cout<<"peliculas (limite de renta)";
-    gotoxy(7,16);   cout<<"rentadas no podras rentar.";
+    gotoxy(31,2);  cout<<"MEMBRESIAS: REGLAS";
+    gotoxy(5, 5);  cout<<"1-Devolver las peliculas rentadas";
+    gotoxy(7, 6);  cout<<"en tiempo y forma.";
+    gotoxy(5, 8);  cout<<"2-Por cada dia de retraso se";
+    gotoxy(7, 9);  cout<<"te descontara de tu credito.";
+    gotoxy(5,11);  cout<<"3-Una vez que tu membresia expire";
+    gotoxy(7,12);  cout<<"tendras que renovarla.";
+    gotoxy(5,14);  cout<<"4-Si tienes adeudos o tienes 3";
+    gotoxy(7,15);  cout<<"peliculas (limite de renta)";
+    gotoxy(7,16);  cout<<"rentadas no podras rentar.";
     // Renderizado de botones
-    gotoxy(13,18);  cout<<"===============";
-    gotoxy(13,19);  cout<<"|| ENTENDIDO ||";
-    gotoxy(13,20);  cout<<"===============";
+    gotoxy(13,18); cout<<"===============";
+    gotoxy(13,19); cout<<"|| ENTENDIDO ||";
+    gotoxy(13,20); cout<<"===============";
     // Mover cursor al botón default (AFILIARME)
     gotoxy(16,19);
   } else if(menu.compare("2.3_membresias_afil")  == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de líneas
-    gotoxy(6, 9);   cout << ".==============.";
-    gotoxy(4,11);   cout << "__"; gotoxy(6,10);   cout << "||";
-    gotoxy(6,11);   cout << "||"; gotoxy(20,10);  cout << "||";
-    gotoxy(20,11);  cout << "||"; gotoxy(36,10);  cout << "|";
-    gotoxy(48,10);  cout << "|";
+    gotoxy(6, 9);  cout << ".==============.";
+    gotoxy(4,11);  cout << "__"; gotoxy(6,10);   cout << "||";
+    gotoxy(6,11);  cout << "||"; gotoxy(20,10);  cout << "||";
+    gotoxy(20,11); cout << "||"; gotoxy(36,10);  cout << "|";
+    gotoxy(48,10); cout << "|";
     for(int x=22; x<=48; x++) {   gotoxy(x, 9);   cout <<"_"; }
     for(int x=22; x<=76; x++) {   gotoxy(x, 11);  cout <<"_"; }
-    gotoxy(36,11);  cout << "|";  gotoxy(48,11);  cout << "|";
+    gotoxy(36,11); cout << "|";  gotoxy(48,11);  cout << "|";
     // Renderizado de texto
-    gotoxy(5, 5);   cout<<"La membresia Blockbuster tiene un costo de 250 pesos.";
-    gotoxy(5, 6);   cout<<"Si no tienes suficiente dinero no podras afiliarte, sugerimos que";
-    gotoxy(5, 7);   cout<<"vayas al menu 'credito' para agregar mas fondos a tu cuenta.";
-    gotoxy(31,2);   cout<<"MEMBRESIAS: AFILIARSE";
-    gotoxy(9, 10);  cout<<"EXPIRACION";
-    gotoxy(23,10);  cout<<"INFORMACION";
-    gotoxy(38,10);  cout<<"CONTRATO";
-    gotoxy(19,14);  cout<<"Tu membresia durara seis meses y expirara el:";
-    gotoxy(27,16);  cout<<"[  ] de [          ] del [    ]";
+    gotoxy(5, 5);  cout<<"La membresia Blockbuster tiene un costo de 250 pesos.";
+    gotoxy(5, 6);  cout<<"Si no tienes suficiente dinero no podras afiliarte, sugerimos que";
+    gotoxy(5, 7);  cout<<"vayas al menu 'credito' para agregar mas fondos a tu cuenta.";
+    gotoxy(31,2);  cout<<"MEMBRESIAS: AFILIARSE";
+    gotoxy(9, 10); cout<<"EXPIRACION";
+    gotoxy(23,10); cout<<"INFORMACION";
+    gotoxy(38,10); cout<<"CONTRATO";
+    gotoxy(19,14); cout<<"Tu membresia durara seis meses y expirara el:";
+    gotoxy(27,16); cout<<"[  ] de [          ] del [    ]";
     // Renderizado de botones
-    gotoxy(34,18);  cout<<"===============";
-    gotoxy(34,19);  cout<<"|| ENTENDIDO ||";
-    gotoxy(34,20);  cout<<"===============";
+    gotoxy(34,18); cout<<"===============";
+    gotoxy(34,19); cout<<"|| ENTENDIDO ||";
+    gotoxy(34,20); cout<<"===============";
     // Mover cursor al botón default (AFILIARME)
     gotoxy(37,19);
   } else if(menu.compare("2.3_membresias_ctrl") == 0) {
     system("cls"); dibujarBordes();
     // Renderizado de texto
-    gotoxy(31,2);   cout<<"MEMBRES"<<char(161)<<"AS: DETALLES ";
-    gotoxy(5, 5);   cout<<"Bienvenid@ seas, a continuaci"<<char(162)<<
+    gotoxy(31,2);  cout<<"MEMBRES"<<char(161)<<"AS: DETALLES ";
+    gotoxy(5, 5);  cout<<"Bienvenid@ seas, a continuaci"<<char(162)<<
     "n se muestran   los detalles de tu ";
-    gotoxy(5, 6);   cout<<"membres"<<char(161)<<"a, podr"<<char(160)<<
+    gotoxy(5, 6);  cout<<"membres"<<char(161)<<"a, podr"<<char(160)<<
     "s consultar tus rentas, adeudos, d"<<char(161)<<"as restantes, etc.";
-    gotoxy(5, 8);   cout<<"Hola,                         Pel"<<
+    gotoxy(5, 8);  cout<<"Hola,                         Pel"<<
     char(161)<<"cula rentada #1 ";
-    gotoxy(5,10);   cout<<"Le quedan [   ] d"<<char(161)<<"as a tu     -----------------------------------------";
-    gotoxy(5,11);   cout<<"suscripci"<<char(162)<<"n. Puedes renovar ";
-    gotoxy(5,12);   cout<<"cuantas veces quieras a un ";
-    gotoxy(5,13);   cout<<"costo de $250 pesos.          Pel"<<char(161)<<"cula rentada #2";
-    gotoxy(5,23);   cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
+    gotoxy(5,10);  cout<<"Le quedan [   ] d"<<char(161)<<"as a tu     -----------------------------------------";
+    gotoxy(5,11);  cout<<"suscripci"<<char(162)<<"n. Puedes renovar ";
+    gotoxy(5,12);  cout<<"cuantas veces quieras a un ";
+    gotoxy(5,13);  cout<<"costo de $250 pesos.          Pel"<<char(161)<<"cula rentada #2";
+    gotoxy(5,23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
     // Renderizado de botones
-    gotoxy(5,15);   cout<<"========================      "<<"----------------------------------------- ";
-    gotoxy(5,16);   cout<<"|| DEVOLVER PEL"<<char(161)<<"CULAS ||";
-    gotoxy(5,17);   cout<<"========================";
-    gotoxy(35,18);  cout<<"Pel"<<char(161)<<"cula rentada #3";
-    gotoxy(5,19);   cout<<"----------  -------------";
-    gotoxy(5,20);   cout<<"|  BAJA  |  |  RENOVAR  |     "<<"----------------------------------------- ";
-    gotoxy(5,21);   cout<<"----------  -------------";
+    gotoxy(5,15);  cout<<"========================      "<<"----------------------------------------- ";
+    gotoxy(5,16);  cout<<"|| DEVOLVER PEL"<<char(161)<<"CULAS ||";
+    gotoxy(5,17);  cout<<"========================";
+    gotoxy(35,18); cout<<"Pel"<<char(161)<<"cula rentada #3";
+    gotoxy(5,19);  cout<<"----------  -------------";
+    gotoxy(5,20);  cout<<"|  BAJA  |  |  RENOVAR  |     "<<"----------------------------------------- ";
+    gotoxy(5,21);  cout<<"----------  -------------";
     // Colocar el puntero en el botón 'Devolver'
     gotoxy(8,16);
   } else if(menu.compare("2.3_membresias_devol")  == 0) {
@@ -382,7 +382,7 @@ void dibujarMenu(string menu) {
     gotoxy(57,10);  cout<<"Disponibilidad:";
     gotoxy(57,12);  cout<<"A"<<char(164)<<"o:";
     gotoxy(69,12);  cout<<"ID:";
-    gotoxy(4, 16);  cout<<"|||||  Utilice las teclas <ARRIBA> y <ABAJO>   |||||";
+    gotoxy(4, 16);  cout<<" < |  Presione ENTER para rentarla o comprarla  | > ";
     gotoxy(63,16);  cout<<"Sinopsis";
     gotoxy(5, 23);  cout<<"Para volver al men"<<char(163)<<" anterior, presiona <ESC>.";
     // Renderlizado de líneas
@@ -393,6 +393,7 @@ void dibujarMenu(string menu) {
     for(int y=4; y<=17;y++)    { gotoxy(56,y);   cout<<"|"; }
     for(int y=16;y<=17;y++)    { gotoxy(60,y);   cout<<"|"; }
     for(int y=16;y<=17;y++)    { gotoxy(74,y);   cout<<"|"; }
+    gotoxy(60,15);  cout<<"."; gotoxy(74,15); cout<<".";
     // Mover cursor al input default (Película a buscar)
     gotoxy(4, 4);
   } else if (menu.compare("2.5_credito")  == 0) {
@@ -953,10 +954,10 @@ void mostrarAviso(string aviso, string datoExtra) {
 } // Fin de mostrar confirmaciones, pantallas y avisos
 
 void mostrarError(string tipoError, string datoExtra = "") {
-  if (tipoError.compare("clientes_opcion_equivocada") == 0) {
+  if (tipoError.compare("opcion_equivocada") == 0)  {
     gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
     Sleep(2500); enfocarElemento("2_clientes", 0);
-  } else if (tipoError.compare("db_error") == 0) {
+  } else if (tipoError.compare("db_error") == 0)    {
     system("cls"); system("color 4F"); // Pantalla roja
     dibujarBordes();
     // Libro ASCII: www.chris.com/ascii/index.php?art=objects/books
@@ -979,6 +980,12 @@ void mostrarError(string tipoError, string datoExtra = "") {
     // Imprimir el nombre del archivo problemático
     gotoxy(28,8); cout << datoExtra; gotoxy(58,10);
     getch();
+  } else if (tipoError.compare("lista_vacia") == 0) {
+    gotoxy(5,4);
+    cout<<"No se encontro ninguna pelicula.";
+    gotoxy(5,5);
+    cout<<"Presione cualquier tecla para volver al catalogo";
+    getch();
   }
 } // Fin de mostrar errores en pantalla
 
@@ -992,24 +999,39 @@ void mostrarPagina(vector<string> pelis, int pag) {
 
   /* ROL DE PÁGINAS:
   =============================================
-  paginas[i] -> Número de página
+  paginas[i]    -> Número de página
   paginas[i][j] -> 0: Inicio - 1: Final 
   pag -> Página actual pasada como parámetro */
 
   paginas = paginacion(pelis.size(), 11);
   // Mostrar películas de la primera página
-  for (int i=paginas[pag][0],y=4;i<=paginas[pag][1];i+=1) {
+  for (int i=paginas[pag][0],y=4; i<=paginas[pag][1]; i+=1) {
     peli = separarLinea(pelis[i], ';'); gotoxy(5, y);
-    // Mostrar película y el año entre paréntesis
-    cout << peli[1]<<" ("<<peli[2]<<")";
+    cout << peli[TITULO]<<" ("<<peli[YEAR]<<")";
     peli.clear(); y += 1; // Siguiente línea
   } // Fin de búsqueda de películas
-
   gotoxy(4,4);
 } // Fin de desplegar items de una página
 
-void detallesDeLaPelicula(string pelicula) {
-  //
+void detallesDeLaPelicula(string peliculaConcatenada) {
+  vector<string> pelicula = separarLinea(
+    peliculaConcatenada, ';'
+  ); // Fin de almacenar la película como arregalo
+
+  #define DETALLES 2
+
+  limpiarZona("2.4_catalogo_f2", DETALLES);
+  // Desplegar cada dato en su respectiva coordenada
+  gotoxy(73,12); cout<<pelicula[   ID   ];
+  gotoxy(62,12); cout<<pelicula[  YEAR  ];
+  gotoxy(65, 8); cout<<pelicula[ GENERO ];
+  gotoxy(67, 6); cout<<pelicula[DURACION]<<" min";
+  gotoxy(66, 4); cout<<pelicula[ PRECIO ];
+  gotoxy(73,10); cout<<pelicula[  STOCK ];
+  gotoxy(4, 18); cout<<pelicula[SINOP_L1];
+  gotoxy(4, 19); cout<<pelicula[SINOP_L2];
+  gotoxy(4, 20); cout<<pelicula[SINOP_L3];
+  gotoxy(4, 21); cout<<pelicula[SINOP_L4];
 } // Fin de listar los detalles de la película
 
 void moverPuntero(int cursor, int pagina) {
@@ -1033,7 +1055,7 @@ void mostrarCredito(string usuario) {
   gotoxy(7,16); cout << credito;
 } // Fin de mostrar dinero del usuario
 
-void activarRegalo(bool marcado) {
+void activarBeneficiario(bool marcado) {
   if (marcado) {
     cout << " ";
     gotoxy(52,9);  cout<<"             ";
