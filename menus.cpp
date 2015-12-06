@@ -4,6 +4,7 @@ void tutorial() {
   getch();
   dibujarMenu("2.1_tutorial_f2");
   getch();
+  system("color 1F");
   dibujarMenu("2_clientes");
 } // Fin de rentar películas
 

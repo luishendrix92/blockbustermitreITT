@@ -190,7 +190,6 @@ void dibujarMenu(string menu) {
       gotoxy(12,y); cout<<"                                "
                         <<"                                 ";
     } // Fin de borrar monitos de SP
-    system("color 1F");
     // Renderizar botones
     gotoxy(6,12);  cout<<"---";
     gotoxy(6,13);  cout<<"|<|";
@@ -943,8 +942,6 @@ void mostrarAviso(string aviso, string datoExtra = "") {
     gotoxy(ICOL,L3);  cout<<"seguro se pondra muy feliz!";
     // Enfocar el botón
     gotoxy(44,17); esperarRespuesta("2.5_credito_f2");
-  } else if (aviso.compare("no_coinciden")         == 0) {
-    //
   } else if (aviso.compare("form_invalido")        == 0) {
     prepararMensaje("UH! OH! SE TE PASO ALGO...");
     // Renderizado de robot triste

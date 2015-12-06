@@ -1,6 +1,1 @@
-el_cliente;4/6/2016;null;null;null
-desconocido;4/6/2016;null;null;null
-studio;5/6/2016;null;null;null
-naussica;5/6/2016;null;null;null
-spotify;6/6/2016;null;null;null
-pinkfloyd;6/6/2016;null;null;null
+el_cliente;6/6/2016;null;null;null
