@@ -3,4 +3,7 @@ Diego9211;johncenaaa;empleado;null
 JesterRelik;l0loflegends;empleado;null
 luishendrix92;metalslug;empleado;null
 el_cliente;123456;cliente;3005
-naussica;valley;cliente;1400
+naussica;valley;cliente;1850
+spotify;premium;cliente;250
+pinkfloyd;thewall;cliente;250
+flagpole;sittar;cliente;0

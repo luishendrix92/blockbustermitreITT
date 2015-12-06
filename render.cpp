@@ -119,46 +119,87 @@ void dibujarMenu(string menu) {
     gotoxy(18,2);   cout << "BLOCKBUSTER: VENTA Y RENTA DE PELICULAS";
     gotoxy(5, 5);   cout << "Que es lo que deseas hacer?";
     gotoxy(5, 7);   cout << "Menu:";
-    gotoxy(5, 9);   cout << "1.- Rentar peliculas";
-    gotoxy(5, 11);  cout << "2.- Comprar peliculas";
+    gotoxy(5, 9);   cout << "1.- Tutorial/Creditos";
+    gotoxy(5, 11);  cout << "2.- Buscador";
     gotoxy(5, 13);  cout << "3.- Membresias";
     gotoxy(5, 15);  cout << "4.- Catalogo";
-    gotoxy(5, 17);  cout << "5.- Credito";
-    gotoxy(5, 19);  cout << "6.- Salir";
+    gotoxy(5, 17);  cout << "5.- Abonar Credito";
+    gotoxy(5, 19);  cout << "6.- Cerrar Sesion";
     gotoxy(5, 23);  cout << "Opcion: ";
-  } else if (menu.compare("2.1_renta_f1")         == 0)   {
+  } else if (menu.compare("2.1_tutorial_f1")      == 0)   {
     system("cls"); dibujarBordes();
+    // ASCII Art Lightbulb de Chris.com/ASCII
+    gotoxy(53,8);  cout<<"    _------_"    ;
+    gotoxy(53,9);  cout<<"  -~        ~-"  ;
+    gotoxy(53,10); cout<<" -     _      -" ;
+    gotoxy(53,11); cout<<"-      |>      -";
+    gotoxy(53,12); cout<<"-      |<      -";
+    gotoxy(53,13); cout<<" -     |>     -" ;
+    gotoxy(53,14); cout<<"  -    ||    -"  ;
+    gotoxy(53,15); cout<<"   -   ||   -"   ;
+    gotoxy(53,16); cout<<"    -__||__-"    ;
+    gotoxy(53,17); cout<<"    |______|"    ;
+    gotoxy(53,18); cout<<"    <______>"    ;
+    gotoxy(53,19); cout<<"    <______>"    ;
+    gotoxy(53,20); cout<<"       \\/"      ;
     // Renderizado de texto
-    gotoxy(29,2);   cout<<"RENTA DE PELICULAS";
-    gotoxy(5, 5);   cout<<"Que pelicula deseas rentar?";
-    gotoxy(5, 9);   cout<<"Cuando tengas los resultados";
-    gotoxy(5, 10);  cout<<"que buscas, presiona <ENTER>";
-    gotoxy(5, 12);  cout<<"Estas son las peliculas que";
-    gotoxy(5, 13);  cout<<"has rentado: ";
-    gotoxy(6, 15);  cout<<"1:";
-    gotoxy(6, 16);  cout<<"2:";
-    gotoxy(6, 17);  cout<<"3:";
-    gotoxy(6, 18);  cout<<"4:";
-    gotoxy(6, 19);  cout<<"5:";
-    gotoxy(36,4);   cout<<"ID";
-    gotoxy(41,4);   cout<<"Titulo";
-    gotoxy(73,4);   cout<<"A"<<char(164)<<"o";
-    gotoxy(45,12);  cout<<"Los resultados de tu";
-    gotoxy(46,13);  cout<<"busqueda van a ir";
-    gotoxy(46,14);  cout<<"apareciendo aqui!";
-    gotoxy(5, 23);  cout<<"Para volver al menu anterior, presiona <ESC>.";
-    // Renderlizado de líneas
-    for(int x=5; x<=31;x++)    { gotoxy(x, 7);  cout<<"_"; }
-    for(int x=5; x<=32;x++)    { gotoxy(x, 14); cout<<"-"; }
-    for(int x=5; x<=32;x++)    { gotoxy(x, 20); cout<<"-"; }
-    for(int x=36;x<=76;x++)    { gotoxy(x, 5);  cout<<"-"; }
-    for(int y=15;y<=19;y++)    { gotoxy(5, y);  cout<<"|"; }
-    for(int y=15;y<=19;y++)    { gotoxy(32,y);  cout<<"|"; }
-    for(int y=4; y<=22;y++)    { gotoxy(35,y);  cout<<"|"; }
-    for(int y=4; y<=22;y++)    { gotoxy(39,y);  cout<<"|"; }
-    for(int y=4; y<=22;y++)    { gotoxy(72,y);  cout<<"|"; }
-    // Mover cursor al input default (Película a buscar)
-    gotoxy(5, 6);
+    gotoxy(28,2);  cout<<"COMO USAR ESTE SISTEMA";
+    gotoxy(5, 5);  cout<<"Este programa es bastante intuitivo, sin embargo, si te preguntas";
+    gotoxy(5, 6);  cout<<"como rentar y comprar peliculas, tienes dos opciones:";
+    gotoxy(5, 8);  cout<<"1. Ir al menu 'Catalogo' y elegir el genero";
+    gotoxy(5, 9);  cout<<"   o seccion que te interese. Despues, usar";
+    gotoxy(5, 10); cout<<"   las teclas direccionales para situarte";
+    gotoxy(5, 11); cout<<"   sobre la pelicula que desees comprar o";
+    gotoxy(5, 12); cout<<"   rentar y luego presionar <ENTER>. Al hacer";
+    gotoxy(5, 13); cout<<"   esto se te preguntara que quieres hacer.";
+
+    gotoxy(5, 15); cout<<"2. Utilizar el menu 'Buscador' para poder";
+    gotoxy(5, 16); cout<<"   realizar una busqueda por titulo en tiempo";
+    gotoxy(5, 17); cout<<"   real. Solo tienes que ir escribiendo el";
+    gotoxy(5, 18); cout<<"   nombre de la pelicula y cuando la o las";
+    gotoxy(5, 19); cout<<"   peliculas que buscabas aparezcan en el";
+    gotoxy(5, 20); cout<<"   listado, presiona <ENTER> para elegirlas.";
+    gotoxy(5, 23); cout<<"Para salir del tutorial presiona <ESC> - Para leer los creditos <ENTER>";
+    // Renderizado del botón '>'
+    gotoxy(72,12); cout<<"===";
+    gotoxy(72,13); cout<<"|>|";
+    gotoxy(72,14); cout<<"==="; gotoxy(73,13);
+  } else if (menu.compare("2.1_tutorial_f2")      == 0)   {
+    system("cls"); dibujarBordes(); system("color 5F");
+    // Renderizado de texto
+    gotoxy(32,2);  cout<<"ACERCA DE NOSOTROS";
+    gotoxy(12,5);  cout<<"Este programa (v0.9 Alpha) fue desarrollado por el equipo";
+    gotoxy(12,6);  cout<<"formado por las siguientes personas maravillosas:";
+    gotoxy(12,8);  cout<<"# Diego Moreno: Coordenadas 'XY' y llenado de base de datos.";
+    gotoxy(12,9);  cout<<"# Jose Luis:    Concepcion, ideas y estrategia general.";
+    gotoxy(12,10); cout<<"# Itzel Tapia:  Debugueo, sugerencias y busqueda de peliculas.";
+    gotoxy(12,11); cout<<"# Felipe Lopez: Codigo, correcciones, dise"<<char(164)<<"o y ejecucion.";
+    gotoxy(5, 23); cout<<"Para volver al menu anterior, presiona <ESC>.";
+    gotoxy(5, 23); cout<<"Presiona <ENTER> para volver al menu de clientes.";
+    // ASCII Art 'South Park' - No recuerdo dónde lo saqué
+    gotoxy(12,14); cout<<"      Luis             Itzel          Jose          Diego";
+    gotoxy(12,15); cout<<"    .- <O> -.        .-====-.      ,-------.      .-=<>=-.";
+    gotoxy(12,16); cout<<"   /_-\\'''/-_\\      / / '' \\ \\     |,-----.|     /__----__\\";
+    gotoxy(12,17); cout<<"  |/  o) (o  \\|    | | ')(' | |   /,'-----'.\\   |/ (')(') \\|";
+    gotoxy(12,18); cout<<"   \\   ._.   /      \\ \\    / /   {_/(') (')\\_}   \\   __   /";
+    gotoxy(12,19); cout<<"   ,>-_,,,_-<.       >'=jf='<     `.   _   .'    ,'--__--'.";
+    gotoxy(12,20); cout<<" /      .      \\    /        \\     /'-___-'\\    /    :|    \\";
+    gotoxy(12,21); cout<<"(_)     .     (_)  /          \\   /         \\  (_)   :|   (_)";
+    lostWoods();
+    for(int y = 14; y <= 21; y += 1) {
+      gotoxy(12,y); cout<<"                                "
+                        <<"                                 ";
+    } // Fin de borrar monitos de SP
+    system("color 1F");
+    // Renderizar botones
+    gotoxy(6,12);  cout<<"---";
+    gotoxy(6,13);  cout<<"|<|";
+    gotoxy(6,14);  cout<<"---";
+    gotoxy(29,14); cout<<"========================";
+    gotoxy(29,15); cout<<"|| SALIR DEL TUTORIAL ||";
+    gotoxy(29,16); cout<<"========================";
+    // Mover cursor al input default (Salir)
+    gotoxy(32,15);
   } else if (menu.compare("2.3_membresias_nuevo") == 0)   {
     system("cls"); dibujarBordes();
     // Renderizado de texto
@@ -455,17 +496,17 @@ void dibujarMenu(string menu) {
   } // Fin de dibujar menú indicado
 } // Fin de mostrar menu principal
 
-void esperarRespuesta(string menuActual) {
+void esperarRespuesta(string menuSiguiente) {
   char tecla = 0; // Permite entrar al ciclo
   while (tecla != ENTER) {
     tecla = getch();
     if (tecla == ENTER) {
-      dibujarMenu(menuActual);
+      dibujarMenu(menuSiguiente);
     } // Fin de aceptar
   } // Fin de esperar ENTER
 } // Espera que el usuario presionte ENTER
 
-void limpiarZona(string menu, int zona) {
+void limpiarZona(string menu, int zona = 0) {
   if (menu.compare("2.4_catalogo_f2") == 0)            {
     switch(zona) {
       case 0: // Lista de películas
@@ -508,7 +549,7 @@ void limpiarZona(string menu, int zona) {
         gotoxy(6,11); cout << "                  ";
         gotoxy(7,16); cout << "         ";
       break;
-    }
+    }    
   } // Fin de revisar en qué menú trabajar
 } // Fin de borrar zonas de contenido
 
@@ -859,6 +900,9 @@ void mostrarAviso(string aviso, string datoExtra = "") {
   } else if (aviso.compare("registro_exitoso")     == 0) {
     system("cls"); system("color 5F"); dibujarBordes();
     // Renderizado de nave futurama chris.com/ascii/index.php?art=television/futurama
+    gotoxy(4, 3);  cout<<"                                    "
+                       <<"                                     ";
+    gotoxy(16,8);  cout<<"                     `. ___";
     gotoxy(16,8);  cout<<"                     `. ___";
     gotoxy(16,9);  cout<<"                    __,' __`.                _..----....____";
     gotoxy(16,10); cout<<"        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'";

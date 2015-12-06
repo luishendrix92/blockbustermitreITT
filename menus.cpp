@@ -1,13 +1,15 @@
 namespace menu {
-void rentas() {
-  dibujarMenu("2.1_renta_f1");
+void tutorial() {
+  dibujarMenu("2.1_tutorial_f1");
+  getch();
+  dibujarMenu("2.1_tutorial_f2");
   getch();
   dibujarMenu("2_clientes");
 } // Fin de rentar películas
 
-void comprar() {
+void buscador(string usuario) {
   // quitar pelicula si 'stock = 0'
-}
+} // Fin de busqueda en tiempo real
 
 /* =======================================================
 |||||||||||        M E M B R E S Í A S         |||||||||||
@@ -424,8 +426,8 @@ void clientes(string usuario) {
     cin >> opcion;
     if (opcion >= 1 && opcion <= 5) {
       switch(opcion) {
-        case 1: menu::rentas();             break;
-        case 2: menu::comprar();            break;
+        case 1: menu::tutorial();           break;
+        case 2: menu::buscador(usuario);    break;
         case 3: menu::membresias(usuario);  break;
         case 4: menu::catalogo(usuario);    break;
         case 5: menu::miCredito(usuario);   break;
