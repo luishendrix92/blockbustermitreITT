@@ -9,6 +9,9 @@ void comprar() {
   // quitar pelicula si 'stock = 0'
 }
 
+/* =======================================================
+|||||||||||        M E M B R E S Í A S         |||||||||||
+========================================================*/
 void membresiasControl(string usuario) {
   dibujarMenu("2.3_membresias_ctrl");
   getch();
@@ -120,12 +123,15 @@ void membresias(string usuario) {
   dibujarMenu("2_clientes");
 } // Fin de suscribirse a membresía
 
+/* =======================================================
+|||||||||||           C R É D I T O            |||||||||||
+========================================================*/
 void abonar(string usuario) {
   dibujarMenu("2.5_credito_f2");
   int dir, input = 0, abono = 0; char tecla;
   bool paraDonar = false; string beneficiario, monto;
   int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
-  {3,4,0,2,1}, {2,4,3,0,1}};
+  {3,4,0,2,1}, {2,2,3,0,1}};
 
   // Mostrar el usuario y su crédito en pantalla
   mostrarCredito(usuario); gotoxy(37,10);
@@ -139,8 +145,6 @@ void abonar(string usuario) {
         /* Prevenir el enfoque del campo de texto
         'beneficiario' si no se ha marcado esa opción */
         if (!paraDonar && orden[dir][input] == 1) {
-          /* Saltarse el siguiente input en caso de que
-          el siguiente sea el campo 'Beneficiario' */
           input = orden[dir][input];
         } // Fin de comprobar el checkbox
         enfocarElemento(
@@ -177,31 +181,67 @@ void abonar(string usuario) {
         switch(input) {
           case 2: // Checkbox 'Regalar Crédito'
             activarBeneficiario(paraDonar);
-            paraDonar = !paraDonar;      break;
+            paraDonar = !paraDonar;
+            if (paraDonar) {
+              input = 1; // Beneficiario
+              enfocarElemento("2.5_credito_f2", input);
+            } // Fin de moverse al 'beneficiario'
+            beneficiario.clear();        break;
+
           case 3: // Botón 'Abonar'
             abono = atoi(monto.c_str());
-            if (paraDonar) {
-              abonarCredito(beneficiario, abono);
-              mostrarAviso("abono_regalo", beneficiario);
-              tecla = 0; // Permite entrar al ciclo
-              while (tecla != ENTER) {
-                tecla = getch();
-                if (tecla == ENTER) {
-                  dibujarMenu("2.5_credito_f2");
-                } // Fin de aceptar
-              } // Fin de esperar ENTER
-            } else { // El crédito es para el usuario
+            bool benefExiste, esEmpleado;
+
+            if (!monto.length() || abono == 0) {
+              mostrarAviso("form_invalido", "monto");
+            } // Fin de notificar abono $0
+
+            // Ver si el abono es para regalar o no
+            if (paraDonar && abono > 0) {
+              if (!beneficiario.length()) {
+                mostrarAviso("form_invalido", "beneficiario");
+              } else {
+                benefExiste = consultaRapida(
+                  "usuarios.txt", NOMBRE, beneficiario, NOMBRE
+                ).compare(beneficiario) == 0;
+                esEmpleado  = consultaRapida(
+                  "usuarios.txt", NOMBRE, beneficiario, ROL
+                ).compare("empleado")   == 0;
+
+                if (benefExiste && !esEmpleado) {
+                  abonarCredito(beneficiario, abono);
+                  mostrarAviso("abono_regalo", beneficiario);
+                  paraDonar = false;
+                } else { // El beneficiario no tiene cuenta
+                  mostrarError("benef_error");
+                } // Fin de ver si el beneficiario existe
+              } // Fin de pedir un beneficiario
+            } else if (abono > 0) {
+              // El crédito es para el usuario
               abonarCredito(usuario, abono);
             } // Fin de ver a quién abonar el crédito
-            mostrarCredito(usuario); input = 0;
-            // Volver al primer textbox
+
+            mostrarCredito(usuario);
+
+            /* Si hubo algún error a la hora de abonar
+            a un beneficiario, pedirlo de nuevo, si no,
+            lhaya que resetear todos los campos */
+            if (paraDonar) {
+              input = 1;
+              activarBeneficiario(false);
+              gotoxy(37,10); cout<<monto;
+            } else { // Proceso exitoso
+              input = 0;
+              abono = 0;
+              monto.clear();
+            } // Fin de limpiar lo necesario
+
             enfocarElemento("2.5_credito_f2", input);
-            paraDonar = false;
-            abono     = 0;
             beneficiario.clear();
-            monto.clear();    break;
+          break;
+
           case 4: // Botón 'Cancelar'
-            tecla     = ESC;  break; // Salir
+            tecla = ESC; break; // Salir
         } // Fin de asignar comportamiento a botones
       } // Fin de reaccionar a teclas
     } // Fin de selección de tecla
@@ -236,6 +276,9 @@ void miCredito(string usuario) {
   dibujarMenu("2_clientes");
 } // Fin de manejar dinero en la cuenta
 
+/* =======================================================
+|||||||||||          C A T Á L O G O           |||||||||||
+========================================================*/
 void catalogoFrame2(string usuario, int gnrId) {
   dibujarMenu("2.4_catalogo_f2");
   /*-------------------------------------------------*/
@@ -362,13 +405,17 @@ void catalogo(string usuario) {
         boton = orden[dir][boton];
       } else if (tecla == ENTER) {
         menu::catalogoFrame2(usuario, boton);
-        boton = 0;
+        boton = 0; // Re-Enfocar el primer botón
+        enfocarElemento("2.4_catalogo_f1", 0);
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
 } // Fin de catálogo de películas
 
+/* =======================================================
+|||||||||||      C R E D E N C I A L E S       |||||||||||
+========================================================*/
 void clientes(string usuario) {
   dibujarMenu("2_clientes"); int opcion;
 
@@ -396,6 +443,9 @@ void empleados() {
   getch();
 } // Fin de menú de empleados
 
+/* =======================================================
+|||||||||||   L O G - I N  /  R E G I S T R O  |||||||||||
+========================================================*/
 void login() {
   dibujarMenu("1_principal_login");
   // Variables para los valores del input
