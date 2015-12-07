@@ -11,9 +11,94 @@ void tutorial() {
 /* =======================================================
 |||||||||||           B U S C A D O R          |||||||||||
 ========================================================*/
+char opcionesPelicula(int i, vector<string> pelicula) {
+  subMenuOpciones(i);
+  int dir, btn = 0; char tecla;
+  int orden[4][3] = {{1,2,0},{2,0,1},{2,0,1},{1,2,0}};
+
+  while(tecla != ESC && tecla != ARR && tecla != ABJ) {
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) {
+        dir = obtenerDireccion(tecla);
+        enfocarElemento(
+          "submenu_opciones", orden[dir][btn], i
+        ); // Fin de enfocar inputs
+        btn = orden[dir][btn];
+      } else if (tecla == ENTER) {
+        switch(btn) {
+          case 0:
+            mostrarSinopsis(pelicula);
+            tecla = ESC; // VOLVER AL SUBMENÚ
+          case 1: // Rentar.
+            break;
+          case 2: // Comprar.
+            break;
+        } // Fin de lanzar sub-menú
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+
+  limpiarZona("resultados"); return tecla;
+} // Fin de mostrar submenú al dar ENTER
+
 void listado(vector<vector<string> > resultados) {
-  system("cls"); gotoxy(1,1);
-  cout << resultados[0][1];
+  dibujarMenu("2.2_buscador_f2");
+  /*-------------------------------------------------*/
+  #define INICIO   0
+  /*-------------------------------------------------*/
+  char tecla; int puntero = 0, dir,
+  nPeliculas = resultados.size(); 
+  /*------------- FIN DE VARIABLES NECESARIAS -------*/
+
+  detallesDeLaPelicula( // Enviar el 1er resultado
+    unirRegistro(resultados[0], ";"), "listado"
+  ); // Fin de mostrar los detalles de la 1era
+  listarResultados(resultados);
+
+  while(tecla != ESC) { // Tecla NO es 'ESC'
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) {
+        dir = obtenerDireccion(tecla);
+        switch(dir) {
+          case 2: // Arriba
+            if (puntero == INICIO) {
+              /* Primer película en la lista, te lleva a
+              la última película del listado          */
+              puntero  = nPeliculas - 1;
+            } else { /* La película no la primera */
+              puntero -= 1;
+            } // Fin de actuar conforme al puntero
+            break;
+          case 3: // Abajo
+            if (puntero == nPeliculas - 1) {
+              /* Última película en la lista, te lleva a
+              la primera película del listado         */
+              puntero  = INICIO;
+            } else { /* La película no la última */
+              puntero += 1;
+            } // Fin de actuar conforme al puntero
+            break;
+        } // Fin de controlar flechas
+        // Localizar y enfocar  el puntero '>'
+        detallesDeLaPelicula(
+          unirRegistro(resultados[puntero],";"),"listado"
+        ); // Fin de mostrar los detalles de película
+        moverCursor(puntero);
+      } else if (tecla == ENTER) {
+        /*sub*/menu::opcionesPelicula(// Enviar el cursor
+          puntero, resultados[puntero]
+        ); // Fin de mostrar las 3 opciones
+        detallesDeLaPelicula(
+          unirRegistro(resultados[puntero],";"),"listado"
+        ); // Fin de mostrar los detalles de película
+        listarResultados(resultados);
+        moverCursor(puntero);
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+  dibujarMenu("2.2_buscador");
 } // Fin de manejar resultados de búsqueda
 
 void buscador(string usuario) {
@@ -32,10 +117,7 @@ void buscador(string usuario) {
   while(tecla != ESC) {
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if ( /* Direccional o ENTER sin estar en el botón */
-        esDireccional(tecla) ||
-        (tecla == ENTER && input != 1)
-      ) {  /* Direccional o ENTER sin estar en el botón */
+      if (esDireccional(tecla)) {
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento(
@@ -52,7 +134,7 @@ void buscador(string usuario) {
           cout << peliBuscada;
 
           // Mostrar las que coincidan con el criterio
-          limpiarZona("2.2_buscador", 0);
+          limpiarZona("resultados");
           for (int i=0, encontradas=0; i<nPeliculas; i+=1) {
             string titulo = peliculas[i][TITULO];
             if(encontrarTexto(peliBuscada, titulo)) {
@@ -71,16 +153,19 @@ void buscador(string usuario) {
         switch(input) {
           case 0: peliBuscada.clear();       break;
         } // Fin de resetear inputs actuales
-      } else if (tecla == ENTER && input == 1) {
+      } else if (tecla == ENTER) {
         if(peliBuscada.length()) {
-          for (int i = 0; i < nPeliculas; i += 1) {
+          for (int i = 0, j=0; i < nPeliculas; i += 1) {
             string titulo = peliculas[i][TITULO];
             if(encontrarTexto(peliBuscada, titulo)) {
               resultados.push_back(peliculas[i]);
+              j = j + 1; // Aumentar contador
             } // Fin de evaluar coincidencia
+            if(j == MAX) { break; } // Limitar a 13
           } // Fin de meter resultados en el arreglo
           if(resultados.size()) {
             menu::listado(resultados);
+            resultados.clear();
           } // Fin de prevenir arreglo vacío
         } else { // No se especificó criterio
           //
@@ -688,45 +773,3 @@ void registro() {
   dibujarMenu("1_principal");
 } // Fin de agregar nuevos clientes
 } // Fin de namespace menu::función
-
-/*
-while(tecla != ESC) {
-  tecla = getch();
-  if (tecla == 0) { tecla = getch(); } else {
-    if ( // Direccional o ENTER sin estar en el botón
-      esDireccional(tecla) ||
-      (tecla == ENTER && input != n)
-    ) {  // Direccional o ENTER sin estar en el botón
-      dir = obtenerDireccion(tecla);
-      // Enfocar y resetear inputs
-      enfocarElemento(
-        "menu", orden[dir][input]
-      ); // Fin de enfocar inputs
-      input = orden[dir][input];
-      switch(input) {
-        case 0: usuario.clear();       break;
-        case 1: clave.clear();         break;
-        case 2: claveRepetida.clear(); break;
-      } // Fin de resetear inputs
-    } else if (esAlfaNum(tecla) && input != 3) {
-      switch(input) {
-        case 0: // Usuario
-          if (example.length() < limite) {
-            gotoxy(nn,nn);
-            example += tecla;
-            cout << example;
-            gotoxy(nn+example.length(),nn);
-          } break;
-      } // Fin de capturar datos
-    } else if (tecla == BCKSP || tecla == DEL) {
-      // Limpiar cuadros de texto
-      enfocarElemento("menu", input);
-      switch(input) {
-        case 0: example.clear();       break;
-      } // Fin de resetear inputs actuales
-    } else if (tecla == ENTER && input == n) {
-      //
-    } // Fin de reaccionar a teclas
-  } // Fin de detectar tecla válida
-} // Fin de ciclar hasta presionar 'ESC'
-*/
