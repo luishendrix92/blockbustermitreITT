@@ -4,3 +4,4 @@ JesterRelik;l0loflegends;empleado;null
 luishendrix92;metalslug;empleado;null
 el_cliente;123456;cliente;3005
 alicia;keyson;cliente;0
+madrid;alamadrid;cliente;0

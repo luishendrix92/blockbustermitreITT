@@ -201,14 +201,36 @@ void dibujarMenu(string menu) {
     gotoxy(32,15);
   } else if (menu.compare("2.2_buscador")         == 0)   {
     system("cls"); dibujarBordes();
+    gotoxy(3, 1);   cout<<"--------------------------------------"
+                        <<"-------------------------------------";
+    gotoxy(4, 3);   cout<<"-------------------------------------"
+                        <<"------------------------------------";
+    // ASCII Art de Chris.com
+    gotoxy(49,6);  cout<<"Todo por no     . | : .|  :"     ;
+    gotoxy(49,7);  cout<<"presionar ENTER | . | : .||"     ;
+    gotoxy(49,8);  cout<<" ...            : |. | . :: "    ;
+    gotoxy(49,9);  cout<<"   \\    ___     |.: |. :. |"    ;
+    gotoxy(49,10); cout<<"       /  _)    | :|___ |:|"     ;
+    gotoxy(49,11); cout<<"      |  (~o   (\\.|(___)  /)"   ;
+    gotoxy(49,12); cout<<"      _\\/_/_    \\\\(_O O_)// " ;
+    gotoxy(49,13); cout<<"     /      \\   .\\(_\\O/_)/:"  ;
+    gotoxy(49,14); cout<<"    / /    \\ \\  :|\\/\\_/\\/ |";
+    gotoxy(49,15); cout<<"    \\ |    | /  | .(_ _): |"    ;
+    gotoxy(49,16); cout<<"     \\|____|/   .| /   \\ |:"   ;
+    gotoxy(49,17); cout<<"      |_  _|    | /_____\\.| "   ;
+    gotoxy(49,18); cout<<"      | |  |    : .| | | ."      ;
+    gotoxy(49,19); cout<<"      | |  |    .  | | | ||"     ;
+    gotoxy(49,20); cout<<"      |_|__|    | :|_|_| .:"     ;
+    gotoxy(49,21); cout<<"      [__[__)   .: <_|_> .|"     ;
     // Renderizado de texto
-    gotoxy(5, 23);  cout << "Cuando acabes, presiona ENTER o usa el boton 'LISTO'";
-    gotoxy(6, 12);  cout << "<TUS RESULTADOS IRAN APARECIENDO AQUI>";
+    gotoxy(5, 23);  cout<<"Cuando acabes, presiona ENTER o usa el boton 'LISTO'";
+    gotoxy(6, 12);  cout<<"<TUS RESULTADOS IRAN APARECIENDO AQUI>";
     // Renderizado de Botón
-    gotoxy(67,2);   cout << "|  LISTO  "; 
-    gotoxy(67,3);   cout << "|";
+    gotoxy(67,2);   cout<<"|  LISTO  "; 
     // Enfocar cuadro de búsqueda
     gotoxy(6,2);
+  } else if (menu.compare("2.2_buscador_f2")      == 0)   {
+    //
   } else if (menu.compare("2.3_membresias_nuevo") == 0)   {
     system("cls"); dibujarBordes();
     // Renderizado de texto
@@ -516,7 +538,7 @@ void esperarRespuesta(string menuSiguiente) {
 } // Espera que el usuario presionte ENTER
 
 void limpiarZona(string menu, int zona = 0) {
-  if (menu.compare("2.4_catalogo_f2") == 0)            {
+  if (menu.compare("2.4_catalogo_f2") == 0) {
     switch(zona) {
       case 0: // Lista de películas
         for(int x=4, y=4; y<=14; y+=1) {
@@ -571,7 +593,7 @@ void limpiarZona(string menu, int zona = 0) {
 } // Fin de borrar zonas de contenido
 
 void enfocarElemento(string menu, int elemento) {
-  if (menu.compare("1_principal")                 == 0) {
+  if (menu.compare("1_principal") == 0) {
     switch(elemento) {
       case 0: // Crear Cuenta
         gotoxy(24,13); cout << "==================";
@@ -589,7 +611,7 @@ void enfocarElemento(string menu, int elemento) {
         gotoxy(43,14); cout << "|| INGRESAR ||";
         gotoxy(43,15); cout << "==============";
         gotoxy(47,14); break;
-    }
+    } // Fin de enfocar
   } else if (menu.compare("1_principal_login")    == 0) {
     switch(elemento) {
       case 0: // Nombre de usuario
@@ -649,17 +671,17 @@ void enfocarElemento(string menu, int elemento) {
                           <<"                             ";
         limpiarZona("2.2_buscador", 0);
         // Desenfocar botón 'Listo'
-        gotoxy(67,1); cout << "___________";
+        gotoxy(67,1); cout << "-----------";
         gotoxy(67,2); cout << "|  LISTO  |";
-        gotoxy(67,3); cout << "|_________|";
+        gotoxy(67,3); cout << "----------|";
         // Enfocar input de destino
         gotoxy(6, 2);
       break;
 
       case 1: // Botón 'Listo'
-        gotoxy(67,1); cout << "...........";
+        gotoxy(67,1); cout << "===========";
         gotoxy(67,2); cout << "|| LISTO ||";
-        gotoxy(67,3); cout << "||.......||";
+        gotoxy(67,3); cout << "===========";
         // Enfocar input de destino
         gotoxy(70,2);
       break;

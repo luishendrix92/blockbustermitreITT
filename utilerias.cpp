@@ -58,7 +58,7 @@ string unirRegistro(vector<string> registro, string separador) {
   for(int i=0; i<registro.size(); i+=1) {
     linea += registro[i];
     if ((i+1)<registro.size()) {
-        linea += separador;
+      linea += separador;
     } // Fin de agregar separador excepto al último item del vector
   } // Fin de iterar el vector
 
@@ -102,8 +102,8 @@ bool esNumerica(char tecla) {
 
 bool esDireccional(char tecla) {
   return  (
-    tecla == IZQ  || tecla == DER ||
-    tecla == ARR  || tecla == ABJ ||
+    tecla == IZQ || tecla == DER ||
+    tecla == ARR || tecla == ABJ ||
     tecla == TAB
   ); // Fin de comprobar tecla
 } // Fin de ver si una tecla es TAB o flecha

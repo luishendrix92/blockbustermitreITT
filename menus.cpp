@@ -6,43 +6,48 @@ void tutorial() {
   getch();
   system("color 1F");
   dibujarMenu("2_clientes");
-} // Fin de rentar pelÌculas
+} // Fin de rentar pel√≠culas
 
 /* =======================================================
 |||||||||||           B U S C A D O R          |||||||||||
 ========================================================*/
+void listado(vector<vector<string> > resultados) {
+  system("cls"); gotoxy(1,1);
+  cout << resultados[0][1];
+} // Fin de manejar resultados de b√∫squeda
+
 void buscador(string usuario) {
   dibujarMenu("2.2_buscador");
   int dir, input = 0; char tecla; string peliBuscada;
-  vector<vector<string> > peliculas;
+  vector<vector<string> > peliculas, resultados;
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
 
-  #define MAX   13
-  #define INI_Y 6
+  #define MAX    13
+  #define INI_Y  6
 
-  // Descargar toda la tabla 'PelÌculas'
+  // Descargar toda la tabla 'Pel√≠culas'
   peliculas = descargarTabla("peliculas.txt");
   int nPeliculas = peliculas.size();
 
   while(tecla != ESC) {
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if ( /* Direccional o ENTER sin estar en el botÛn */
+      if ( /* Direccional o ENTER sin estar en el bot√≥n */
         esDireccional(tecla) ||
         (tecla == ENTER && input != 1)
-      ) {  /* Direccional o ENTER sin estar en el botÛn */
+      ) {  /* Direccional o ENTER sin estar en el bot√≥n */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento(
           "2.2_buscador", orden[dir][input]
-        ); // Fin de enfocar inputs
+        ); // Fin de enfocar inputss
         input = orden[dir][input];
         switch(input) {
           case 0: peliBuscada.clear(); break;
         } // Fin de resetear inputs
       } else if ((esAlfaNum(tecla)||tecla==32) && input != 1) {
         if (peliBuscada.length() < 59) {
-          gotoxy(6,2); // Ir a la raÌz del input
+          gotoxy(6,2); // Ir a la ra√≠z del input
           peliBuscada += tecla;
           cout << peliBuscada;
 
@@ -55,8 +60,8 @@ void buscador(string usuario) {
               cout << titulo;
               encontradas += 1;
             } // Fin de evaluar coincidencia
-            if(encontradas == 13) { break; }
-          } // Fin de mostrar hasta 13 pelÌculas
+            if(encontradas == MAX) { break; }
+          } // Fin de mostrar hasta 13 pel√≠culas
 
           gotoxy(6 + peliBuscada.length(), 2);
         } // Fin de no sobrepasarse de 59 caracteres
@@ -67,20 +72,34 @@ void buscador(string usuario) {
           case 0: peliBuscada.clear();       break;
         } // Fin de resetear inputs actuales
       } else if (tecla == ENTER && input == 1) {
-        //
+        if(peliBuscada.length()) {
+          for (int i = 0; i < nPeliculas; i += 1) {
+            string titulo = peliculas[i][TITULO];
+            if(encontrarTexto(peliBuscada, titulo)) {
+              resultados.push_back(peliculas[i]);
+            } // Fin de evaluar coincidencia
+          } // Fin de meter resultados en el arreglo
+          if(resultados.size()) {
+            menu::listado(resultados);
+          } // Fin de prevenir arreglo vac√≠o
+        } else { // No se especific√≥ criterio
+          //
+        } // Fin de evitar enviar algo sin criterio
+        peliBuscada.clear();    input = 0 ;
+        enfocarElemento("2.2_buscador", 0);
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
 } // Fin de busqueda en tiempo real
 
 /* =======================================================
-|||||||||||         M E M B R E S Õ A S        |||||||||||
+|||||||||||         M E M B R E S √ç A S        |||||||||||
 ========================================================*/
 void membresiasControl(string usuario) {
   dibujarMenu("2.3_membresias_ctrl");
   getch();
-} // Fin de panel de control de membresÌa
+} // Fin de panel de control de membres√≠a
 
 void membresiasAfiliacion(string usuario) {
   dibujarMenu("2.3_membresias_afil");
@@ -101,7 +120,7 @@ void membresiasAfiliacion(string usuario) {
         enfocarElemento("2.3_membresias_afil", INFO);
         break; // Pasar al siguiente paso
       } // Fin de esperar 'ENTER'
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
 
   while(tecla != ESC) { // Paso 3
@@ -111,7 +130,7 @@ void membresiasAfiliacion(string usuario) {
         enfocarElemento("2.3_membresias_afil", CONTRATO);
         break; // Pasar al siguiente paso
       } // Fin de esperar 'ENTER'
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
 
   while(tecla != ESC) { // Paso 4
@@ -125,13 +144,13 @@ void membresiasAfiliacion(string usuario) {
               nuevaMembresia(usuario, expiracion);
               mostrarAviso("suscripcion_exitosa", usuario);
               finalFantasy(0.7);
-              tecla = ESC; // Volver al men˙ clientes
+              tecla = ESC; // Volver al men√∫ clientes
             } else { // No tiene suficiente dinero
               // Mostrar error, saldo, costo y diferencia
             } break; // Fin de comprobar gasto exitoso
           case 4: // Cancelar
-            tecla = ESC; break; // Volver al men˙ clientes
-        } // Fin de presionar botÛn
+            tecla = ESC; break; // Volver al men√∫ clientes
+        } // Fin de presionar bot√≥n
       } else if (esDireccional(tecla)) {
         dir = obtenerDireccion(tecla);
         enfocarElemento(
@@ -139,7 +158,7 @@ void membresiasAfiliacion(string usuario) {
         ); // Fin de enfocar botones
         boton = orden[dir][boton];
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
 } // Fin de complemento menu::membresias
 
@@ -149,10 +168,10 @@ void membresias(string usuario) {
 
   if (tieneMembresia(usuario)) {
      menu::membresiasControl(usuario);
-     tecla = ESC; // Previene opciÛn de afiliarse
-  } else { // No est· afiliado a˙n
+     tecla = ESC; // Previene opci√≥n de afiliarse
+  } else { // No est√° afiliado a√∫n
     dibujarMenu("2.3_membresias_nuevo");
-  } // Fin de revisar si ya est· afiliado
+  } // Fin de revisar si ya est√° afiliado
 
   while(tecla != ESC) {
     tecla = getch();
@@ -167,7 +186,7 @@ void membresias(string usuario) {
         switch(btn) {
           case 0: // Afiliarme
             menu::membresiasAfiliacion(usuario);
-            tecla = ESC; // Volver al men˙ anterior
+            tecla = ESC; // Volver al men√∫ anterior
           break;
 
           case 1: // Reglas
@@ -177,19 +196,19 @@ void membresias(string usuario) {
               tecla = getch();
               if (tecla == ENTER) {
                 dibujarMenu("2.3_membresias_nuevo");
-                btn = 0; // Resetear elecciÛn
+                btn = 0; // Resetear elecci√≥n
               } // Fin de aceptar
             } // Fin de esperar tecla ENTER
           break;
-        } // Fin de lanzar sub-men˙
+        } // Fin de lanzar sub-men√∫
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
-} // Fin de suscribirse a membresÌa
+} // Fin de suscribirse a membres√≠a
 
 /* =======================================================
-|||||||||||           C R … D I T O            |||||||||||
+|||||||||||           C R √â D I T O            |||||||||||
 ========================================================*/
 void abonar(string usuario) {
   dibujarMenu("2.5_credito_f2");
@@ -198,7 +217,7 @@ void abonar(string usuario) {
   int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
   {3,4,0,2,1}, {2,2,3,0,1}};
 
-  // Mostrar el usuario y su crÈdito en pantalla
+  // Mostrar el usuario y su cr√©dito en pantalla
   mostrarCredito(usuario); gotoxy(37,10);
 
   while (tecla != ESC) {
@@ -208,7 +227,7 @@ void abonar(string usuario) {
          (input != 4 && input != 3 && input != 2))) {
         dir = obtenerDireccion(tecla);
         /* Prevenir el enfoque del campo de texto
-        'beneficiario' si no se ha marcado esa opciÛn */
+        'beneficiario' si no se ha marcado esa opci√≥n */
         if (!paraDonar && orden[dir][input] == 1) {
           input = orden[dir][input];
         } // Fin de comprobar el checkbox
@@ -244,7 +263,7 @@ void abonar(string usuario) {
         } // Fin de resetear inputs
       } else if (tecla == ENTER) { // 'ENTER'
         switch(input) {
-          case 2: // Checkbox 'Regalar CrÈdito'
+          case 2: // Checkbox 'Regalar Cr√©dito'
             activarBeneficiario(paraDonar);
             paraDonar = !paraDonar;
             if (paraDonar) {
@@ -253,7 +272,7 @@ void abonar(string usuario) {
             } // Fin de moverse al 'beneficiario'
             beneficiario.clear();        break;
 
-          case 3: // BotÛn 'Abonar'
+          case 3: // Bot√≥n 'Abonar'
             abono = atoi(monto.c_str());
             bool benefExiste, esEmpleado;
 
@@ -282,13 +301,13 @@ void abonar(string usuario) {
                 } // Fin de ver si el beneficiario existe
               } // Fin de pedir un beneficiario
             } else if (abono > 0) {
-              // El crÈdito es para el usuario
+              // El cr√©dito es para el usuario
               abonarCredito(usuario, abono);
-            } // Fin de ver a quiÈn abonar el crÈdito
+            } // Fin de ver a qui√©n abonar el cr√©dito
 
             mostrarCredito(usuario);
 
-            /* Si hubo alg˙n error a la hora de abonar
+            /* Si hubo alg√∫n error a la hora de abonar
             a un beneficiario, pedirlo de nuevo, si no,
             lhaya que resetear todos los campos */
             if (paraDonar) {
@@ -305,11 +324,11 @@ void abonar(string usuario) {
             beneficiario.clear();
           break;
 
-          case 4: // BotÛn 'Cancelar'
+          case 4: // Bot√≥n 'Cancelar'
             tecla = ESC; break; // Salir
         } // Fin de asignar comportamiento a botones
       } // Fin de reaccionar a teclas
-    } // Fin de selecciÛn de tecla
+    } // Fin de selecci√≥n de tecla
   } // Fin de pedir tecla y terminar al presionar 'ESC'
 } // Fin de abonar a mi cuenta o la de otros
 
@@ -318,7 +337,7 @@ void miCredito(string usuario) {
   int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
   int dir, boton = 0; char tecla;
 
-  // Mostrar el usuario y su crÈdito en pantalla
+  // Mostrar el usuario y su cr√©dito en pantalla
   mostrarCredito(usuario); gotoxy(39,10);
 
   while (tecla != ESC) {
@@ -334,15 +353,15 @@ void miCredito(string usuario) {
           case 0: menu::abonar(usuario);      boton=0;
           tecla = ESC;                        break;
           case 1: tecla = ESC;                break;
-        } // Fin de lanzar men˙ adecuado
+        } // Fin de lanzar men√∫ adecuado
       } // Fin de reaccionar a teclas
-    } // Fin de selecciÛn de tecla
+    } // Fin de selecci√≥n de tecla
   } // Fin de pedir tecla y terminar al presionar 'ESC'
   dibujarMenu("2_clientes");
 } // Fin de manejar dinero en la cuenta
 
 /* =======================================================
-|||||||||||          C A T ¡ L O G O           |||||||||||
+|||||||||||          C A T √Å L O G O           |||||||||||
 ========================================================*/
 void catalogoFrame2(string usuario, int gnrId) {
   dibujarMenu("2.4_catalogo_f2");
@@ -357,22 +376,22 @@ void catalogoFrame2(string usuario, int gnrId) {
   string genero = obtenerGenero(gnrId);
   peliculas = filtrarRegistros(
     "peliculas.txt", GENERO, genero
-  ); // ConsultÈ la dB para traer las pelis del gÈnero
+  ); // Consult√© la dB para traer las pelis del g√©nero
   int puntero = 0, direccion, pagActual = 0; char tecla;
   /*------------- FIN DE VARIABLES NECESARIAS ------------*/
 
-  // Poner gÈnero en el tÌtulo del men˙
+  // Poner g√©nero en el t√≠tulo del men√∫
   gotoxy(41,2); cout << genero; gotoxy(4,4);
 
-  // Mostrar las pelÌculas en pantalla
-  if (peliculas.size() > 0) { // Hay pelÌculas
-    // Desplegar la primera p·gina
+  // Mostrar las pel√≠culas en pantalla
+  if (peliculas.size() > 0) { // Hay pel√≠culas
+    // Desplegar la primera p√°gina
     mostrarPagina(peliculas, pagActual);
     detallesDeLaPelicula(peliculas[puntero]);
     
     vector<vector<int> > pags = paginacion(
       peliculas.size(), FILAS
-    ); // Fin de obtener rol de p·ginas
+    ); // Fin de obtener rol de p√°ginas
 
     // Manejo de teclas 'ESC', Arriba', 'Abajo' y 'ENTER'
     while(tecla != ESC) { // Tecla NO es 'ESC'
@@ -387,20 +406,20 @@ void catalogoFrame2(string usuario, int gnrId) {
             case 3: // Abajo
               if (puntero == final)                     {
                 limpiarZona("2.4_catalogo_f2", LISTA);
-                /* ⁄ltima pelÌcula en la lista, te lleva a
-                la primera p·gina y pelÌcula del listado */
+                /* √öltima pel√≠cula en la lista, te lleva a
+                la primera p√°gina y pel√≠cula del listado */
                 puntero = INICIO; pagActual = 0;
                 mostrarPagina(peliculas, pagActual);
               } else if (puntero == pags[pagActual][1]) {
                 limpiarZona("2.4_catalogo_f2", LISTA);
-                /* ⁄ltima pelÌcula en la p·gina, te lleva
-                a la primer peli del men˙ siguiente    */
+                /* √öltima pel√≠cula en la p√°gina, te lleva
+                a la primer peli del men√∫ siguiente    */
                 puntero = pags[pagActual + 1][0];
                 pagActual += 1;
                 mostrarPagina(peliculas, pagActual);
               } else                                    {
-                /* La pelÌcula no es ni la primera
-                ni la ˙ltima en la lista        */
+                /* La pel√≠cula no es ni la primera
+                ni la √∫ltima en la lista        */
                 limpiarZona("2.4_catalogo_f2", PUNTEROS);
                 puntero += 1;
               } // Fin de actuar conforme al puntero
@@ -410,20 +429,20 @@ void catalogoFrame2(string usuario, int gnrId) {
             case 2: // Arriba
               if (puntero == 0)                         {
                 limpiarZona("2.4_catalogo_f2", LISTA);
-                /* Primer pelÌcula en la lista, te lleva a
-                la ˙ltima pelÌcula y a la ˙ltima p·gina */
+                /* Primer pel√≠cula en la lista, te lleva a
+                la √∫ltima pel√≠cula y a la √∫ltima p√°gina */
                 puntero=final; pagActual = pags.size()-1;
                 mostrarPagina(peliculas, pagActual);
               } else if (puntero == pags[pagActual][0]) {
                 limpiarZona("2.4_catalogo_f2", LISTA);
-                /* Primer pelÌcula en la p·gina, te lleva
-                a la ˙ltima peli del men˙ anterior     */
+                /* Primer pel√≠cula en la p√°gina, te lleva
+                a la √∫ltima peli del men√∫ anterior     */
                 puntero = pags[pagActual-1][1];
                 pagActual -= 1;
                 mostrarPagina(peliculas, pagActual);
               } else                                    {
-                /* La pelÌcula no es ni la primera
-                ni la ˙ltima en la lista        */
+                /* La pel√≠cula no es ni la primera
+                ni la √∫ltima en la lista        */
                 limpiarZona("2.4_catalogo_f2", PUNTEROS);
                 puntero -= 1;
               } // Fin de actuar conforme al puntero
@@ -433,16 +452,16 @@ void catalogoFrame2(string usuario, int gnrId) {
           detallesDeLaPelicula(peliculas[puntero]);
           moverPuntero(puntero, pagActual)        ;
         } else if (tecla == ENTER) {
-          // Dar opciÛn de comprar o rentar
+          // Dar opci√≥n de comprar o rentar
         } // Fin de reaccionar a teclas
-      } // Fin de detectar tecla v·lida
+      } // Fin de detectar tecla v√°lida
     } // Fin de ciclar hasta presionar 'ESC'
-  } else { // No hay pelÌculas
+  } else { // No hay pel√≠culas
     mostrarError("lista_vacia");
-  } // Fin de ver si hay pelÌculas
+  } // Fin de ver si hay pel√≠culas
 
   dibujarMenu("2.4_catalogo_f1");
-} // Fin de detalles de pelÌculas
+} // Fin de detalles de pel√≠culas
 
 void catalogo(string usuario) {
   dibujarMenu("2.4_catalogo_f1");
@@ -450,8 +469,8 @@ void catalogo(string usuario) {
   char tecla; int dir, boton = 0;
   /*-------------------------------------------------*\
   |  0 => Horror    3  => Aventura    6 => Comedia    |
-  |  1 => Sci-Fi    4  => AcciÛn      7 => Romance    |
-  |  2 => Drama     5  => BiografÌa   8 => Documental |
+  |  1 => Sci-Fi    4  => Acci√≥n      7 => Romance    |
+  |  2 => Drama     5  => Biograf√≠a   8 => Documental |
   |  9 => Estrenos  10 => En remate                   |
   \*-------------------------------------------------*/
   int orden[4][11] = {{1,2,3,4,5,6,7,8,9,10,0},
@@ -470,13 +489,13 @@ void catalogo(string usuario) {
         boton = orden[dir][boton];
       } else if (tecla == ENTER) {
         menu::catalogoFrame2(usuario, boton);
-        boton = 0; // Re-Enfocar el primer botÛn
+        boton = 0; // Re-Enfocar el primer bot√≥n
         enfocarElemento("2.4_catalogo_f1", 0);
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("2_clientes");
-} // Fin de cat·logo de pelÌculas
+} // Fin de cat√°logo de pel√≠culas
 
 /* =======================================================
 |||||||||||      C R E D E N C I A L E S       |||||||||||
@@ -494,19 +513,19 @@ void clientes(string usuario) {
         case 3: menu::membresias(usuario);  break;
         case 4: menu::catalogo(usuario);    break;
         case 5: menu::miCredito(usuario);   break;
-      } // Fin de lanzar men˙ correspondiente
+      } // Fin de lanzar men√∫ correspondiente
     } else if (opcion == 6) {
       break; // Salir del ciclo infinito
-    } else { // OpciÛn inv·lida
+    } else { // Opci√≥n inv√°lida
       mostrarError("opcion_equivocada");
     } // Fin de comprobar error de capa 8
   } // Fin de ciclo infinito
-} // Fin de men˙ de clientes
+} // Fin de men√∫ de clientes
 
 void empleados() {
   dibujarMenu("3_empleados");
   getch();
-} // Fin de men˙ de empleados
+} // Fin de men√∫ de empleados
 
 /* =======================================================
 |||||||||||   L O G - I N  /  R E G I S T R O  |||||||||||
@@ -515,17 +534,17 @@ void login() {
   dibujarMenu("1_principal_login");
   // Variables para los valores del input
   string usuario, password, credenciales; char tecla;
-  int input = 0, // Selector de botÛn o caja de texto
+  int input = 0, // Selector de bot√≥n o caja de texto
       orden[4][3] = {{1,2,0},{2,0,1},{2,0,1},{1,2,0}},
-      dir /* DirecciÛn */; bool tienePermiso;
+      dir /* Direcci√≥n */; bool tienePermiso;
 
   while(tecla != ESC) {
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if ( /* Direccional o ENTER sin estar en el botÛn */
+      if ( /* Direccional o ENTER sin estar en el bot√≥n */
         esDireccional(tecla) ||
         (tecla == ENTER && input != 2)
-      ) {  /* Direccional o ENTER sin estar en el botÛn */
+      ) {  /* Direccional o ENTER sin estar en el bot√≥n */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento(
@@ -545,7 +564,7 @@ void login() {
               usuario += tecla; cout << usuario;
               gotoxy(23+usuario.length(),12);
             } break;
-          case 1: // ContraseÒa
+          case 1: // Contrase√±a
             if (password.length() < 18) {
               gotoxy(49,12);
               password += tecla;
@@ -572,12 +591,12 @@ void login() {
             menu::empleados();       break;
           } else if (credenciales == "cliente")  {
             menu::clientes(usuario); break;
-          } // Fin de llevar al men˙ correspondiente
+          } // Fin de llevar al men√∫ correspondiente
         } else { // No tiene permiso
           //
         } // Fin de dar pase si tiene permiso
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("1_principal");
 } // Fin de autenticar usuario
@@ -586,7 +605,7 @@ void registro() {
   dibujarMenu("1_principal_registro");
   // Variables para los valores del input
   string usuario, clave, claveRepetida, nuevoUsuario;
-  /* input 0 => Usuario             input 1 => ContraseÒa
+  /* input 0 => Usuario             input 1 => Contrase√±a
      input 2 => Repetir clave       input 3 => Btn 'Listo'
      orden   => [0: der - 1: izq - 2: arr - 3: abj]     */
   int orden[4][4] = {{1,2,3,0},{3,0,1,2},{1,0,3,2},{1,0,3,2}},
@@ -595,10 +614,10 @@ void registro() {
   while(tecla != ESC) {
     tecla = getch();
     if (tecla == 0) { tecla = getch(); } else {
-      if ( /* Direccional o ENTER sin estar en el botÛn */
+      if ( /* Direccional o ENTER sin estar en el bot√≥n */
         esDireccional(tecla) ||
         (tecla == ENTER && input != 3)
-      ) {  /* Direccional o ENTER sin estar en el botÛn */
+      ) {  /* Direccional o ENTER sin estar en el bot√≥n */
         dir = obtenerDireccion(tecla);
         // Enfocar y resetear inputs
         enfocarElemento(
@@ -619,14 +638,14 @@ void registro() {
               cout << usuario;
               gotoxy(23+usuario.length(),12);
             } break;
-          case 1: // ContraseÒa
+          case 1: // Contrase√±a
             if (clave.length() < 18) {
               gotoxy(23,17);
               clave += tecla;
               cout << asteriscos(clave);
               gotoxy(23+clave.length(),17);
             } break;
-          case 2: // Repetir contraseÒa
+          case 2: // Repetir contrase√±a
             if (claveRepetida.length() < 18) {
               gotoxy(50,12);
               claveRepetida += tecla;
@@ -650,7 +669,7 @@ void registro() {
           clave.length() >= 6
         ); // Fin de validar formulario
 
-        // Si el formulario es v·lido, registrar usuario
+        // Si el formulario es v√°lido, registrar usuario
         if (registroValido) {
           // Ensamblar el nuevo registro
           nuevoUsuario = usuario + ";"+clave+";cliente;0";
@@ -658,26 +677,26 @@ void registro() {
           insertarRegistro("usuarios.txt", nuevoUsuario);
           mostrarAviso("registro_exitoso", usuario);
           finalFantasy(0.7);
-          break; // Salir de este men˙
+          break; // Salir de este men√∫
         } else {
           system("cls"); cout << "Registro invalido";
-          getch(); break; // Salir de este men˙
-        } // Fin de verificar el envÌo de datos
+          getch(); break; // Salir de este men√∫
+        } // Fin de verificar el env√≠o de datos
       } // Fin de reaccionar a teclas
-    } // Fin de detectar tecla v·lida
+    } // Fin de detectar tecla v√°lida
   } // Fin de ciclar hasta presionar 'ESC'
   dibujarMenu("1_principal");
 } // Fin de agregar nuevos clientes
-} // Fin de namespace menu::funciÛn
+} // Fin de namespace menu::funci√≥n
 
 /*
 while(tecla != ESC) {
   tecla = getch();
   if (tecla == 0) { tecla = getch(); } else {
-    if ( // Direccional o ENTER sin estar en el botÛn
+    if ( // Direccional o ENTER sin estar en el bot√≥n
       esDireccional(tecla) ||
       (tecla == ENTER && input != n)
-    ) {  // Direccional o ENTER sin estar en el botÛn
+    ) {  // Direccional o ENTER sin estar en el bot√≥n
       dir = obtenerDireccion(tecla);
       // Enfocar y resetear inputs
       enfocarElemento(
@@ -708,6 +727,6 @@ while(tecla != ESC) {
     } else if (tecla == ENTER && input == n) {
       //
     } // Fin de reaccionar a teclas
-  } // Fin de detectar tecla v·lida
+  } // Fin de detectar tecla v√°lida
 } // Fin de ciclar hasta presionar 'ESC'
 */
