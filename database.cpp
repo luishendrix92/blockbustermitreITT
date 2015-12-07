@@ -151,21 +151,25 @@ void insertarRegistro(string archivo, string nuevoRegistro) {
   tabla.close();
 } // Fin de añadir datos a tabla
 
-vector<string> descargarTabla(string archivo) {
+vector<vector<string> > descargarTabla(string archivo) {
   fstream tabla; string linea;
-  vector<string> registros;
+  vector<string> registroActual;
+  vector<vector<string> > registros;
 
   tabla.open(archivo.c_str(), ios::in);
   if(tabla.is_open()) {
     while(getline(tabla, linea)) {
       if (linea.length() > 0) {
-        registros.push_back(linea);
+        registroActual = separarLinea(linea, ';');
+        registros.push_back(registroActual);
       } // Fin de ver si no es una línea vacía
     } // Fin de meter líneas del .txt al vector
   } else {
     db_error(archivo);
   } // Fin de comprobar si el archivo existe
-} // Fin de crear un arreglo con todos los registros
+
+  return registros;
+} // Fin de crear un arreglo 2D con todos los registros
 
 string consultaRapida(
 /* La tabla     */string archivo,

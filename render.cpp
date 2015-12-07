@@ -199,6 +199,16 @@ void dibujarMenu(string menu) {
     gotoxy(29,16); cout<<"========================";
     // Mover cursor al input default (Salir)
     gotoxy(32,15);
+  } else if (menu.compare("2.2_buscador")         == 0)   {
+    system("cls"); dibujarBordes();
+    // Renderizado de texto
+    gotoxy(5, 23);  cout << "Cuando acabes, presiona ENTER o usa el boton 'LISTO'";
+    gotoxy(6, 12);  cout << "<TUS RESULTADOS IRAN APARECIENDO AQUI>";
+    // Renderizado de Botón
+    gotoxy(67,2);   cout << "|  LISTO  "; 
+    gotoxy(67,3);   cout << "|";
+    // Enfocar cuadro de búsqueda
+    gotoxy(6,2);
   } else if (menu.compare("2.3_membresias_nuevo") == 0)   {
     system("cls"); dibujarBordes();
     // Renderizado de texto
@@ -532,6 +542,14 @@ void limpiarZona(string menu, int zona = 0) {
           <<      "                                    ";
         } break; // Fin de llenar con espacio blanco
     } // Fin de detectar zona a limpiar
+  } else if (menu.compare("2.2_buscador") == 0)        {
+    switch(zona) {
+      case 0: // Listado de películas
+        for(int y = 5; y <= 21; y += 1) {
+          gotoxy(5, y); cout<<"                      "
+                            <<"                     ";
+        } break; // Fin de llenar de espacios
+    } // Fin de elegir la zona
   } else if (menu.compare("2.3_membresias_afil") == 0) {
     int limiteY;
     switch(zona) {
@@ -623,6 +641,28 @@ void enfocarElemento(string menu, int elemento) {
       case 0: gotoxy(13,23);
         cout << "                                     ";
         gotoxy(13,23); break;
+    }
+  } else if (menu.compare("2.2_buscador")         == 0) {
+    switch(elemento) {
+      case 0: // Cuadro de búsqueda
+        gotoxy(6,2);  cout<<"                              "
+                          <<"                             ";
+        limpiarZona("2.2_buscador", 0);
+        // Desenfocar botón 'Listo'
+        gotoxy(67,1); cout << "___________";
+        gotoxy(67,2); cout << "|  LISTO  |";
+        gotoxy(67,3); cout << "|_________|";
+        // Enfocar input de destino
+        gotoxy(6, 2);
+      break;
+
+      case 1: // Botón 'Listo'
+        gotoxy(67,1); cout << "...........";
+        gotoxy(67,2); cout << "|| LISTO ||";
+        gotoxy(67,3); cout << "||.......||";
+        // Enfocar input de destino
+        gotoxy(70,2);
+      break;
     }
   } else if (menu.compare("2.4_catalogo_f1")      == 0) {
     // Volver a renderizar los botones (sin enfoque)

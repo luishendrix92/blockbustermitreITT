@@ -8,12 +8,74 @@ void tutorial() {
   dibujarMenu("2_clientes");
 } // Fin de rentar películas
 
+/* =======================================================
+|||||||||||           B U S C A D O R          |||||||||||
+========================================================*/
 void buscador(string usuario) {
-  // quitar pelicula si 'stock = 0'
+  dibujarMenu("2.2_buscador");
+  int dir, input = 0; char tecla; string peliBuscada;
+  vector<vector<string> > peliculas;
+  int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
+
+  #define MAX   13
+  #define INI_Y 6
+
+  // Descargar toda la tabla 'Películas'
+  peliculas = descargarTabla("peliculas.txt");
+  int nPeliculas = peliculas.size();
+
+  while(tecla != ESC) {
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if ( /* Direccional o ENTER sin estar en el botón */
+        esDireccional(tecla) ||
+        (tecla == ENTER && input != 1)
+      ) {  /* Direccional o ENTER sin estar en el botón */
+        dir = obtenerDireccion(tecla);
+        // Enfocar y resetear inputs
+        enfocarElemento(
+          "2.2_buscador", orden[dir][input]
+        ); // Fin de enfocar inputs
+        input = orden[dir][input];
+        switch(input) {
+          case 0: peliBuscada.clear(); break;
+        } // Fin de resetear inputs
+      } else if ((esAlfaNum(tecla)||tecla==32) && input != 1) {
+        if (peliBuscada.length() < 59) {
+          gotoxy(6,2); // Ir a la raíz del input
+          peliBuscada += tecla;
+          cout << peliBuscada;
+
+          // Mostrar las que coincidan con el criterio
+          limpiarZona("2.2_buscador", 0);
+          for (int i=0, encontradas=0; i<nPeliculas; i+=1) {
+            string titulo = peliculas[i][TITULO];
+            if(encontrarTexto(peliBuscada, titulo)) {
+              gotoxy(6, INI_Y + encontradas);
+              cout << titulo;
+              encontradas += 1;
+            } // Fin de evaluar coincidencia
+            if(encontradas == 13) { break; }
+          } // Fin de mostrar hasta 13 películas
+
+          gotoxy(6 + peliBuscada.length(), 2);
+        } // Fin de no sobrepasarse de 59 caracteres
+      } else if (tecla == BCKSP || tecla == DEL) {
+        // Limpiar cuadros de texto
+        enfocarElemento("2.2_buscador", input);
+        switch(input) {
+          case 0: peliBuscada.clear();       break;
+        } // Fin de resetear inputs actuales
+      } else if (tecla == ENTER && input == 1) {
+        //
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+  dibujarMenu("2_clientes");
 } // Fin de busqueda en tiempo real
 
 /* =======================================================
-|||||||||||        M E M B R E S Í A S         |||||||||||
+|||||||||||         M E M B R E S Í A S        |||||||||||
 ========================================================*/
 void membresiasControl(string usuario) {
   dibujarMenu("2.3_membresias_ctrl");
@@ -607,3 +669,45 @@ void registro() {
   dibujarMenu("1_principal");
 } // Fin de agregar nuevos clientes
 } // Fin de namespace menu::función
+
+/*
+while(tecla != ESC) {
+  tecla = getch();
+  if (tecla == 0) { tecla = getch(); } else {
+    if ( // Direccional o ENTER sin estar en el botón
+      esDireccional(tecla) ||
+      (tecla == ENTER && input != n)
+    ) {  // Direccional o ENTER sin estar en el botón
+      dir = obtenerDireccion(tecla);
+      // Enfocar y resetear inputs
+      enfocarElemento(
+        "menu", orden[dir][input]
+      ); // Fin de enfocar inputs
+      input = orden[dir][input];
+      switch(input) {
+        case 0: usuario.clear();       break;
+        case 1: clave.clear();         break;
+        case 2: claveRepetida.clear(); break;
+      } // Fin de resetear inputs
+    } else if (esAlfaNum(tecla) && input != 3) {
+      switch(input) {
+        case 0: // Usuario
+          if (example.length() < limite) {
+            gotoxy(nn,nn);
+            example += tecla;
+            cout << example;
+            gotoxy(nn+example.length(),nn);
+          } break;
+      } // Fin de capturar datos
+    } else if (tecla == BCKSP || tecla == DEL) {
+      // Limpiar cuadros de texto
+      enfocarElemento("menu", input);
+      switch(input) {
+        case 0: example.clear();       break;
+      } // Fin de resetear inputs actuales
+    } else if (tecla == ENTER && input == n) {
+      //
+    } // Fin de reaccionar a teclas
+  } // Fin de detectar tecla válida
+} // Fin de ciclar hasta presionar 'ESC'
+*/
