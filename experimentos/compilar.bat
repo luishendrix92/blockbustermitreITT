@@ -1,1 +1,0 @@
-g++ -o autocompletado autocompletado.cpp -static-libgcc -static-libstdc++
