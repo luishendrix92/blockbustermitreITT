@@ -292,31 +292,9 @@ string obtenerGenero(int id) {
 |||||||||||      MELODÍAS CON Beep(Hz,s)      |||||||||||
 =======================================================*/
 
-void marchaImperial() {
-  // Crédito de la canción en console::beep() ->
-  // social.technet.microsoft.com/wiki/contents/articles/
-  // 20989.music-from-the-command-line-performed-by-powershell.aspx
-  Beep(440,500) ;
-  Beep(440,500) ;
-  Beep(440,500) ;
-  Beep(349,350) ;
-  Beep(523,150) ;
-  Beep(440,500) ;
-  Beep(349,350) ;
-  Beep(523,150) ;
-  Beep(440,1000);
-  Beep(659,500) ;
-  Beep(659,500) ;
-  Beep(659,500) ;
-  Beep(698,350) ;
-  Beep(523,150) ;
-  Beep(415,500) ;
-  Beep(349,350) ;
-  Beep(523,150) ;
-  Beep(440,1000);
-} // Fin de canción de Star Wars
-
 void finalFantasy(float velocidad) {
+  /* Melodía creada con una tabla de frecuencias
+  y una aplicación de piano para el smartphone */
   Beep(987,(200 * velocidad));  // B5
   Beep(987,(200 * velocidad));  // B5
   Beep(987,(200 * velocidad));  // B5
@@ -329,6 +307,8 @@ void finalFantasy(float velocidad) {
 } // Fin de 'victory fanfare'
 
 void lostWoods() {
+  /* Melodía creada con una tabla de frecuencias
+  y una aplicación de piano para el smartphone */
   Beep(698,200);  // F5
   Beep(880,200);  // A5
   Beep(987,450);  // B5

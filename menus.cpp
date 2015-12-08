@@ -1,11 +1,9 @@
 namespace menu {
 void tutorial() {
   dibujarMenu("2.1_tutorial_f1");
-  getch();
-  dibujarMenu("2.1_tutorial_f2");
-  getch();
+  esperarRespuesta("2.1_tutorial_f2");
+  esperarRespuesta("2_clientes");
   system("color 1F");
-  dibujarMenu("2_clientes");
 } // Fin de rentar películas
 
 /* =======================================================
@@ -215,7 +213,55 @@ void buscador(string usuario) {
 ========================================================*/
 void membresiasControl(string usuario) {
   dibujarMenu("2.3_membresias_ctrl");
-  getch();
+  char tecla; int dir, duracionMemb = 6, btn = 0;
+  int orden[4][3] = {{1,2,0},{2,0,1},{1,0,0},{1,0,0}};
+
+  #define COSTO_RENOV 250
+
+  mostrarDetallesMembresia(usuario);
+
+  while(tecla != ESC) {
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) {
+        dir = obtenerDireccion(tecla);
+        enfocarElemento(
+          "2.3_membresias_ctrl", orden[dir][btn]
+        ); // Fin de enfocar inputs
+        btn = orden[dir][btn];
+      } else if (tecla == ENTER) {
+        switch(btn) {
+          case 0: // Devolver películas
+            /* Por falta de tiempo no completamos esto
+            así que decidimos devolver las 3 películas */
+            devolverPeliculas(usuario);
+            mostrarAviso("pelis_devueltas");
+            mostrarDetallesMembresia(usuario);
+            btn = 0;
+            break;
+          case 1: // Darse de baja
+            darDeBaja(usuario);
+            mostrarAviso("baja_miembro");
+            tecla = ESC; // Salir
+            break;
+          case 2: // Renovar membresía
+            if (realizarGasto(usuario, COSTO_RENOV)) {
+              // Si se pudo cobrar, arenovar
+              renovarMembresia(usuario);
+              mostrarAviso("renov_exitosa");
+            } else { // No tiene suficiente dinero
+              mostrarError(
+                "compra_fallida","suscr",usuario,COSTO_RENOV
+              ); // Fin de mensaje de error
+            } // Fin de comprobar gasto exitoso
+            dibujarMenu("2.3_membresias_ctrl");
+            mostrarDetallesMembresia(usuario);
+            btn = 0;
+            break;
+        } // Fin de lanzar sub-menú
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
 } // Fin de panel de control de membresía
 
 void membresiasAfiliacion(string usuario) {
@@ -261,13 +307,13 @@ void membresiasAfiliacion(string usuario) {
               nuevaMembresia(usuario, expiracion);
               mostrarAviso("suscripcion_exitosa", usuario);
               finalFantasy(0.7);
-              tecla = ESC; // Volver al menú clientes
             } else { // No tiene suficiente dinero
-              // Mostrar error, saldo, costo y diferencia
+              mostrarError(
+                "compra_fallida","suscr",usuario,COSTO_MEMB
+              ); // Fin de mensaje de error
             } break; // Fin de comprobar gasto exitoso
-          case 4: // Cancelar
-            tecla = ESC; break; // Volver al menú clientes
         } // Fin de presionar botón
+        tecla = ESC; // Volver al menú clientes
       } else if (esDireccional(tecla)) {
         dir = obtenerDireccion(tecla);
         enfocarElemento(
@@ -331,7 +377,7 @@ void abonar(string usuario) {
   dibujarMenu("2.5_credito_f2");
   int dir, input = 0, abono = 0; char tecla;
   bool paraDonar = false; string beneficiario, monto;
-  int orden[4][5] = {{1,2,3,4,0}, {4,0,1,2,3},
+  int orden[4][5] = {{3,3,3,4,0}, {4,0,1,2,3},
   {3,4,0,2,1}, {2,2,3,0,1}};
 
   // Mostrar el usuario y su crédito en pantalla
@@ -384,8 +430,13 @@ void abonar(string usuario) {
             activarBeneficiario(paraDonar);
             paraDonar = !paraDonar;
             if (paraDonar) {
+              orden[0][0]=1; orden[0][1]=3; orden[0][2]=3;
+              orden[0][3]=4; orden[0][4]=0;
               input = 1; // Beneficiario
               enfocarElemento("2.5_credito_f2", input);
+            } else {
+              orden[0][0]=3; orden[0][1]=3; orden[0][2]=3;
+              orden[0][3]=4; orden[0][4]=0;
             } // Fin de moverse al 'beneficiario'
             beneficiario.clear();        break;
 
@@ -394,13 +445,17 @@ void abonar(string usuario) {
             bool benefExiste, esEmpleado;
 
             if (!monto.length() || abono == 0) {
-              mostrarAviso("form_invalido", "monto");
+              mostrarAviso(
+                "form_invalido", "monto", "2.5_credito_f2"
+              ); // Fin de error, formulario inválido
             } // Fin de notificar abono $0
 
             // Ver si el abono es para regalar o no
             if (paraDonar && abono > 0) {
               if (!beneficiario.length()) {
-                mostrarAviso("form_invalido", "beneficiario");
+                mostrarAviso(
+                  "form_invalido","benef","2.5_credito_f2"
+                ); // Fin de error, formulario inválido
               } else {
                 benefExiste = consultaRapida(
                   "usuarios.txt", NOMBRE, beneficiario, NOMBRE
@@ -501,7 +556,7 @@ void opcionesEnCatalogo(string idPeli, string usuario) {
         boton = orden[dir][boton];
       } else if (tecla == ENTER) {
         switch(boton) {
-          case 1: // Rentar
+          case 2: // Rentar
             rentaExitosa=rentarPelicula(idPeli, usuario);
 
             if(rentaExitosa) {
@@ -513,7 +568,7 @@ void opcionesEnCatalogo(string idPeli, string usuario) {
               mostrarError("renta_fallida", "catalogo");
             } break; // Fin de desplegar mensajes
 
-          case 2: // Comprar
+          case 1: // Comprar
             compraExitosa = comprarPelicula(
               idPeli, usuario
             ); // Fin de ver si se concretó la renta
@@ -769,7 +824,10 @@ void login() {
             menu::clientes(usuario); break;
           } // Fin de llevar al menú correspondiente
         } else { // No tiene permiso
-          //
+          mostrarError("login_fallo");
+          usuario.clear(); password.clear();
+          input = 0;
+          enfocarElemento("1_principal_login", input);
         } // Fin de dar pase si tiene permiso
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
@@ -854,10 +912,41 @@ void registro() {
           mostrarAviso("registro_exitoso", usuario);
           finalFantasy(0.7);
           break; // Salir de este menú
-        } else {
-          system("cls"); cout << "Registro invalido";
-          getch(); break; // Salir de este menú
+        } else if (!nombreDisponible(usuario)) {
+          input = 0; usuario.clear();
+          mostrarError("nombre_no_disp", usuario);
+        } else if (clave.compare(claveRepetida) != 0) {
+          input = 1            ;
+          clave.clear()        ;
+          claveRepetida.clear();
+          mostrarAviso(
+            "form_invalido","claves","1_principal_registro"
+          ); // Fin de error, formulario inválido
+          enfocarElemento("1_principal_registro", 2);
+        } else if (usuario.length()<6 || clave.length()<6) {
+          mostrarAviso(
+            "form_invalido", "inseg","1_principal_registro"
+          ); // Fin de error, formulario inválido
+          if(usuario.length() < 6 && clave.length() < 6) {
+            input = 0    ;
+            clave.clear(); usuario.clear();
+            claveRepetida.clear()         ;
+            enfocarElemento("1_principal_registro", 1);
+            enfocarElemento("1_principal_registro", 2);
+          } else if (clave.length() < 6) {
+            input = 1    ;
+            clave.clear(); claveRepetida.clear();
+            enfocarElemento("1_principal_registro", 2);
+          } else { // Usuario de corta longitud
+            input = 0; usuario.clear();
+          } // Fin de corregir lo que se necesite
         } // Fin de verificar el envío de datos
+
+        // Mostrar datos conservados y corregir invalidez
+        gotoxy(23,12); cout << usuario      ;
+        gotoxy(23,17); cout << clave        ;
+        gotoxy(50,12); cout << claveRepetida;
+        enfocarElemento("1_principal_registro", input);
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'

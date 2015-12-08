@@ -16,12 +16,12 @@
 
 int main() {
   char tecla; int boton = 0, dir;
-  int orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
+  int  orden[4][2] = {{1,0},{1,0},{1,0},{1,0}};
 
   // Darle título a la ventana del programa
   SetConsoleTitle("Blockbuster: Rentas y Compras Online");
   // Renderizar intro y menú principal
-  /*intro(280);*/ dibujarMenu("1_principal");
+  intro(100); dibujarMenu("1_principal");
 
   // Manejo de teclas direccionales y 'ENTER'
   while (tecla != 27) { // Tecla NO es 'ESC'

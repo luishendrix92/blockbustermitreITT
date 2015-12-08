@@ -609,7 +609,7 @@ void limpiarZona(string menu, int zona = 0) {
         gotoxy(6,11); cout << "                  ";
         gotoxy(7,16); cout << "         ";
       break;
-    }    
+    }
   } else if (menu.compare("2.2_buscador_f2")     == 0) {
     short int yI=8, yA=6, yG=10, yD=12, yP=14, yS=16,
               xI=58,xA=58,xG=63, xD=63, xP=62, xS=69;
@@ -874,6 +874,33 @@ void enfocarElemento(string menu, int elemento, int i=0) {
         gotoxy(28,20); cout<<"---------------  ==============";
         gotoxy(48,19); break;
     }
+  } else if (menu.compare("2.3_membresias_ctrl") == 0) {
+    switch(elemento) {
+      case 0: // Devolver películas
+        gotoxy(5,15);  cout<<"========================";
+        gotoxy(5,16);  cout<<"|| DEVOLVER PELICULAS ||";
+        gotoxy(5,17);  cout<<"========================";
+        gotoxy(5,19);  cout<<"----------  -------------";
+        gotoxy(5,20);  cout<<"|  BAJA  |  |  RENOVAR  |";
+        gotoxy(5,21);  cout<<"----------  -------------";
+        gotoxy(8,16);  break;
+      case 1: // Darse de baja
+        gotoxy(5,15);  cout<<"------------------------";
+        gotoxy(5,16);  cout<<"|  DEVOLVER PELICULAS  |";
+        gotoxy(5,17);  cout<<"------------------------";
+        gotoxy(5,19);  cout<<"==========  -------------";
+        gotoxy(5,20);  cout<<"|| BAJA ||  |  RENOVAR  |";
+        gotoxy(5,21);  cout<<"==========  -------------";
+        gotoxy(8,20);  break;
+      case 2: // Renovar membresía
+        gotoxy(5,15);  cout<<"------------------------";
+        gotoxy(5,16);  cout<<"|  DEVOLVER PELICULAS  |";
+        gotoxy(5,17);  cout<<"------------------------";
+        gotoxy(5,19);  cout<<"----------  =============";
+        gotoxy(5,20);  cout<<"|  BAJA  |  || RENOVAR ||";
+        gotoxy(5,21);  cout<<"----------  =============";
+        gotoxy(20,20); break;
+    }
   } else if (menu.compare("2.5_credito")          == 0) {
     switch(elemento) {
       case 0: // Boton de abonar crédito
@@ -1106,19 +1133,26 @@ void mostrarAviso(string aviso, string datoExtra="", string menu="") {
     gotoxy(AACOL,16); cout<<"    >----------<   " ;
     gotoxy(AACOL,17); cout<<" ,p~V          V~q," ;
     gotoxy(AACOL,18); cout<<",Z  /.sdbs. d7 \\  N";
-    if (datoExtra.compare("monto") == 0)               {
-      // Renderizado de información
+    // Renderizado de información
+    if (datoExtra.compare("monto") == 0)         {
       gotoxy(ICOL,L1);cout<<"La cantidad para abonar que";
       gotoxy(ICOL,L2);cout<<"escribiste es 0 u olvidaste";
       gotoxy(ICOL,L3);cout<<"llenar ese campo.";
-    } else if (datoExtra.compare("beneficiario") == 0) {
-      // Renderizado de información
+    } else if (datoExtra.compare("benef") == 0)  {
       gotoxy(ICOL,L1);cout<<"No escribiste el nombre";
       gotoxy(ICOL,L2);cout<<"de la la persona a la que";
       gotoxy(ICOL,L3);cout<<"vas a abonar credito.";
+    } else if (datoExtra.compare("claves") == 0) {
+      gotoxy(ICOL,L1);cout<<"Las claves no coinciden...";
+      gotoxy(ICOL,L2);cout<<"vuelvelas a escribir y que";
+      gotoxy(ICOL,L3);cout<<"esta vez sean las mismas!";
+    } else if (datoExtra.compare("inseg") == 0)  {
+      gotoxy(ICOL,L1);cout<<"El nombre de usuario o la";
+      gotoxy(ICOL,L2);cout<<"clave que escribiste no tiene";
+      gotoxy(ICOL,L3);cout<<"como minimo 6 caracteres.";
     } // Fin de mostrar la información adecuada
     // Enfocar el botón
-    gotoxy(44,17); esperarRespuesta("2.5_credito_f2");
+    gotoxy(44,17); esperarRespuesta(menu);
   } else if (aviso.compare("compra_pelicula")      == 0) {
     prepararMensaje("PELICULA COMPRADA CON EXITO");
     // Renderizado de TV chris.com
@@ -1158,6 +1192,63 @@ void mostrarAviso(string aviso, string datoExtra="", string menu="") {
     gotoxy(ICOL,L3);  cout<<"antes del "<<datoExtra<<".";
     // Enfocar el botón
     gotoxy(44,17);    esperarRespuesta(menu);
+  } else if (aviso.compare("baja_miembro")         == 0) {
+    prepararMensaje("TE HAS DADO DE BAJA");
+    // Renderizado de tumba chris.com
+    gotoxy(AACOL,9);  cout<<"         _|_"         ;
+    gotoxy(AACOL,10); cout<<"        `-|-`"        ;
+    gotoxy(AACOL,11); cout<<"          |"          ;
+    gotoxy(AACOL,12); cout<<"      .-'~^~`-."      ;
+    gotoxy(AACOL,13); cout<<"    .' _     _ `."    ;
+    gotoxy(AACOL,14); cout<<"    | |_) | |_) |"    ;
+    gotoxy(AACOL,15); cout<<"    | | \\ | |   |"   ;
+    gotoxy(AACOL,16); cout<<"    |           |"    ;
+    gotoxy(AACOL,17); cout<<"_\\\\-|           |"  ;
+    gotoxy(AACOL,18); cout<<".-\\\\`=.........=`//";
+    // Renderizado de información
+    gotoxy(ICOL,L1);  cout<<"Ya no eres miembro del";
+    gotoxy(ICOL,L2);  cout<<"cineclub Blockbuster, te";
+    gotoxy(ICOL,L3);  cout<<"vamos a extra"<<char(164)<<"ar :(";
+    // Enfocar el botón
+    gotoxy(44,17);    esperarRespuesta("null");
+  } else if (aviso.compare("pelis_devueltas")      == 0) {
+    prepararMensaje("DEVOLVISTE LAS 3 PELICULAS");
+    // Renderizado de tumba chris.com
+    gotoxy(AACOL,9);  cout<<"   ._, |_  .,"       ;
+    gotoxy(AACOL,10); cout<<"_\\/  .  \\ /    |/_";
+    gotoxy(AACOL,11); cout<<" \\\\  _\\, y | \\//";
+    gotoxy(AACOL,12); cout<<"__\\\\, \\\\/ -.\\||";
+    gotoxy(AACOL,13); cout<<",--.`._||  / / ,"    ;
+    gotoxy(AACOL,14); cout<<"    `-. `./ / |/_.'" ;
+    gotoxy(AACOL,15); cout<<"       |    |//"     ;
+    gotoxy(AACOL,16); cout<<"       |_    /"      ;
+    gotoxy(AACOL,17); cout<<"       |-   |"       ;
+    gotoxy(AACOL,18); cout<<"       |   =|"       ;
+    // Renderizado de información
+    gotoxy(ICOL,L1);  cout<<"Ahora podras rentar otras"    ;
+    gotoxy(ICOL,L2);  cout<<"tres peliculas, elige las que";
+    gotoxy(ICOL,L3);  cout<<"mas te gusten y disfruta"     ;
+    // Enfocar el botón
+    gotoxy(44,17);    esperarRespuesta("2.3_membresias_ctrl");
+  } else if (aviso.compare("renov_exitosa")        == 0) {
+    prepararMensaje("RENOVACION EXITOSA!");
+    // Renderizado de Bender chris.com
+    gotoxy(AACOL,9);  cout<<"   /         \\"      ;
+    gotoxy(AACOL,10); cout<<"  |           |"      ;
+    gotoxy(AACOL,11); cout<<"  |   .-------'._"    ;
+    gotoxy(AACOL,12); cout<<"  |  / /  '.' '. \\"  ;
+    gotoxy(AACOL,13); cout<<"  |  \\ \\ @   @ / /" ;
+    gotoxy(AACOL,14); cout<<"  |   '---------'"    ;
+    gotoxy(AACOL,15); cout<<"  |    _______|"      ;
+    gotoxy(AACOL,16); cout<<"  |  .'-+-+-+|"       ;
+    gotoxy(AACOL,17); cout<<"  |  '.-+-+-+|"       ;
+    gotoxy(AACOL,18); cout<<"  |    \"\"\"\"\"\" |";
+    // Renderizado de información
+    gotoxy(ICOL,L1);  cout<<"Acabas de extender tu"    ;
+    gotoxy(ICOL,L2);  cout<<"membresia otros 6 meses";
+    gotoxy(ICOL,L3);  cout<<"mas. Disfrutalo mucho!"     ;
+    // Enfocar el botón
+    gotoxy(44,17);    esperarRespuesta("2.3_membresias_ctrl");
   } // Fin de elegir el aviso correcto
 } // Fin de mostrar confirmaciones, pantallas y avisos
 
@@ -1240,10 +1331,10 @@ void mostrarError(
       gotoxy(ICOL,L3);cout<<"y te faltan $"<<faltante<<" pesos.";
       // Enfocar el botón
       Beep(400,200); // Sonido de error
-      gotoxy(44,17); esperarRespuesta("");
+      gotoxy(44,17); esperarRespuesta("null");
     } // Fin de ver qué se trató de comprar
     system("color 1F"); // Pantalla azul de nuevo
-  } else if (tipoError.compare("renta_fallida") == 0) {
+  } else if (tipoError.compare("renta_fallida")  == 0) {
     prepararMensaje("NO SE PUDO RENTAR PELICULA");
     system("color 4F"); // Pantalla roja
     // Crédito: chris.com/ascii/
@@ -1269,6 +1360,52 @@ void mostrarError(
     } else {
       esperarRespuesta("2.2_buscador_f2");
     }
+    system("color 1F"); // Pantalla azul de nuevo
+  } else if (tipoError.compare("nombre_no_disp") == 0) {
+    prepararMensaje("NOMBRE NO DISPONIBLE");
+    system("color 4F"); // Pantalla roja
+    // Crédito: chris.com/ascii/
+    gotoxy(AACOL,9);  cout<<"       .#####.     "  ;
+    gotoxy(AACOL,10); cout<<"       |_____|     "  ;
+    gotoxy(AACOL,11); cout<<"      (\\#/ \\#/)    ";
+    gotoxy(AACOL,12); cout<<"       |  U  |     "  ;
+    gotoxy(AACOL,13); cout<<"       \\  _  /     " ;
+    gotoxy(AACOL,14); cout<<"        \\___/      " ;
+    gotoxy(AACOL,15); cout<<"    .---'   `---.  "  ;
+    gotoxy(AACOL,16); cout<<"   /  #########  \\ " ;
+    gotoxy(AACOL,17); cout<<"  /  |####|####|  \\" ;
+    gotoxy(AACOL,18); cout<<" (  /\\ ####### /\\ |";
+    // Renderizado de información
+    gotoxy(ICOL,L1);cout<<"El nombre "<<datoExtra;
+    gotoxy(ICOL,L2);cout<<"no esta disponible, otra";
+    gotoxy(ICOL,L3);cout<<"persona ya lo registro.";
+    // Enfocar el botón
+    Beep(400,200); // Sonido de error
+    gotoxy(44,17);
+    esperarRespuesta("1_principal_registro");
+    system("color 1F"); // Pantalla azul de nuevo
+  } else if (tipoError.compare("login_fallo") == 0) {
+    prepararMensaje("ACCESO DENEGADO (!)");
+    system("color 4F"); // Pantalla roja
+    // retrojunkie.com/asciiart/machines/padlocks.htm
+    gotoxy(AACOL,9);  cout<<"    / .----. \\"   ;
+    gotoxy(AACOL,10); cout<<"   / /      \\ \\" ;
+    gotoxy(AACOL,11); cout<<"   | |      | |"   ;
+    gotoxy(AACOL,12); cout<<"  _| |______| |_"  ;
+    gotoxy(AACOL,13); cout<<".' |_|      |_| '.";
+    gotoxy(AACOL,14); cout<<"'._____ __ _____.'";
+    gotoxy(AACOL,15); cout<<"|     .'__'.     |";
+    gotoxy(AACOL,16); cout<<"'.__.'.'  '.'.__.'";
+    gotoxy(AACOL,17); cout<<"'.__  |    |  __.'";
+    gotoxy(AACOL,18); cout<<"|   '.'.__.'.'   |";
+    // Renderizado de información
+    gotoxy(ICOL,L1);cout<<"Clave o nombre de usuario";
+    gotoxy(ICOL,L2);cout<<"incorrectos, revisa bien";
+    gotoxy(ICOL,L3);cout<<"los datos que escribiste.";
+    // Enfocar el botón
+    Beep(400,200); // Sonido de error
+    gotoxy(44,17);
+    esperarRespuesta("1_principal_login");
     system("color 1F"); // Pantalla azul de nuevo
   } // Fin de elegir el tipo de error
 } // Fin de mostrar errores en pantalla
@@ -1424,6 +1561,41 @@ void mostrarSinopsis(vector<string> peli) {
 
   esperarRespuesta("2.2_buscador_f2");
 } // Fin de cargar la sinopsis sola
+
+/* =======================================================
+|||||||||||     COMPLEMENTOS DE MEMBRESÍA      |||||||||||
+========================================================*/
+void mostrarDetallesMembresia(string miembro) {
+  int diasRestantes;
+  string         peli1, peli2, peli3, expir  ;
+  vector<string> peli1Arr, peli2Arr, peli3Arr;
+
+  peli1 = consultaRapida("membresias.txt", CLIENTE, miembro, RENTA1);
+  peli2 = consultaRapida("membresias.txt", CLIENTE, miembro, RENTA2);
+  peli3 = consultaRapida("membresias.txt", CLIENTE, miembro, RENTA3);
+  expir = consultaRapida("membresias.txt", CLIENTE, miembro, EXPIR );
+  peli1Arr = separarLinea(peli1, ',');
+  peli2Arr = separarLinea(peli2, ',');
+  peli3Arr = separarLinea(peli3, ',');
+
+  diasRestantes = diferenciaFechas(fechaDeHoy(), expir);
+
+  gotoxy(11,8);  cout << miembro       ;
+  gotoxy(16,10); cout << diasRestantes ;
+  gotoxy(35,9);
+  if(peli1.compare("null") != 0) {
+    cout << consultaRapida("peliculas.txt", ID, peli1Arr[ID], TITULO);
+  } else { cout << " "; }
+  gotoxy(35,14);
+  if(peli2.compare("null") != 0) {
+    cout << consultaRapida("peliculas.txt", ID, peli2Arr[ID], TITULO);
+  } else { cout << " "; }
+  gotoxy(35,19);
+  if(peli3.compare("null") != 0) {
+    cout << consultaRapida("peliculas.txt", ID, peli3Arr[ID], TITULO);
+  } else { cout << " "; }
+  gotoxy(8,16);
+} // Fin de listar pelis rentadas y detalles
 
 /* =======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ CRÉDITO    |||||||||||
@@ -1647,5 +1819,64 @@ void intro(int velocidad) {
 } // Fin de intro con logo
 
 void despedida() {
-  //marchaImperial();
+  system("cls"); system("color 0F");
+
+  int tamHorizontal = 78, tamVertical = 23;
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, (tamVertical-1)); cout<<"_";
+  } // Borde inferior
+  for(int x = 3; x < tamHorizontal; x+=1) {
+    gotoxy(x, 1);  cout<<"_";
+  } // Borde de titulo superior
+  for(int y = 2; y < tamVertical; y+=1)   {
+    gotoxy((tamHorizontal-1), y); cout<<"|";
+  } // Borde lateral derecho
+  for(int y = 2; y < tamVertical; y+=1)   {
+    gotoxy(3, y); cout<<"|";
+  } // Borde lateral izquierdo
+
+  gotoxy(6,6);  cout<<"               \\  .-.                   "   ;
+  gotoxy(6,7);  cout<<"                 /_ _\\                  "   ;
+  gotoxy(6,8);  cout<<"                 |o^o|                  "    ;
+  gotoxy(6,9);  cout<<"                 \\ _ /                  "   ;
+  gotoxy(6,10); cout<<"                .-'-'-.                 "    ;
+  gotoxy(6,11); cout<<"              /`)  .  (`\\               "   ;
+  gotoxy(6,12); cout<<"             / /|.-'-.|\\ \\         /    "  ;
+  gotoxy(6,13); cout<<"             \\ \\| (_) |/ /  .-\"\"-.      ";
+  gotoxy(6,14); cout<<"              \\_\\'-.-'/_/  /[] _ _\\     " ;
+  gotoxy(6,15); cout<<"              /_/ \\_/ \\_\\ _|_o_LII|_    " ;
+  gotoxy(6,16); cout<<"                |'._.'|  / | ==== | \\   "   ;
+  gotoxy(6,17); cout<<"                |  |  |  |_| ==== |_|   "    ;
+  gotoxy(6,18); cout<<"                 \\_|_/    ||\" ||  ||    "  ;
+  gotoxy(6,19); cout<<"                 |-|-|    ||LI  o ||    "    ;
+  gotoxy(6,20); cout<<"                 |_|_|    ||'----'||    "    ;
+  gotoxy(6,21); cout<<"                /_/ \\_\\  /__|    |__\\   " ;
+  Sleep(1000);
+  // Crédito de la canción en console::beep() ->
+  // social.technet.microsoft.com/wiki/contents/articles/
+  // 20989.music-from-the-command-line-performed-by-powershell.aspx
+  gotoxy(8, 3);  cout<<"MU"     ; system("color 01"); Beep(440,500) ;
+  gotoxy(10,3);  cout<<"CHAS"   ; system("color 02"); Beep(440,500) ;
+  gotoxy(15,3);  cout<<"GRA"    ; system("color 03"); Beep(440,500) ;
+  gotoxy(18,3);  cout<<"CIAS"   ; system("color 04"); Beep(349,350) ;
+  gotoxy(9, 4);  cout<<"POR"    ; system("color 05"); Beep(523,150) ;
+  gotoxy(13,4);  cout<<"UTI"    ; system("color 06"); Beep(440,500) ;
+  gotoxy(16,4);  cout<<"LIZAR"  ; system("color 07"); Beep(349,350) ;
+  gotoxy(7, 5);  cout<<"NUESTRO"; system("color 08"); Beep(523,150) ;
+  gotoxy(15,5);  cout<<"SISTEMA"; system("color 09"); Beep(440,1000);
+  gotoxy(44,10); cout<<"BEEP"   ; system("color 0A"); Beep(659,500) ;
+  gotoxy(49,10); cout<<"BOOP"   ; system("color 0B"); Beep(659,500) ;
+  gotoxy(54,10); cout<<"BEEP"   ; system("color 0C"); Beep(659,500) ;
+  gotoxy(43,11); cout<<"(TEN"   ; system("color 0D"); Beep(698,350) ;
+  gotoxy(48,11); cout<<"UN"     ; system("color 0E"); Beep(523,150) ;
+  gotoxy(51,11); cout<<"BUEN"   ; system("color 01"); Beep(415,500) ;
+  gotoxy(56,11); cout<<"DIA)"   ; system("color 06"); Beep(349,350) ;
+  system("cls"); system("color 0F");                  Beep(523,150) ;
+  gotoxy(10,9);   cout<<"     ___       _______   __    ______        _______. __ "    ;
+  gotoxy(10,10);  cout<<"    /   \\     |       \\ |  |  /  __  \\      /       ||  |" ;
+  gotoxy(10,11);  cout<<"   /  ^  \\    |  .--.  ||  | |  |  |  |    |   (----`|  |"   ;
+  gotoxy(10,12);  cout<<"  /  /_\\  \\   |  |  |  ||  | |  |  |  |     \\   \\    |  |";
+  gotoxy(10,13);  cout<<" /  _____  \\  |  '--'  ||  | |  `--'  | .----)   |   |__|"   ;
+  gotoxy(10,14);  cout<<"/__/     \\__\\ |_______/ |__|  \\______/  |_______/    (__)" ;
+  Beep(440,1000);
 } // Fin de ticket de despedida

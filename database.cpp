@@ -312,6 +312,35 @@ bool tieneMembresia(string usuario) {
   return afiliado;
 } // Fin de verificar si ya es miembro
 
+void darDeBaja(string miembro) {
+  borrarRegistro(
+    "membresias.txt", CLIENTE, miembro
+  ); // Fin de borrar al cliente de la lista de miembros
+} // Fin de remover membresía
+
+void devolverPeliculas(string miembro) {
+  modificarRegistro(
+    "membresias.txt", RENTA1, "null", CLIENTE, miembro
+  ); // Fin de resetear el 1er slot
+  modificarRegistro(
+    "membresias.txt", RENTA2, "null", CLIENTE, miembro
+  ); // Fin de resetear el 2ndo slot
+  modificarRegistro(
+    "membresias.txt", RENTA3, "null", CLIENTE, miembro
+  ); // Fin de resetear el 3er slot
+} // Fin de devolver las 3 películas rentadas
+
+void renovarMembresia(string miembro) {
+  string expirActual = consultaRapida(
+    "membresias.txt", CLIENTE, miembro, EXPIR
+  ), // Fin de almacenar la expiración actual
+         nuevaExpir  = sumarMeses(expirActual, 6);
+
+  modificarRegistro(
+    "membresias.txt", EXPIR, nuevaExpir, CLIENTE, miembro
+  ); // Fin de resetear el 3er slot
+} // Fin de extender afiliación otros 6 meses
+
 /* ======================================================
 ||||||    COMPLEMENTOS DE MENÚ BUSCADOR/CATÁLGO    ||||||
 =======================================================*/
