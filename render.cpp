@@ -262,7 +262,7 @@ void dibujarMenu(string menu) {
     gotoxy(5, 5);   cout<<"Bienvenidos al programa de membres"<<char(161);
     gotoxy(39,5);   cout<<"as de Blockbuster. Parece que a"<<char(163)<<"n no";
     gotoxy(5, 6);   cout<<"est"<<char(160)<<"s afiliado al programa. Los beneficios son: ";
-    gotoxy(5, 9);   cout<<"1: Tienes derecho a 5 pel"<<char(161)<<"culas";
+    gotoxy(5, 9);   cout<<"1: Tienes derecho a 3 pel"<<char(161)<<"culas";
     gotoxy(5, 10);  cout<<"rentadas como m"<<char(160)<<"ximo.";
     gotoxy(5, 12);  cout<<"2: Recibir"<<char(160)<<"s un descuento";
     gotoxy(5, 13);  cout<<"del 10% en tus compras.";
@@ -843,7 +843,7 @@ void enfocarElemento(string menu, int elemento, int i=0) {
         gotoxy(6,10);  cout<<"|  EXPIRACION || INFORMACION || CONTRATO  |";
         gotoxy(6,11);  cout<<"|_____________||             ||___________|";
         // Renderizado de texto
-        gotoxy(19,14); cout<<"Solo podras sacar 3 peliculas rentadas, la";
+        gotoxy(19,14); cout<<"EL costo de una renta es de $20 pesos, la";
         gotoxy(19,15); cout<<"renta durara 1 mes incluyendo fines de semana.";
         gotoxy(19,16); cout<<"Tu mismo te podras dar de baja posteriormente.";
         gotoxy(37,19); break;
@@ -960,10 +960,46 @@ void enfocarElemento(string menu, int elemento, int i=0) {
       gotoxy(5,9+i); cout<<"   *------------*----------*===========*   ";
       gotoxy(35,8+i); break;
     }
+  } else if (menu.compare("ventana_opciones")     == 0) {
+    switch(elemento) {
+      case 0: // Botón de cerrar
+        gotoxy(61,7);  cout<<"=====";
+        gotoxy(61,8);  cout<<"||X||";
+        gotoxy(61,9);  cout<<"=====";
+        gotoxy(25,15); cout<<"-------------";
+        gotoxy(25,16); cout<<"|  COMPRAR  |";
+        gotoxy(25,17); cout<<"-------------";
+        gotoxy(40,15); cout<<"------------";
+        gotoxy(40,16); cout<<"|  RENTAR  |";
+        gotoxy(40,17); cout<<"------------";
+        gotoxy(63,8);  break;
+      case 1: // Botón de Comprar
+        gotoxy(61,7);  cout<<"----.";
+        gotoxy(61,8);  cout<<"| X |";
+        gotoxy(61,9);  cout<<"----|";
+        gotoxy(25,15); cout<<"=============";
+        gotoxy(25,16); cout<<"|| COMPRAR ||";
+        gotoxy(25,17); cout<<"=============";
+        gotoxy(40,15); cout<<"------------";
+        gotoxy(40,16); cout<<"|  RENTAR  |";
+        gotoxy(40,17); cout<<"------------";
+        gotoxy(28,16); break;
+      case 2: // Botón de cerrar
+        gotoxy(61,7);  cout<<"----.";
+        gotoxy(61,8);  cout<<"| X |";
+        gotoxy(61,9);  cout<<"----|";
+        gotoxy(25,15); cout<<"-------------";
+        gotoxy(25,16); cout<<"|  COMPRAR  |";
+        gotoxy(25,17); cout<<"-------------";
+        gotoxy(40,15); cout<<"============";
+        gotoxy(40,16); cout<<"|| RENTAR ||";
+        gotoxy(40,17); cout<<"============";
+        gotoxy(43,16);  break;
+    }
   } // Fin de manejar elementos de cada menú
 } // Fin de hacer focus en elemento de entrada
 
-void mostrarAviso(string aviso, string datoExtra = "") {
+void mostrarAviso(string aviso, string datoExtra="", string menu="") {
   #define AACOL 15
   #define ICOL  35
   #define L1    12
@@ -1042,7 +1078,7 @@ void mostrarAviso(string aviso, string datoExtra = "") {
     getch(); system("color 1F");
   } else if (aviso.compare("abono_regalo")         == 0) {
     prepararMensaje("ABONO DE REGALO EXITOSO!");
-    // Renderizado de regalo
+    // Renderizado de regalo chris.com
     gotoxy(AACOL,10);  cout<<"       _   _      "  ;
     gotoxy(AACOL,11); cout<<"      ((\\o/))     " ;
     gotoxy(AACOL,12); cout<<" .-----//^\\\\-----.";
@@ -1083,21 +1119,62 @@ void mostrarAviso(string aviso, string datoExtra = "") {
     } // Fin de mostrar la información adecuada
     // Enfocar el botón
     gotoxy(44,17); esperarRespuesta("2.5_credito_f2");
+  } else if (aviso.compare("compra_pelicula")      == 0) {
+    prepararMensaje("PELICULA COMPRADA CON EXITO");
+    // Renderizado de TV chris.com
+    gotoxy(AACOL,10); cout<<" ____________   " ;
+    gotoxy(AACOL,11); cout<<"|,----------.|  " ;
+    gotoxy(AACOL,12); cout<<"||          ||  " ;
+    gotoxy(AACOL,13); cout<<"||   WOO!   ||  " ;
+    gotoxy(AACOL,14); cout<<"||          ||  " ;
+    gotoxy(AACOL,15); cout<<"|`----------'|  " ;
+    gotoxy(AACOL,16); cout<<"|o .... [###]|\\_";
+    gotoxy(AACOL,17); cout<<"|____________|  " ;
+    // Renderizado de información
+    gotoxy(ICOL,L1);  cout<<"Te enviaremos tu pelicula";
+    gotoxy(ICOL,L2);  cout<<"a casa en un periodo maximo";
+    gotoxy(ICOL,L3);  cout<<"de dos semana habiles.";
+    // Enfocar el botón
+    gotoxy(44,17);
+    if (datoExtra.compare("catalogo") == 0) {
+      esperarRespuesta("null");
+    } else {
+      esperarRespuesta("2.2_buscador_f2");
+    }
+  } else if (aviso.compare("renta_pelicula")       == 0) {
+    prepararMensaje("GRACIAS POR RENTAR");
+    // Renderizado de TV chris.com
+    gotoxy(AACOL,10); cout<<" ____________   " ;
+    gotoxy(AACOL,11); cout<<"|,----------.|  " ;
+    gotoxy(AACOL,12); cout<<"||          ||  " ;
+    gotoxy(AACOL,13); cout<<"||   WOO!   ||  " ;
+    gotoxy(AACOL,14); cout<<"||          ||  " ;
+    gotoxy(AACOL,15); cout<<"|`----------'|  " ;
+    gotoxy(AACOL,16); cout<<"|o .... [###]|\\_";
+    gotoxy(AACOL,17); cout<<"|____________|  " ;
+    // Renderizado de información
+    gotoxy(ICOL,L1);  cout<<"Podras disfrutarla 1 mes";
+    gotoxy(ICOL,L2);  cout<<"pero recuerda regresarla";
+    gotoxy(ICOL,L3);  cout<<"antes del "<<datoExtra<<".";
+    // Enfocar el botón
+    gotoxy(44,17);    esperarRespuesta(menu);
   } // Fin de elegir el aviso correcto
 } // Fin de mostrar confirmaciones, pantallas y avisos
 
-void mostrarError(string tipoError, string datoExtra = "") {
-  if (tipoError.compare("opcion_equivocada")  == 0) {
+void mostrarError(
+  string tipoError, string datoExtra="", string comprador="", int precio=0
+) { // Fin de recibir parámetros
+  if (tipoError.compare("opcion_equivocada")     == 0) {
     gotoxy(13,23); cout<<"Opcion equivocada, elige entre 1 y 6!";
     Beep(400,200); // Sonido de error
     Sleep(2500);   enfocarElemento("2_clientes", 0);
-  } else if (tipoError.compare("lista_vacia") == 0) {
+  } else if (tipoError.compare("lista_vacia")    == 0) {
     gotoxy(5,4);
     cout<<"No se encontro ninguna pelicula.";
     gotoxy(5,5);
     cout<<"Presione cualquier tecla para volver al catalogo";
     Beep(400,200); getch();
-  } else if (tipoError.compare("benef_error") == 0) {
+  } else if (tipoError.compare("benef_error")    == 0) {
     prepararMensaje("BENEFICIARIO NO ENCONTRADO");
     system("color 4F"); // Pantalla roja
     // Renderizado de cara atónita
@@ -1119,6 +1196,79 @@ void mostrarError(string tipoError, string datoExtra = "") {
     // Enfocar el botón
     Beep(400,200); // Sonido de error
     gotoxy(44,17); esperarRespuesta("2.5_credito_f2");
+    system("color 1F"); // Pantalla azul de nuevo
+  } else if (tipoError.compare("compra_fallida") == 0) {
+    prepararMensaje("FALLO AL REALIZAR COMPRA");
+    system("color 4F"); // Pantalla roja
+
+    string credito = consultaRapida(
+      "usuarios.txt", NOMBRE, comprador, CREDITO
+    ); // Fin de almacenar el crédito actual
+    int faltante = precio-atoi(credito.c_str());
+    // ASCII ART de Chris.com
+    gotoxy(AACOL,9);  cout<<"  _______________ ";
+    gotoxy(AACOL,10); cout<<" |  ____________ |";
+    gotoxy(AACOL,11); cout<<" | | UH OH...  | |";
+    gotoxy(AACOL,12); cout<<" | |___________| |";
+    gotoxy(AACOL,13); cout<<" |  ___ ___ ___  |";
+    gotoxy(AACOL,14); cout<<" | | 7 | 8 | 9 | |";
+    gotoxy(AACOL,15); cout<<" | |___|___|___| |";
+    gotoxy(AACOL,16); cout<<" | | 4 | 5 | 6 | |";
+    gotoxy(AACOL,17); cout<<" | |___|___|___| |";
+    gotoxy(AACOL,18); cout<<" | | 1 | 2 | 3 | |";
+    // Ver qué compra se realizó
+    if (datoExtra.compare("peli_busc")          == 0) {
+      // Renderizado de información
+      gotoxy(ICOL,L1);cout<<"Te faltaron $"<<faltante<<" pesos para";
+      gotoxy(ICOL,L2);cout<<"realizar esta compra, abona";
+      gotoxy(ICOL,L3);cout<<"credito a tu cuenta.";
+      // Enfocar el botón
+      Beep(400,200); // Sonido de error
+      gotoxy(44,17); esperarRespuesta("2.2_buscador_f2");
+    } else if (datoExtra.compare("catalogo")    == 0) {
+      // Renderizado de información
+      gotoxy(ICOL,L1);cout<<"Te faltaron $"<<faltante<<" pesos para";
+      gotoxy(ICOL,L2);cout<<"realizar esta compra, abona";
+      gotoxy(ICOL,L3);cout<<"credito a tu cuenta.";
+      // Enfocar el botón
+      Beep(400,200); // Sonido de error
+      gotoxy(44,17); esperarRespuesta("null");
+    } else if (datoExtra.compare("suscr")       == 0) {
+      // Renderizado de información
+      gotoxy(ICOL,L1);cout<<"No tienes dinero suficiente";
+      gotoxy(ICOL,L2);cout<<"para afiliarte a Blockbuster";
+      gotoxy(ICOL,L3);cout<<"y te faltan $"<<faltante<<" pesos.";
+      // Enfocar el botón
+      Beep(400,200); // Sonido de error
+      gotoxy(44,17); esperarRespuesta("");
+    } // Fin de ver qué se trató de comprar
+    system("color 1F"); // Pantalla azul de nuevo
+  } else if (tipoError.compare("renta_fallida") == 0) {
+    prepararMensaje("NO SE PUDO RENTAR PELICULA");
+    system("color 4F"); // Pantalla roja
+    // Crédito: chris.com/ascii/
+    gotoxy(AACOL,9);  cout<<"   ___________     "       ;
+    gotoxy(AACOL,10); cout<<"  /=//==//=/  \\    "      ;
+    gotoxy(AACOL,11); cout<<" |=||==||=|    |   "       ;
+    gotoxy(AACOL,12); cout<<" |=||==||=|~-, |   "       ;
+    gotoxy(AACOL,13); cout<<" |=||==||=|^.`;|   "       ;
+    gotoxy(AACOL,14); cout<<"  \\=\\\\==\\\\=\\`=.:   " ;
+    gotoxy(AACOL,15); cout<<"   `\"\"\"\"\"\"\"`^-,`.  ";
+    gotoxy(AACOL,16); cout<<"            `.~,'  "       ;
+    gotoxy(AACOL,17); cout<<"           ',~^:,  "       ;
+    gotoxy(AACOL,18); cout<<"           `.^;`.  "       ;
+    // Renderizado de información
+    gotoxy(ICOL,L1);cout<<"Puede que ya hayas excedido";
+    gotoxy(ICOL,L2);cout<<"tus 3 rentas, tengas adeudos";
+    gotoxy(ICOL,L3);cout<<"o no estes afiliado.";
+    // Enfocar el botón
+    Beep(400,200); // Sonido de error
+    gotoxy(44,17);
+    if (datoExtra.compare("catalogo") == 0) {
+      esperarRespuesta("null");
+    } else {
+      esperarRespuesta("2.2_buscador_f2");
+    }
     system("color 1F"); // Pantalla azul de nuevo
   } // Fin de elegir el tipo de error
 } // Fin de mostrar errores en pantalla
@@ -1184,6 +1334,46 @@ void moverPuntero(int cursor, int pagina) {
   cout << ">";
   gotoxy(4,4+cursor-(11*pagina));
 } // Fin de mover el puntero '>' al desplazarse
+
+void ventanaOpciones(string idPelicula) {
+  string precio = consultaRapida(
+    "peliculas.txt", ID, idPelicula, PRECIO
+  ); // Almacenar precio en una cadena
+
+  // Tapar con espacios lo que haya debajo
+  for(int y = 8; y <= 17; y += 1) {
+    gotoxy(15,y);
+    cout<<"                          "<<
+          "                        ";
+  } // Fin de llenar con espacios
+  gotoxy(14,7);   cout<<".-------------------------"
+                      <<"-------------------------.";
+  gotoxy(15,9);   cout<<"-------------------------"
+                      <<"-------------------------" ;
+  gotoxy(14,18);  cout<<"*_________________________"
+                     <<"_________________________*";
+  for(int y=8; y<=17; y+=1) {
+    gotoxy(14,y); cout<<"|";
+    gotoxy(65,y); cout<<"|";
+  } // Fin de bordes laterales
+  // Renderizado de texto
+  gotoxy(33,8);   cout<<"QUE DESEAS HACER?";
+  gotoxy(17,11);  cout<<"Esta pelicula cuesta $"<<precio<<" pesos, tienes las";
+  gotoxy(17,12);  cout<<"siguientes opciones. Para cerrar esta ventana";
+  gotoxy(17,13);  cout<<"presiona el boton [X] de la esquina o <ESC>.";
+  // Renderizado de botones
+  gotoxy(61,7);   cout<<"----.";
+  gotoxy(61,8);   cout<<"| X |";
+  gotoxy(61,9);   cout<<"----|";
+  gotoxy(25,15);  cout<<"=============";
+  gotoxy(25,16);  cout<<"|| COMPRAR ||";
+  gotoxy(25,17);  cout<<"=============";
+  gotoxy(40,15);  cout<<"------------";
+  gotoxy(40,16);  cout<<"|  RENTAR  |";
+  gotoxy(40,17);  cout<<"------------";
+  // Enfocar el botón default 'Comprar'
+  gotoxy(28,16);
+} // Fin de ventana con rentar o comprar
 
 /* =======================================================
 |||||||||||      COMPLEMENTOS DE BÚSQUEDA      |||||||||||
@@ -1457,5 +1647,5 @@ void intro(int velocidad) {
 } // Fin de intro con logo
 
 void despedida() {
-  //
+  //marchaImperial();
 } // Fin de ticket de despedida

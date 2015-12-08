@@ -202,6 +202,28 @@ string consultaRapida(
   } // Fin de comprobar si el archivo existe
 } // Fin de consultar un campo a través de una búsqueda
 
+bool realizarGasto(string usuario, int monto) {
+  string dinero; int credito;
+
+  // Consultar el crédito del usuario y almacenarlo
+  dinero  = consultaRapida(
+    "usuarios.txt", NOMBRE, usuario, CREDITO
+  ); // Fin de almacenar crédito del usuario
+  credito = atoi(dinero.c_str());
+
+  // Comprobar si se puede realizar la compra
+  if (monto <= credito) {
+    credito -= monto; dinero = enteroATexto(credito);
+    // Actualizar la base de datos ya realizado el gasto
+    modificarRegistro(
+      "usuarios.txt", CREDITO, dinero, NOMBRE, usuario
+    ); // Fin de restarle dinero al usuario
+    return true;
+  } else { // No le alcanzó
+    return false;
+  } // Fin de comprobar si tiene dinero
+} // Fin de sustraer un gasto al crédito de un usuario
+
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ LOGIN     |||||||||||
 =======================================================*/
@@ -259,29 +281,6 @@ bool nombreDisponible(string nombre) {
 |||||||||||  COMPLEMENTOS DE MENÚ MEMBRESÍAS  |||||||||||
 =======================================================*/
 
-bool realizarGasto(string usuario, int monto) {
-  string dinero; int credito;
-
-  // Consultar el crédito del usuario y almacenarlo
-  dinero  = consultaRapida(
-    "usuarios.txt", NOMBRE, usuario, CREDITO
-  ); // Fin de almacenar crédito del usuario
-  credito = atoi(dinero.c_str());
-  dinero  = enteroATexto(credito);
-
-  // Comprobar si se puede realizar la compra
-  if (monto <= credito) {
-    credito -= monto;
-    // Actualizar la base de datos ya realizado el gasto
-    modificarRegistro(
-      "usuarios.txt", CREDITO, dinero, NOMBRE, usuario
-    ); // Fin de restarle dinero al usuario
-    return true;
-  } else { // No le alcanzó
-    return false;
-  } // Fin de comprobar si tiene dinero
-} // Fin de sustraer un gasto al crédito de un usuario
-
 void nuevaMembresia(string usuario, string expiracion) {
   string nuevoMiembro;
 
@@ -312,6 +311,58 @@ bool tieneMembresia(string usuario) {
 
   return afiliado;
 } // Fin de verificar si ya es miembro
+
+/* ======================================================
+||||||    COMPLEMENTOS DE MENÚ BUSCADOR/CATÁLGO    ||||||
+=======================================================*/
+
+bool comprarPelicula(string idPelicula, string usuario) {
+  // Variables necesarias
+  bool estaEnRemate = consultaRapida(
+    "peliculas.txt", ID, idPelicula, STATUS
+  ).compare("remate") == 0;
+  bool esMiembro = tieneMembresia(usuario);
+  int precio = atoi(consultaRapida(
+    "peliculas.txt", ID, idPelicula, PRECIO
+  ).c_str()); // Fin de almacenar su precio
+
+  if (estaEnRemate) { precio -= precio * 0.6; }
+  if (esMiembro)    { precio -= precio * 0.1; }
+
+  return realizarGasto(usuario, precio);
+} // Fin de comprar película
+
+bool rentarPelicula(string idPelicula, string usuario) {
+  if(!tieneMembresia(usuario)) {
+    return false;
+  } // Evitar una renta si no está afiliado
+
+  string fechaExpiracion = cuandoExpira(1); // En 1 mes
+  int slotLibre; // Slot disponible en el momento
+
+  // Ensamblar nueva renta
+  string nuevaRenta = idPelicula+","+fechaExpiracion;
+
+  bool slot1 = consultaRapida(
+    "membresias.txt", CLIENTE, usuario, RENTA1
+  ).compare("null") == 0;
+  bool slot2 = consultaRapida(
+    "membresias.txt", CLIENTE, usuario, RENTA2
+  ).compare("null") == 0;
+  bool slot3 = consultaRapida(
+    "membresias.txt", CLIENTE, usuario, RENTA3
+  ).compare("null") == 0;
+
+  if      (slot1) { slotLibre = 2; } // Coresponde a RENTA1
+  else if (slot2) { slotLibre = 3; } // Coresponde a RENTA2
+  else if (slot3) { slotLibre = 4; } // Coresponde a RENTA3
+
+  if (slot1 || slot2 || slot3) {
+    modificarRegistro(
+      "membresias.txt", slotLibre, nuevaRenta, CLIENTE, usuario
+    ); // Fin de rentar si hay slots disponibles
+  } return (slot1 || slot2 || slot3);
+} // Fin de realizar la renta de una película
 
 /* ======================================================
 |||||||||||    COMPLEMENTOS DE MENÚ CRÉDITO   |||||||||||

@@ -11,10 +11,13 @@ void tutorial() {
 /* =======================================================
 |||||||||||           B U S C A D O R          |||||||||||
 ========================================================*/
-char opcionesPelicula(int i, vector<string> pelicula) {
+void opcionesPelicula(
+  int i, vector<string> pelicula, string usuario
+) { // Fin de recibir datos del menú anterior
   subMenuOpciones(i);
-  int dir, btn = 0; char tecla;
+  int dir, btn = 0; char tecla; string expir;
   int orden[4][3] = {{1,2,0},{2,0,1},{2,0,1},{1,2,0}};
+  bool rentaExitosa, compraExitosa, accion = false;
 
   while(tecla != ESC && tecla != ARR && tecla != ABJ) {
     tecla = getch();
@@ -27,22 +30,51 @@ char opcionesPelicula(int i, vector<string> pelicula) {
         btn = orden[dir][btn];
       } else if (tecla == ENTER) {
         switch(btn) {
-          case 0:
+          case 0: // Sinopsis
             mostrarSinopsis(pelicula);
-            tecla = ESC; // VOLVER AL SUBMENÚ
-          case 1: // Rentar.
             break;
-          case 2: // Comprar.
+
+          case 1: // Rentar
+            rentaExitosa = rentarPelicula(
+              pelicula[ID], usuario
+            ); // Fin de ver si se concretó
+
+            if(rentaExitosa) {
+              expir = cuandoExpira(1); // En 1 mes
+              mostrarAviso(
+                "renta_pelicula", expir, "2.2_buscador_f2"
+              ); // Fin de mostrar aviso de éxito
+            } else {
+              mostrarError("renta_fallida");
+            } // Fin de desplegar mensajes
+            break;
+
+          case 2: // Comprar
+            compraExitosa = comprarPelicula(
+              pelicula[ID], usuario
+            ); // Fin de ver si se concretó la renta
+            if(compraExitosa) {
+              mostrarAviso("compra_pelicula");
+            } else {
+              mostrarError(
+                "compra_fallida", "peli_busc", usuario,
+                atoi(pelicula[PRECIO].c_str())
+              ); // Fin de mostrar error
+            } // Fin de desplegar mensajes
             break;
         } // Fin de lanzar sub-menú
+        tecla  = ESC; // Salir del sub-menú
+        accion = true;
       } // Fin de reaccionar a teclas
     } // Fin de detectar tecla válida
   } // Fin de ciclar hasta presionar 'ESC'
-
-  limpiarZona("resultados"); return tecla;
+  
+  if (!accion) { limpiarZona("resultados"); }
 } // Fin de mostrar submenú al dar ENTER
 
-void listado(vector<vector<string> > resultados) {
+void listado(
+  vector<vector<string> > resultados, string usuario
+) { // Fin de recibir datos del menú anterior
   dibujarMenu("2.2_buscador_f2");
   /*-------------------------------------------------*/
   #define INICIO   0
@@ -88,7 +120,7 @@ void listado(vector<vector<string> > resultados) {
         moverCursor(puntero);
       } else if (tecla == ENTER) {
         /*sub*/menu::opcionesPelicula(// Enviar el cursor
-          puntero, resultados[puntero]
+          puntero, resultados[puntero], usuario
         ); // Fin de mostrar las 3 opciones
         detallesDeLaPelicula(
           unirRegistro(resultados[puntero],";"),"listado"
@@ -164,7 +196,7 @@ void buscador(string usuario) {
             if(j == MAX) { break; } // Limitar a 13
           } // Fin de meter resultados en el arreglo
           if(resultados.size()) {
-            menu::listado(resultados);
+            menu::listado(resultados, usuario);
             resultados.clear();
           } // Fin de prevenir arreglo vacío
         } else { // No se especificó criterio
@@ -448,6 +480,59 @@ void miCredito(string usuario) {
 /* =======================================================
 |||||||||||          C A T Á L O G O           |||||||||||
 ========================================================*/
+void opcionesEnCatalogo(string idPeli, string usuario) {
+  ventanaOpciones(idPeli);
+  int dir, boton = 1; char tecla; string expir;
+  int precioPeli = atoi(consultaRapida(
+    "peliculas.txt", ID, idPeli, PRECIO
+  ).c_str()); // Fin de almacenar el precio
+  bool rentaExitosa, compraExitosa;
+  int orden[4][3] = {{1,2,0},{1,0,1},{2,0,0},{2,0,0}};
+
+  while(tecla != ESC) {
+    tecla = getch();
+    if (tecla == 0) { tecla = getch(); } else {
+      if (esDireccional(tecla)) {
+        // Desplazarse entre botones
+        dir = obtenerDireccion(tecla);
+        enfocarElemento(
+          "ventana_opciones", orden[dir][boton]
+        ); // Fin de enfocar elemento
+        boton = orden[dir][boton];
+      } else if (tecla == ENTER) {
+        switch(boton) {
+          case 1: // Rentar
+            rentaExitosa=rentarPelicula(idPeli, usuario);
+
+            if(rentaExitosa) {
+              expir = cuandoExpira(1); // En 1 mes
+              mostrarAviso(
+                "renta_pelicula", expir, "null"
+              ); // Fin de mensaje de éxito
+            } else {
+              mostrarError("renta_fallida", "catalogo");
+            } break; // Fin de desplegar mensajes
+
+          case 2: // Comprar
+            compraExitosa = comprarPelicula(
+              idPeli, usuario
+            ); // Fin de ver si se concretó la renta
+            if(compraExitosa) {
+              mostrarAviso("compra_pelicula", "catalogo");
+            } else {
+              mostrarError(
+                "compra_fallida", "catalogo", usuario,
+                precioPeli
+              ); // Fin de mostrar error
+            } break; // Fin de desplegar mensajes
+        } // Fin de lanzar sub-menú
+        tecla = ESC; // Salir
+      } // Fin de reaccionar a teclas
+    } // Fin de detectar tecla válida
+  } // Fin de ciclar hasta presionar 'ESC'
+  dibujarMenu("2.4_catalogo_f2");
+} // Fin de ventana con opciones
+
 void catalogoFrame2(string usuario, int gnrId) {
   dibujarMenu("2.4_catalogo_f2");
   /*-------------------------------------------------*/
@@ -457,7 +542,8 @@ void catalogoFrame2(string usuario, int gnrId) {
   #define LISTA    0
   #define PUNTEROS 1
   /*-------------------------------------------------*/
-  vector<string> peliculas; /* Tabla filtrada */
+  vector<string> peliculas ; /* Tabla filtrada */
+  vector<string> peliActual;
   string genero = obtenerGenero(gnrId);
   peliculas = filtrarRegistros(
     "peliculas.txt", GENERO, genero
@@ -537,7 +623,12 @@ void catalogoFrame2(string usuario, int gnrId) {
           detallesDeLaPelicula(peliculas[puntero]);
           moverPuntero(puntero, pagActual)        ;
         } else if (tecla == ENTER) {
-          // Dar opción de comprar o rentar
+          peliActual=separarLinea(peliculas[puntero], ';');
+          menu::opcionesEnCatalogo(peliActual[ID],usuario);
+          mostrarPagina(peliculas, pagActual)             ;
+          detallesDeLaPelicula(peliculas[puntero])        ;
+          limpiarZona("2.4_catalogo_f2", PUNTEROS)        ;
+          moverPuntero(puntero, pagActual)                ;
         } // Fin de reaccionar a teclas
       } // Fin de detectar tecla válida
     } // Fin de ciclar hasta presionar 'ESC'
